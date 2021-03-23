@@ -2,16 +2,11 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="src">
-      <UniqueIdentifier>{5a391bb4-b4d1-4995-a618-4e21d70b0dd5}</UniqueIdentifier>
+      <UniqueIdentifier>{f9324c67-4536-4ef2-8df2-f39608b2e1bd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Test.h">
-      <Filter>src</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Test.cpp">
+    <ClCompile Include="src\Application.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
