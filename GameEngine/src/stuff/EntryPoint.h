@@ -6,7 +6,10 @@ extern SOMEENGINE::Application* SOMEENGINE::CreateApplication();
 
 int main(int argc, char** args)
 {
-	printf("Some Engine Start!\n");
+	SOMEENGINE::Log::Init();
+	SO_CORE_WARN("Initialized Logger!");
+	SO_INFO("Welcome to my some engine!");
+
 	auto app = SOMEENGINE::CreateApplication();
 	app->Run();
 	delete app;

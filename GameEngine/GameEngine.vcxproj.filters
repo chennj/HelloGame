@@ -21,9 +21,15 @@
     <ClInclude Include="src\stuff\EntryPoint.h">
       <Filter>src\stuff</Filter>
     </ClInclude>
+    <ClInclude Include="src\stuff\Log.h">
+      <Filter>src\stuff</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\stuff\Application.cpp">
+      <Filter>src\stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stuff\Log.cpp">
       <Filter>src\stuff</Filter>
     </ClCompile>
   </ItemGroup>
