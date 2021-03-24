@@ -1,68 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="源文件">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="头文件">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="资源文件">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="common">
-      <UniqueIdentifier>{ea114ebd-71a4-49db-b75b-c186bc5fafd9}</UniqueIdentifier>
+      <UniqueIdentifier>{AEFEE3F6-9AA0-0ECD-835B-22216F9C951D}</UniqueIdentifier>
     </Filter>
     <Filter Include="common\imgui">
-      <UniqueIdentifier>{a6310f7b-f951-4160-bb3c-35b49ce00eab}</UniqueIdentifier>
+      <UniqueIdentifier>{98D6CB64-8439-5B09-2DBF-93BF1901278C}</UniqueIdentifier>
     </Filter>
     <Filter Include="common\stb_image">
-      <UniqueIdentifier>{4036b338-bb28-46c1-9a2e-19c54617eea5}</UniqueIdentifier>
+      <UniqueIdentifier>{C860374C-B459-569E-DD8B-3B23C9E335AA}</UniqueIdentifier>
     </Filter>
     <Filter Include="common\tests">
-      <UniqueIdentifier>{8a4e9f42-a352-41e9-9695-2c01bcc1b4ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="dlsl">
-      <UniqueIdentifier>{c30ea0c0-8488-4151-aeda-b23843659690}</UniqueIdentifier>
+      <UniqueIdentifier>{10B48E65-FC16-1E0A-A59C-56C091DEE98C}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor">
-      <UniqueIdentifier>{29ba294f-d253-473e-8609-2eb84ec4a211}</UniqueIdentifier>
+      <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="common\imgui\imgui.cpp">
-      <Filter>common\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="common\imgui\imgui_demo.cpp">
-      <Filter>common\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="common\imgui\imgui_draw.cpp">
-      <Filter>common\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="common\imgui\imgui_impl_glfw_gl3.cpp">
-      <Filter>common\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="common\stb_image\stb_image.cpp">
-      <Filter>common\stb_image</Filter>
-    </ClCompile>
-    <ClCompile Include="common\tests\Test.cpp">
-      <Filter>common\tests</Filter>
-    </ClCompile>
-    <ClCompile Include="common\tests\TestBatchRenderer.cpp">
-      <Filter>common\tests</Filter>
-    </ClCompile>
-    <ClCompile Include="vendor\Shader.cpp">
-      <Filter>vendor</Filter>
-    </ClCompile>
-    <ClCompile Include="vendor\SysConf.cpp">
-      <Filter>vendor</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\imgui\imconfig.h">
@@ -103,17 +56,33 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="dlsl\Basic.shader">
-      <Filter>dlsl</Filter>
-    </None>
-    <None Include="dlsl\BatchRenderer.shader">
-      <Filter>dlsl</Filter>
-    </None>
-    <None Include="dlsl\Color.shader">
-      <Filter>dlsl</Filter>
-    </None>
-    <None Include="dlsl\ColorAndTexture.shader">
-      <Filter>dlsl</Filter>
-    </None>
+    <ClCompile Include="common\imgui\imgui.cpp">
+      <Filter>common\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="common\imgui\imgui_demo.cpp">
+      <Filter>common\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="common\imgui\imgui_draw.cpp">
+      <Filter>common\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="common\imgui\imgui_impl_glfw_gl3.cpp">
+      <Filter>common\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="common\stb_image\stb_image.cpp">
+      <Filter>common\stb_image</Filter>
+    </ClCompile>
+    <ClCompile Include="common\tests\Test.cpp">
+      <Filter>common\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="common\tests\TestBatchRenderer.cpp">
+      <Filter>common\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="vendor\Shader.cpp">
+      <Filter>vendor</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\SysConf.cpp">
+      <Filter>vendor</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

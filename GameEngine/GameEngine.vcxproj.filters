@@ -1,36 +1,31 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="src">
-      <UniqueIdentifier>{5a391bb4-b4d1-4995-a618-4e21d70b0dd5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\stuff">
-      <UniqueIdentifier>{50f0284a-91a9-45bc-918b-d9aef70464d9}</UniqueIdentifier>
+    <Filter Include="stuff">
+      <UniqueIdentifier>{4D9D6110-B9B1-89C1-8233-2D21EE0686F2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\stuff\Core.h">
-      <Filter>src\stuff</Filter>
-    </ClInclude>
+    <ClInclude Include="src\Some.h" />
     <ClInclude Include="src\stuff\Application.h">
-      <Filter>src\stuff</Filter>
+      <Filter>stuff</Filter>
     </ClInclude>
-    <ClInclude Include="src\Some.h">
-      <Filter>src</Filter>
+    <ClInclude Include="src\stuff\Core.h">
+      <Filter>stuff</Filter>
     </ClInclude>
     <ClInclude Include="src\stuff\EntryPoint.h">
-      <Filter>src\stuff</Filter>
+      <Filter>stuff</Filter>
     </ClInclude>
     <ClInclude Include="src\stuff\Log.h">
-      <Filter>src\stuff</Filter>
+      <Filter>stuff</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\stuff\Application.cpp">
-      <Filter>src\stuff</Filter>
+      <Filter>stuff</Filter>
     </ClCompile>
     <ClCompile Include="src\stuff\Log.cpp">
-      <Filter>src\stuff</Filter>
+      <Filter>stuff</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
