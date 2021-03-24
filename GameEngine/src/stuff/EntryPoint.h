@@ -8,7 +8,7 @@ int main(int argc, char** args)
 {
 	SOMEENGINE::Log::Init();
 	SO_CORE_WARN("Initialized Logger!");
-	SO_INFO("Welcome to my some engine!");
+	SO_INFO("Welcome to some engine!");
 
 	auto app = SOMEENGINE::CreateApplication();
 	app->Run();

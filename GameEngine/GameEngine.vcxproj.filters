@@ -4,6 +4,9 @@
     <Filter Include="stuff">
       <UniqueIdentifier>{4D9D6110-B9B1-89C1-8233-2D21EE0686F2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="stuff\events">
+      <UniqueIdentifier>{B1C4B63E-9D27-46E3-46AD-7E9932EF1166}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Some.h" />
@@ -18,6 +21,18 @@
     </ClInclude>
     <ClInclude Include="src\stuff\Log.h">
       <Filter>stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\events\ApplicationEvent.h">
+      <Filter>stuff\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\events\Event.h">
+      <Filter>stuff\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\events\KeyEvent.h">
+      <Filter>stuff\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\events\MouseEvent.h">
+      <Filter>stuff\events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

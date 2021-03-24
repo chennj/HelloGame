@@ -26,13 +26,14 @@ project "GameEngine"
 
 	includedirs
 	{
+		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include"
 	}
 
 	filter "system:windows"
 		cppdialect "C++11"
 		staticruntime "On"
-		systemversion "10.0.14393.0"
+		systemversion "latest"
 
 		defines
 		{
@@ -85,7 +86,7 @@ project "Sandbox"
 	filter "system:windows"
 		cppdialect "C++11"
 		staticruntime "On"
-		systemversion "10.0.14393.0"
+		systemversion "latest"
 
 		defines
 		{
@@ -135,7 +136,7 @@ project "HelloGame"
 	filter "system:windows"
 		cppdialect "C++11"
 		staticruntime "On"
-		systemversion "10.0.14393.0"
+		systemversion "latest"
 
 	filter "configurations:Debug"
 		defines "HELLOGAME_DEBUG"

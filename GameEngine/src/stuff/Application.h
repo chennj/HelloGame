@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Core.h"
+#include "events/Event.h"
+
 namespace SOMEENGINE
 {
 	class SOME_API Application
