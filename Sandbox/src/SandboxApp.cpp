@@ -1,3 +1,5 @@
+#include "sopch.h"
+
 #include <Some.h>
 
 class Sandbox : public SOMEENGINE::Application

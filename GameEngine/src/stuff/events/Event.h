@@ -2,9 +2,6 @@
 
 #include "../Core.h"
 
-#include <string>
-#include <functional>
-
 namespace SOMEENGINE
 {
 	// 在引擎中的事件模型当前是阻塞模式，意味着一旦事件产生，将会立刻被分发

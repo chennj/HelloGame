@@ -1,3 +1,4 @@
+#include "sopch.h"
 #include "Application.h"
 
 #include "stuff\events\ApplicationEvent.h"
@@ -17,7 +18,7 @@ namespace SOMEENGINE
 	void Application::Run()
 	{
 		WindowResizeEvent e(1280, 720);
-		SO_TRACE(e);
+		SE_TRACE(e);
 
 		while (true)
 		{

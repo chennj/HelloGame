@@ -18,6 +18,9 @@ project "GameEngine"
 	targetdir("bin/" .. outputdir .. "/%{prj.name}")
 	objdir("temp/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "sopch.h"
+	pchsource "GameEngine/src/sopch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",
@@ -47,15 +50,15 @@ project "GameEngine"
 		}
 
 	filter "configurations:Debug"
-		defines "SO_DEBUG"
+		defines "SOME_DEBUG"
 		symbols "On"
 
 	filter "configurations:Release"
-		defines "SO_RELEASE"
+		defines "SOME_RELEASE"
 		optimize "On"
 
 	filter "configurations:Dist"
-		defines "SO_DIST"
+		defines "SOME_DIST"
 		optimize "On"
 
 project "Sandbox"

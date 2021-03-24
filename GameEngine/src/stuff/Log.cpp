@@ -1,3 +1,5 @@
+#include "sopch.h"
+
 #include "Log.h"
 
 namespace SOMEENGINE

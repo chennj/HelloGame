@@ -10,6 +10,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Some.h" />
+    <ClInclude Include="src\sopch.h" />
     <ClInclude Include="src\stuff\Application.h">
       <Filter>stuff</Filter>
     </ClInclude>
@@ -36,6 +37,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\sopch.cpp" />
     <ClCompile Include="src\stuff\Application.cpp">
       <Filter>stuff</Filter>
     </ClCompile>
