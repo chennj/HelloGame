@@ -8,6 +8,7 @@ namespace SOMEENGINE
 {
 	Application::Application()
 	{
+		_Window = std::unique_ptr<Window>(Window::Create());
 	}
 
 
@@ -17,12 +18,9 @@ namespace SOMEENGINE
 
 	void Application::Run()
 	{
-		WindowResizeEvent e(1280, 720);
-		SE_TRACE(e);
-
-		while (true)
+		while (_Running)
 		{
-			;
+			_Window->OnUpdate();
 		}
 	}
 }

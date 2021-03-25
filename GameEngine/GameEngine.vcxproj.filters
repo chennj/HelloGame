@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="platform">
+      <UniqueIdentifier>{4A63C33C-3630-1E48-5F49-0CF04B7553D6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\windows">
+      <UniqueIdentifier>{A44FC440-9048-E392-B97A-C817A5D2C29E}</UniqueIdentifier>
+    </Filter>
     <Filter Include="stuff">
       <UniqueIdentifier>{4D9D6110-B9B1-89C1-8233-2D21EE0686F2}</UniqueIdentifier>
     </Filter>
@@ -10,6 +16,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Some.h" />
+    <ClInclude Include="src\platform\windows\WindowsWindow.h">
+      <Filter>platform\windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\sopch.h" />
     <ClInclude Include="src\stuff\Application.h">
       <Filter>stuff</Filter>
@@ -21,6 +30,9 @@
       <Filter>stuff</Filter>
     </ClInclude>
     <ClInclude Include="src\stuff\Log.h">
+      <Filter>stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\Window.h">
       <Filter>stuff</Filter>
     </ClInclude>
     <ClInclude Include="src\stuff\events\ApplicationEvent.h">
@@ -37,6 +49,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\platform\windows\WindowsWindow.cpp">
+      <Filter>platform\windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\sopch.cpp" />
     <ClCompile Include="src\stuff\Application.cpp">
       <Filter>stuff</Filter>

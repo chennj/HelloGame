@@ -10,6 +10,12 @@ workspace "HelloGame"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Import GLFW ---------------------------------------
+IncludeDir = {}
+IncludeDir["GLFW"] = "GameEngine/vendor/glfw/include"
+
+include "GameEngine/vendor/glfw"
+-- ---------------------------------------------------
 project "GameEngine"
 	location "GameEngine"
 	kind "SharedLib"
@@ -30,7 +36,14 @@ project "GameEngine"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"OpenGL32.Lib"
 	}
 
 	filter "system:windows"
@@ -40,8 +53,9 @@ project "GameEngine"
 
 		defines
 		{
-			"SO_PLATFORM_WINDOWS",
-			"SO_BUILD_DLL"
+			"SE_PLATFORM_WINDOWS",
+			"SE_BUILD_DLL",
+			"SE_ENABLE_ASSERTS"
 		}
 
 		postbuildcommands
@@ -93,7 +107,7 @@ project "Sandbox"
 
 		defines
 		{
-			"SO_PLATFORM_WINDOWS"
+			"SE_PLATFORM_WINDOWS"
 		}
 
 	filter "configurations:Debug"
