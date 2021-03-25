@@ -55,7 +55,7 @@ project "GameEngine"
 		{
 			"SE_PLATFORM_WINDOWS",
 			"SE_BUILD_DLL",
-			"SE_ENABLE_ASSERTS"
+			--"SE_ENABLE_ASSERTS"
 		}
 
 		postbuildcommands

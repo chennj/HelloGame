@@ -73,7 +73,7 @@ namespace SOMEENGINE
 		template<typename T>
 		bool Dispatch(EventFn<T> func)
 		{
-			if (_Event.GetEventType() == T::GetStaticType)
+			if (_Event.GetEventType() == T::GetStaticType())
 			{
 				_Event._Handled = func(*(T*)&_Event);
 				return true;

@@ -2,6 +2,7 @@
 
 #include "Core.h"
 #include "events/Event.h"
+#include "events\ApplicationEvent.h"
 #include "Window.h"
 
 namespace SOMEENGINE
@@ -18,6 +19,12 @@ namespace SOMEENGINE
 
 	public:
 		void Run();
+
+	public:
+		void OnEvent(Event& e);
+
+	private:
+		bool OnWindowClose(WindowCloseEvent& e);
 	};
 
 	// To be define in CLIENT
