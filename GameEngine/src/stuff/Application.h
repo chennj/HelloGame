@@ -16,6 +16,9 @@ namespace SOMEENGINE
 		bool _Running = true;
 		LayerStack _LayerStack;
 
+	private:
+		static Application* s_Instance;
+
 	public:
 		Application();
 		virtual ~Application();
@@ -28,6 +31,8 @@ namespace SOMEENGINE
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* overlay);
 
+		inline Window& GetWindow() const { return *_Window; }
+		inline static Application& Get() { return *s_Instance; }
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 	};

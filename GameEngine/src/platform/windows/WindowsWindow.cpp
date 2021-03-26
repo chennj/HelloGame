@@ -45,8 +45,8 @@ namespace SOMEENGINE
 		if (!s_GLFWInitialized)
 		{
 			int success = glfwInit();
-			SE_CORE_ASSERT(success, "Could not initialize GLFW");
 			glfwSetErrorCallback(GLFWErrorCallback);
+			SE_CORE_ASSERT(success, "Could not initialize GLFW");
 			s_GLFWInitialized = true;
 		}
 

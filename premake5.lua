@@ -10,13 +10,15 @@ workspace "HelloGame"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
--- Import GLFW and GLAD---------------------------------------
+-- Import GLFW and GLAD and ImGui---------------------------------------
 IncludeDir = {}
-IncludeDir["GLFW"] = "GameEngine/vendor/glfw/include"
-IncludeDir["GLAD"] = "GameEngine/vendor/glad/include"
+IncludeDir["GLFW"]	= "GameEngine/vendor/glfw/include"
+IncludeDir["GLAD"]	= "GameEngine/vendor/glad/include"
+IncludeDir["ImGui"] = "GameEngine/vendor/imgui"
 
 include "GameEngine/vendor/glfw"
 include "GameEngine/vendor/glad"
+include "GameEngine/vendor/imgui"
 -- ---------------------------------------------------
 project "GameEngine"
 	location "GameEngine"
@@ -40,13 +42,15 @@ project "GameEngine"
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.GLAD}"
+		"%{IncludeDir.GLAD}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
 	{
 		"GLFW",
 		"GLAD",
+		"ImGui",
 		"OpenGL32.Lib"
 	}
 
@@ -59,7 +63,7 @@ project "GameEngine"
 		{
 			"SE_PLATFORM_WINDOWS",
 			"SE_BUILD_DLL",
-			--"SE_ENABLE_ASSERTS"
+			"SE_ENABLE_ASSERTS"
 		}
 
 		postbuildcommands

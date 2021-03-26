@@ -9,8 +9,13 @@ namespace SOMEENGINE
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
+	Application* Application::s_Instance = nullptr;
+
 	Application::Application()
 	{
+		SE_CORE_ASSERT(!s_Instance, "Application already exists!");
+		s_Instance = this;
+
 		_Window = std::unique_ptr<Window>(Window::Create());
 		_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 	}
@@ -47,7 +52,9 @@ namespace SOMEENGINE
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			for (Layer* layer : _LayerStack)
+			{
 				layer->OnUpdate();
+			}
 
 			_Window->OnUpdate();
 		}
@@ -62,10 +69,12 @@ namespace SOMEENGINE
 	void Application::PushLayer(Layer* layer)
 	{
 		_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* overlay)
 	{
 		_LayerStack.PushOverlay(overlay);
+		overlay->OnAttach();
 	}
 }
