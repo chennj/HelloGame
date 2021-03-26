@@ -69,7 +69,7 @@ namespace SOMEENGINE
 			_Button(button) {}
 
 	public:
-		inline int GetButton()const { return _Button; }
+		inline int GetMouseButton()const { return _Button; }
 
 	public:
 		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
@@ -86,7 +86,7 @@ namespace SOMEENGINE
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseButtonPressedEvent: " << GetButton();
+			ss << "MouseButtonPressedEvent: " << GetMouseButton();
 			return ss.str();
 		}
 
@@ -105,7 +105,7 @@ namespace SOMEENGINE
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseButtonReleasedEvent: " << GetButton();
+			ss << "MouseButtonReleasedEvent: " << GetMouseButton();
 			return ss.str();
 		}
 

@@ -6,9 +6,6 @@
 
 namespace SOMEENGINE
 {
-
-#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
-
 	Application* Application::s_Instance = nullptr;
 
 	Application::Application()
@@ -17,9 +14,8 @@ namespace SOMEENGINE
 		s_Instance = this;
 
 		_Window = std::unique_ptr<Window>(Window::Create());
-		_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		_Window->SetEventCallback(SE_BIND_EVENT_FN(Application::OnEvent));
 	}
-
 
 	Application::~Application()
 	{
@@ -32,7 +28,7 @@ namespace SOMEENGINE
 		//{
 		//	return this->OnWindowClose(e1);
 		//});
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+		dispatcher.Dispatch<WindowCloseEvent>(SE_BIND_EVENT_FN(Application::OnWindowClose));
 
 		SE_CORE_TRACE("{0}",e);
 

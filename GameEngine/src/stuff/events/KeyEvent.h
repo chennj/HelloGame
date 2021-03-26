@@ -57,4 +57,22 @@ namespace SOMEENGINE
 
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
+
+	class SOME_API KeyTypedEvent : public KeyEvent
+	{
+	public:
+		KeyTypedEvent(int keyCode)
+			:
+			KeyEvent(keyCode) {}
+
+	public:
+		std::string ToString()const override
+		{
+			std::stringstream ss;
+			ss << "KeyTypedEvent: " << _KeyCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(KeyTyped)
+	};
 }
