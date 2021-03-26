@@ -38,7 +38,7 @@ namespace SOMEENGINE
 	{
 		friend class EventDispatcher;
 
-	protected:
+	public:
 		bool _Handled = false;
 
 	public:

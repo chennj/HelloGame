@@ -75,6 +75,15 @@ project "GameEngine"
 		defines "SOME_DIST"
 		optimize "On"
 
+	filter {"system:windows","configurations:Debug"}
+		buildoptions "/MDd"
+
+	filter {"system:windows","configurations:Release"}
+		buildoptions "/MD"
+
+	filter {"system:windows","configurations:Dist"}
+		buildoptions "/MD"
+
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
@@ -121,6 +130,15 @@ project "Sandbox"
 	filter "configurations:Dist"
 		defines "SANDBOX_DIST"
 		optimize "On"
+
+	filter {"system:windows","configurations:Debug"}
+		buildoptions "/MDd"
+
+	filter {"system:windows","configurations:Release"}
+		buildoptions "/MD"
+
+	filter {"system:windows","configurations:Dist"}
+		buildoptions "/MD"
 
 project "HelloGame"
 	location "HelloGame"
@@ -171,4 +189,7 @@ project "HelloGame"
 		buildoptions "/MDd"
 
 	filter {"system:windows","configurations:Release"}
+		buildoptions "/MD"
+
+	filter {"system:windows","configurations:Dist"}
 		buildoptions "/MD"
