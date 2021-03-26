@@ -10,11 +10,13 @@ workspace "HelloGame"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
--- Import GLFW ---------------------------------------
+-- Import GLFW and GLAD---------------------------------------
 IncludeDir = {}
 IncludeDir["GLFW"] = "GameEngine/vendor/glfw/include"
+IncludeDir["GLAD"] = "GameEngine/vendor/glad/include"
 
 include "GameEngine/vendor/glfw"
+include "GameEngine/vendor/glad"
 -- ---------------------------------------------------
 project "GameEngine"
 	location "GameEngine"
@@ -37,12 +39,14 @@ project "GameEngine"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.GLAD}"
 	}
 
 	links
 	{
 		"GLFW",
+		"GLAD",
 		"OpenGL32.Lib"
 	}
 

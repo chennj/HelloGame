@@ -6,6 +6,10 @@
 #include "stuff\events\KeyEvent.h"
 #include "stuff\events\MouseEvent.h"
 
+// glad.h必须包含在glfw的前面
+#include "glad\glad.h"
+#include "GLFW\glfw3.h"
+
 namespace SOMEENGINE
 {
 	static bool s_GLFWInitialized = false;
@@ -41,13 +45,17 @@ namespace SOMEENGINE
 		if (!s_GLFWInitialized)
 		{
 			int success = glfwInit();
-			SE_ASSERT(success, "Could not initialize GLFW");
+			SE_CORE_ASSERT(success, "Could not initialize GLFW");
 			glfwSetErrorCallback(GLFWErrorCallback);
 			s_GLFWInitialized = true;
 		}
 
 		_Window = glfwCreateWindow((int)props.Width, (int)props.Height, props.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(_Window);
+		// GLAD---
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		SE_CORE_ASSERT(status, "Could not initialize GLAD");
+		// -------
 		glfwSetWindowUserPointer(_Window, &_Data);
 		SetVSync(true);
 
