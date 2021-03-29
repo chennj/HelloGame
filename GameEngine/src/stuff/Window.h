@@ -14,8 +14,8 @@ namespace SOMEENGINE
 
 		WindowProps(
 			const std::string& title = "Some Engine",
-			unsigned int width = 1120,
-			unsigned int height = 630)
+			unsigned int width = 960,
+			unsigned int height = 540)
 			:
 			Title(title),Width(width), Height(height)
 		{
@@ -39,6 +39,8 @@ namespace SOMEENGINE
 		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
 		virtual void SetVSync(bool enabled) = 0;
 		virtual bool IsVSync()const = 0;
+
+		virtual void* GetNativeWindow()const = 0;
 
 		static Window* Create(const WindowProps& props = WindowProps());
 	};

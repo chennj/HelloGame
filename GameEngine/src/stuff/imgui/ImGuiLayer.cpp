@@ -24,6 +24,9 @@ namespace SOMEENGINE
 		ImGui::StyleColorsDark();
 
 		ImGuiIO& io = ImGui::GetIO();
+		//添加中文支持
+		io.Fonts->AddFontFromFileTTF("c:/windows/fonts/simhei.ttf", 13.0f, NULL, io.Fonts->GetGlyphRangesChineseSimplifiedCommon());
+
 		io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
 		io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
 

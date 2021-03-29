@@ -1,5 +1,6 @@
 workspace "HelloGame"
 	architecture "x64"
+	startproject "Sandbox"
 
 	configurations
 	{
@@ -20,6 +21,7 @@ include "GameEngine/vendor/glfw"
 include "GameEngine/vendor/glad"
 include "GameEngine/vendor/imgui"
 -- ---------------------------------------------------
+
 project "GameEngine"
 	location "GameEngine"
 	kind "SharedLib"
@@ -62,8 +64,7 @@ project "GameEngine"
 		defines
 		{
 			"SE_PLATFORM_WINDOWS",
-			"SE_BUILD_DLL",
-			"SE_ENABLE_ASSERTS"
+			"SE_BUILD_DLL"
 		}
 
 		postbuildcommands

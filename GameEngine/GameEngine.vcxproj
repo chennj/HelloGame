@@ -78,7 +78,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>sopch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>SE_PLATFORM_WINDOWS;SE_BUILD_DLL;SE_ENABLE_ASSERTS;SOME_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SE_PLATFORM_WINDOWS;SE_BUILD_DLL;SOME_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\glfw\include;vendor\glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -100,7 +100,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>sopch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>SE_PLATFORM_WINDOWS;SE_BUILD_DLL;SE_ENABLE_ASSERTS;SOME_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SE_PLATFORM_WINDOWS;SE_BUILD_DLL;SOME_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\glfw\include;vendor\glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -126,7 +126,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>sopch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>SE_PLATFORM_WINDOWS;SE_BUILD_DLL;SE_ENABLE_ASSERTS;SOME_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SE_PLATFORM_WINDOWS;SE_BUILD_DLL;SOME_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\glfw\include;vendor\glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -148,6 +148,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\platform\windows\WindowsInput.h" />
     <ClInclude Include="src\Some.h" />
     <ClInclude Include="src\platform\opengl\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\platform\windows\WindowsWindow.h" />
@@ -155,9 +156,12 @@
     <ClInclude Include="src\stuff\Application.h" />
     <ClInclude Include="src\stuff\Core.h" />
     <ClInclude Include="src\stuff\EntryPoint.h" />
+    <ClInclude Include="src\stuff\Input.h" />
+    <ClInclude Include="src\stuff\KeyCodes.h" />
     <ClInclude Include="src\stuff\Layer.h" />
     <ClInclude Include="src\stuff\LayerStack.h" />
     <ClInclude Include="src\stuff\Log.h" />
+    <ClInclude Include="src\stuff\MouseButtonCodes.h" />
     <ClInclude Include="src\stuff\Window.h" />
     <ClInclude Include="src\stuff\events\ApplicationEvent.h" />
     <ClInclude Include="src\stuff\events\Event.h" />
@@ -167,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\platform\opengl\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\platform\windows\WindowsInpu.cpp" />
     <ClCompile Include="src\platform\windows\WindowsWindow.cpp" />
     <ClCompile Include="src\sopch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

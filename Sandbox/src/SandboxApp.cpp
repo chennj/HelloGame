@@ -10,12 +10,22 @@ public:
 public:
 	void OnUpdate() override
 	{
-		SE_INFO("ExampleLayer::OnUpdate");
+		if (SOMEENGINE::Input::IsKeyPressed(SE_KEY_TAB))
+		{
+			SE_TRACE("Tab Key is Pressed!");
+		}
 	}
 
 	void OnEvent(SOMEENGINE::Event& event) override
 	{
-		SE_TRACE("{0}", event);
+		//auto v = SOMEENGINE::Input::GetMosuePosition();
+		//SE_CORE_TRACE("{0},{1}", v.first, v.second);
+
+		if (event.GetEventType() == SOMEENGINE::EventType::KeyPressed)
+		{
+			SOMEENGINE::KeyPressedEvent& e = (SOMEENGINE::KeyPressedEvent&)event;
+			SE_TRACE("{0}", (char)e.GetKeyCode());
+		}
 	}
 };
 

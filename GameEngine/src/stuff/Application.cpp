@@ -4,6 +4,8 @@
 #include "stuff\Log.h"
 #include "GLFW\glfw3.h"
 
+#include "Input.h"
+
 namespace SOMEENGINE
 {
 	Application* Application::s_Instance = nullptr;
@@ -30,7 +32,7 @@ namespace SOMEENGINE
 		//});
 		dispatcher.Dispatch<WindowCloseEvent>(SE_BIND_EVENT_FN(Application::OnWindowClose));
 
-		SE_CORE_TRACE("{0}",e);
+		//SE_CORE_TRACE("{0}",e);
 
 		for (auto it = _LayerStack.end(); it != _LayerStack.begin();)
 		{

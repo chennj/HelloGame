@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="platform">
@@ -65,6 +65,18 @@
     <ClInclude Include="src\stuff\imgui\ImGuiLayer.h">
       <Filter>stuff\imgui</Filter>
     </ClInclude>
+    <ClInclude Include="src\stuff\Input.h">
+      <Filter>stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\windows\WindowsInput.h">
+      <Filter>platform\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\KeyCodes.h">
+      <Filter>stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\MouseButtonCodes.h">
+      <Filter>stuff</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\platform\opengl\ImGuiOpenGLRenderer.cpp">
@@ -88,6 +100,9 @@
     </ClCompile>
     <ClCompile Include="src\stuff\imgui\ImGuiLayer.cpp">
       <Filter>stuff\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\windows\WindowsInpu.cpp">
+      <Filter>platform\windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
