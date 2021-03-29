@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="platform">
@@ -22,9 +22,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Some.h" />
-    <ClInclude Include="src\platform\opengl\ImGuiOpenGLRenderer.h">
-      <Filter>platform\opengl</Filter>
-    </ClInclude>
     <ClInclude Include="src\platform\windows\WindowsInput.h">
       <Filter>platform\windows</Filter>
     </ClInclude>
@@ -79,9 +76,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\platform\opengl\ImGuiOpenGLRenderer.cpp">
-      <Filter>platform\opengl</Filter>
-    </ClCompile>
     <ClCompile Include="src\platform\windows\WindowsInpu.cpp">
       <Filter>platform\windows</Filter>
     </ClCompile>
@@ -102,6 +96,9 @@
       <Filter>stuff</Filter>
     </ClCompile>
     <ClCompile Include="src\stuff\imgui\ImGuiLayer.cpp">
+      <Filter>stuff\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stuff\imgui\ImGuiBuild.cpp">
       <Filter>stuff\imgui</Filter>
     </ClCompile>
   </ItemGroup>

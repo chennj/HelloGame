@@ -149,7 +149,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Some.h" />
-    <ClInclude Include="src\platform\opengl\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\platform\windows\WindowsInput.h" />
     <ClInclude Include="src\platform\windows\WindowsWindow.h" />
     <ClInclude Include="src\sopch.h" />
@@ -170,13 +169,13 @@
     <ClInclude Include="src\stuff\imgui\ImGuiLayer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\platform\opengl\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\platform\windows\WindowsInpu.cpp" />
     <ClCompile Include="src\platform\windows\WindowsWindow.cpp" />
     <ClCompile Include="src\sopch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\stuff\Application.cpp" />
+    <ClCompile Include="src\stuff\imgui\ImGuiBuild.cpp" />
     <ClCompile Include="src\stuff\Layer.cpp" />
     <ClCompile Include="src\stuff\LayerStack.cpp" />
     <ClCompile Include="src\stuff\Log.cpp" />

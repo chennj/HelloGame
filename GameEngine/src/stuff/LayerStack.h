@@ -9,7 +9,7 @@ namespace SOMEENGINE
 	{
 	private:
 		std::vector<Layer*> _Layers;
-		std::vector<Layer*>::iterator _LayerInsert;
+		unsigned int _LayerInsertIndex = 0;
 
 	public:
 		LayerStack();

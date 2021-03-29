@@ -6,6 +6,7 @@
 #include "LayerStack.h"
 #include "events\Event.h"
 #include "events\ApplicationEvent.h"
+#include "imgui\ImGuiLayer.h"
 
 namespace SOMEENGINE
 {
@@ -13,6 +14,7 @@ namespace SOMEENGINE
 	{
 	private:
 		std::unique_ptr<Window> _Window;
+		ImGuiLayer* _ImGuiLayer;
 		bool _Running = true;
 		LayerStack _LayerStack;
 

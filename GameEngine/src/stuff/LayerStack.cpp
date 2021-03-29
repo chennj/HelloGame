@@ -5,7 +5,6 @@ namespace SOMEENGINE
 {
 	LayerStack::LayerStack()
 	{
-		_LayerInsert = _Layers.begin();
 	}
 
 	LayerStack::~LayerStack()
@@ -18,7 +17,8 @@ namespace SOMEENGINE
 
 	void LayerStack::PushLayer(Layer* layer)
 	{
-		_LayerInsert = _Layers.emplace(_LayerInsert, layer);
+		_Layers.emplace(_Layers.begin() + _LayerInsertIndex, layer);
+		_LayerInsertIndex++;
 	}
 
 	void LayerStack::PushOverlay(Layer* overlay)
@@ -32,7 +32,7 @@ namespace SOMEENGINE
 		if (it != _Layers.end())
 		{
 			_Layers.erase(it);
-			_LayerInsert--;
+			_LayerInsertIndex--;
 		}
 	}
 
