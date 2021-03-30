@@ -5,6 +5,8 @@
 
 #include <Some.h>
 
+#include "../imgui/imgui.h"
+
 class ExampleLayer : public SOMEENGINE::Layer
 {
 public:
@@ -29,8 +31,16 @@ public:
 		if (event.GetEventType() == SOMEENGINE::EventType::KeyPressed)
 		{
 			SOMEENGINE::KeyPressedEvent& e = (SOMEENGINE::KeyPressedEvent&)event;
-			SE_TRACE("{0}", (char)e.GetKeyCode());
+			SE_TRACE("{0},{1}", event, (char)e.GetKeyCode());
 		}
+	}
+
+	void OnImGuiRender()
+	{
+		ImGui::Begin("Test");
+		float col[3] = { 0.6f,0.6f,0.6f };
+		ImGui::ColorEdit3("color", col);
+		ImGui::End();
 	}
 };
 

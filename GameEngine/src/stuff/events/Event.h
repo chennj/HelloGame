@@ -50,7 +50,7 @@ namespace SOMEENGINE
 	public:
 		inline bool IsInCategory(EventCategory category)
 		{
-			return GetCategoryFlags() & category;
+			return (GetCategoryFlags() & category) > 0;
 		}
 	};
 

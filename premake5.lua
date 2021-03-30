@@ -25,8 +25,10 @@ include "GameEngine/vendor/imgui"
 
 project "GameEngine"
 	location "GameEngine"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
+	cppdialect "C++11"
+	staticruntime "on"
 
 	targetdir("bin/" .. outputdir .. "/%{prj.name}")
 	objdir("temp/" .. outputdir .. "/%{prj.name}")
@@ -59,8 +61,6 @@ project "GameEngine"
 	}
 
 	filter "system:windows"
-		cppdialect "C++11"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -76,29 +76,34 @@ project "GameEngine"
 
 	filter "configurations:Debug"
 		defines "SOME_DEBUG"
-		symbols "On"
+		runtime "Debug"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "SOME_RELEASE"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "SOME_DIST"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 
 	filter {"system:windows","configurations:Debug"}
-		buildoptions "/MDd"
+		buildoptions "/MTd"
 
 	filter {"system:windows","configurations:Release"}
-		buildoptions "/MD"
+		buildoptions "/MT"
 
 	filter {"system:windows","configurations:Dist"}
-		buildoptions "/MD"
+		buildoptions "/MT"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++11"
+	staticruntime "on"
 
 	targetdir("bin/" .. outputdir .. "/%{prj.name}")
 	objdir("temp/" .. outputdir .. "/%{prj.name}")
@@ -115,6 +120,7 @@ project "Sandbox"
 	{
 		"GameEngine/vendor/spdlog/include",
 		"GameEngine/src",
+		"GameEngine/vender",
 		"%{IncludeDir.glm}"
 	}
 
@@ -124,8 +130,6 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "C++11"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -135,24 +139,27 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "SANDBOX_DEBUG"
-		symbols "On"
+		runtime "Debug"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "SANDBOX_RELEASE"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "SANDBOX_DIST"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 
 	filter {"system:windows","configurations:Debug"}
-		buildoptions "/MDd"
+		buildoptions "/MTd"
 
 	filter {"system:windows","configurations:Release"}
-		buildoptions "/MD"
+		buildoptions "/MT"
 
 	filter {"system:windows","configurations:Dist"}
-		buildoptions "/MD"
+		buildoptions "/MT"
 
 project "HelloGame"
 	location "HelloGame"
@@ -200,10 +207,10 @@ project "HelloGame"
 		optimize "On"
 
 	filter {"system:windows","configurations:Debug"}
-		buildoptions "/MDd"
+		buildoptions "/MTd"
 
 	filter {"system:windows","configurations:Release"}
-		buildoptions "/MD"
+		buildoptions "/MT"
 
 	filter {"system:windows","configurations:Dist"}
-		buildoptions "/MD"
+		buildoptions "/MT"

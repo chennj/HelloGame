@@ -1,10 +1,14 @@
 #pragma once
 
 #ifdef SE_PLATFORM_WINDOWS
-	#ifdef SE_BUILD_DLL
-		#define SOME_API __declspec(dllexport) 
+	#if SE_DYNAMIC_LINK
+		#ifdef SE_BUILD_DLL
+			#define SOME_API __declspec(dllexport) 
+		#else
+			#define SOME_API __declspec(dllimport) 
+		#endif
 	#else
-		#define SOME_API __declspec(dllimport) 
+		#define SOME_API
 	#endif
 #else
 	#error Hello only spport Windows!
