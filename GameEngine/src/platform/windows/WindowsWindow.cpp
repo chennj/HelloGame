@@ -5,6 +5,7 @@
 #include "stuff\events\ApplicationEvent.h"
 #include "stuff\events\KeyEvent.h"
 #include "stuff\events\MouseEvent.h"
+#include "platform\opengl\OpenGLContext.h"
 
 // glad.h必须包含在glfw的前面
 #include "glad\glad.h"
@@ -51,13 +52,13 @@ namespace SOMEENGINE
 		}
 
 		_Window = glfwCreateWindow((int)props.Width, (int)props.Height, props.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(_Window);
-		// GLAD---
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		SE_CORE_ASSERT(status, "Could not initialize GLAD");
-		// -------
+
+		_Context = new OpenGLContext(_Window);
+		_Context->Init();
+
 		glfwSetWindowUserPointer(_Window, &_Data);
 		SetVSync(true);
+
 
 		// Set GLFW callbacks
 		glfwSetWindowSizeCallback(_Window, [](GLFWwindow* window, int width, int height)
@@ -155,7 +156,7 @@ namespace SOMEENGINE
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(_Window);
+		_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

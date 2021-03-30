@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="platform">
@@ -15,6 +15,12 @@
     </Filter>
     <Filter Include="stuff\imgui">
       <UniqueIdentifier>{77B0F328-E365-6C1E-6C5A-66F5D80E6322}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stuff\renderer">
+      <UniqueIdentifier>{a11800bb-2f11-41b5-b8f4-5a5d50edbcd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\opengl">
+      <UniqueIdentifier>{2ae0709b-5e25-4a59-9706-f45d4557b3ed}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +77,12 @@
     <ClInclude Include="src\stuff\imgui\ImGuiLayer.h">
       <Filter>stuff\imgui</Filter>
     </ClInclude>
+    <ClInclude Include="src\stuff\renderer\GraphicsContext.h">
+      <Filter>stuff\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\opengl\OpenGLContext.h">
+      <Filter>platform\opengl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\platform\windows\WindowsInpu.cpp">
@@ -97,6 +109,12 @@
     </ClCompile>
     <ClCompile Include="src\stuff\imgui\ImGuiLayer.cpp">
       <Filter>stuff\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stuff\renderer\GraphicsContext.cpp">
+      <Filter>stuff\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\opengl\OpenGLContext.cpp">
+      <Filter>platform\opengl</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
