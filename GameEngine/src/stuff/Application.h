@@ -9,6 +9,7 @@
 #include "imgui\ImGuiLayer.h"
 
 #include "renderer\Shader.h"
+#include "renderer\Buffer.h"
 
 namespace SOMEENGINE
 {
@@ -20,9 +21,11 @@ namespace SOMEENGINE
 		bool _Running = true;
 		LayerStack _LayerStack;
 
-		unsigned int _VertexArray, _VertextBuffer, _IndexBuffer;
+		unsigned int _VertexArray;
 
 		std::unique_ptr<Shader> _Shader;
+		std::unique_ptr<VertexBuffer> _VertexBuffer;
+		std::unique_ptr<IndexBuffer> _IndexBuffer;
 
 	private:
 		static Application* s_Instance;

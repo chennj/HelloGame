@@ -86,6 +86,15 @@
     <ClInclude Include="src\stuff\renderer\Shader.h">
       <Filter>stuff\renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\stuff\renderer\Buffer.h">
+      <Filter>stuff\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\opengl\OpenGLBuffer.h">
+      <Filter>platform\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\renderer\Renderer.h">
+      <Filter>stuff\renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\platform\windows\WindowsInpu.cpp">
@@ -120,6 +129,15 @@
       <Filter>platform\opengl</Filter>
     </ClCompile>
     <ClCompile Include="src\stuff\renderer\Shader.cpp">
+      <Filter>stuff\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stuff\renderer\Buffer.cpp">
+      <Filter>stuff\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\opengl\OpenGLBuffer.cpp">
+      <Filter>platform\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stuff\renderer\Renderer.cpp">
       <Filter>stuff\renderer</Filter>
     </ClCompile>
   </ItemGroup>
