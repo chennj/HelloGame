@@ -18,6 +18,8 @@ namespace SOMEENGINE
 		bool _Running = true;
 		LayerStack _LayerStack;
 
+		unsigned int _VertexArray, _VertextBuffer, _IndexBuffer;
+
 	private:
 		static Application* s_Instance;
 

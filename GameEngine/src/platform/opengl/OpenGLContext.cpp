@@ -19,6 +19,10 @@ namespace SOMEENGINE
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		SE_CORE_ASSERT(status, "Could not initialize GLAD");
 
+		SE_CORE_INFO("OpenGL Info");
+		SE_CORE_INFO("  Vendor: {0}", glGetString(GL_VENDOR));
+		SE_CORE_INFO("  Renderer: {0}", glGetString(GL_RENDERER));
+		SE_CORE_INFO("  Version: {0}", glGetString(GL_VERSION));
 	}
 
 	void OpenGLContext::SwapBuffers()
