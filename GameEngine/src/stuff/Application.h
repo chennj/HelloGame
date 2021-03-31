@@ -8,6 +8,8 @@
 #include "events\ApplicationEvent.h"
 #include "imgui\ImGuiLayer.h"
 
+#include "renderer\Shader.h"
+
 namespace SOMEENGINE
 {
 	class SOME_API Application
@@ -19,6 +21,8 @@ namespace SOMEENGINE
 		LayerStack _LayerStack;
 
 		unsigned int _VertexArray, _VertextBuffer, _IndexBuffer;
+
+		std::unique_ptr<Shader> _Shader;
 
 	private:
 		static Application* s_Instance;

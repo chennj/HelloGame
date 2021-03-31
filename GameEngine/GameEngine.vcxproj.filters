@@ -83,6 +83,9 @@
     <ClInclude Include="src\platform\opengl\OpenGLContext.h">
       <Filter>platform\opengl</Filter>
     </ClInclude>
+    <ClInclude Include="src\stuff\renderer\Shader.h">
+      <Filter>stuff\renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\platform\windows\WindowsInpu.cpp">
@@ -115,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="src\platform\opengl\OpenGLContext.cpp">
       <Filter>platform\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stuff\renderer\Shader.cpp">
+      <Filter>stuff\renderer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

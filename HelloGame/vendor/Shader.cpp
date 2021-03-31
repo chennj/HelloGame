@@ -1,3 +1,4 @@
+#include "..\..\GameEngine\src\stuff\renderer\Shader.h"
 #include "Shader.h"
 
 #include <iostream>

@@ -45,6 +45,35 @@ namespace SOMEENGINE
 		glGenBuffers(1, &_IndexBuffer);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _IndexBuffer);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+		std::string vertexSrc =
+			"#version 330 core\n"
+			"\n"
+			"layout(location = 0) in vec3 a_Position;"	// 输入上面定义的vertices数组的地址，是一个三维向量
+														// 'a_position' is related to 'float vertices[3 * 3]' above
+														// 'location=0' is related to '0' of 'glVertexAttribPointer(0,..)' above
+			"\n"
+			"out vec3 v_Position;\n"
+			"\n"
+			"void main()\n"
+			"{\n"
+			"	v_Position = a_Position;\n"
+			"	gl_Position = vec4(a_Position,1.0);\n"
+			"}\n";
+		
+		std::string fragmentSrc =
+			"#version 330 core\n"
+			"\n"
+			"layout(location = 0) out vec4 color;"		// 输出给GPU的变量
+			"\n"
+			"in vec3 v_Position;\n"
+			"\n"
+			"void main()\n"
+			"{\n"
+			"	color = vec4(v_Position, 1.0);\n"
+			"}\n";
+
+		_Shader.reset(new Shader(vertexSrc, fragmentSrc));
 	}
 
 	Application::~Application()
@@ -77,6 +106,7 @@ namespace SOMEENGINE
 			glClearColor(0.1f, 0.1f, 0.1f, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
+			_Shader->Bind();
 			glBindVertexArray(_VertexArray);
 			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
 

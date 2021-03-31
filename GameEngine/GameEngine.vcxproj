@@ -163,6 +163,7 @@
     <ClInclude Include="src\stuff\Log.h" />
     <ClInclude Include="src\stuff\MouseButtonCodes.h" />
     <ClInclude Include="src\stuff\renderer\GraphicsContext.h" />
+    <ClInclude Include="src\stuff\renderer\Shader.h" />
     <ClInclude Include="src\stuff\Window.h" />
     <ClInclude Include="src\stuff\events\ApplicationEvent.h" />
     <ClInclude Include="src\stuff\events\Event.h" />
@@ -184,6 +185,7 @@
     <ClCompile Include="src\stuff\imgui\ImGuiBuild.cpp" />
     <ClCompile Include="src\stuff\imgui\ImGuiLayer.cpp" />
     <ClCompile Include="src\stuff\renderer\GraphicsContext.cpp" />
+    <ClCompile Include="src\stuff\renderer\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\glfw\GLFW.vcxproj">

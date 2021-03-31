@@ -1,6 +1,11 @@
-// opengl 数据库
+// 资料地址 ----------------------------------------------
+// opengl 数学库
 // http://glm.g-truc.net/
 // https://github.com/g-truc/glm
+// opengl shader compilation
+// http://www.khronos.org/opengl/wiki/Shader_Compilation
+// -----------------------------------------------------
+
 #include "sopch.h"
 
 #include <Some.h>
