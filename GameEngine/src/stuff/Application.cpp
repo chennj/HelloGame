@@ -11,6 +11,26 @@ namespace SOMEENGINE
 {
 	Application* Application::s_Instance = nullptr;
 
+	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
+	{
+		switch (type)
+		{
+			case ShaderDataType::Float:		return GL_FLOAT;
+			case ShaderDataType::Float2:	return GL_FLOAT;
+			case ShaderDataType::Float3:	return GL_FLOAT;
+			case ShaderDataType::Float4:	return GL_FLOAT;
+			case ShaderDataType::Mat3:		return GL_FLOAT;
+			case ShaderDataType::Mat4:		return GL_FLOAT;
+			case ShaderDataType::Int:		return GL_INT;
+			case ShaderDataType::Int2:		return GL_INT;
+			case ShaderDataType::Int3:		return GL_INT;
+			case ShaderDataType::Int4:		return GL_INT;
+			case ShaderDataType::Bool:		return GL_BOOL;
+		}
+		SE_CORE_ASSERT(false, "Unknown ShaderDataType!");
+		return 0;
+	}
+
 	Application::Application()
 	{
 		SE_CORE_ASSERT(!s_Instance, "Application already exists!");
@@ -22,10 +42,10 @@ namespace SOMEENGINE
 		_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(_ImGuiLayer);
 
-		float vertices[3 * 3] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.0f,  0.5f, 0.0f,
+		float vertices[3 * 7] = {
+			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f,
+			 0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+			 0.0f,  0.5f, 0.0f,	1.0f, 1.0f, 0.0f, 1.0f,
 		};
 
 		glGenVertexArrays(1, &_VertexArray);
@@ -33,8 +53,30 @@ namespace SOMEENGINE
 
 		_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (const void*)0);
+		{
+			BufferLayout layout = {
+				{ ShaderDataType::Float3, "a_Position" },
+				{ ShaderDataType::Float4, "a_Color" }
+
+			};
+			_VertexBuffer->SetLayout(layout);
+		}
+
+		uint32_t index = 0;
+		const auto& layout = _VertexBuffer->GetLayout();
+		for (const auto& element : layout)
+		{
+			glEnableVertexAttribArray(index);
+			glVertexAttribPointer(
+				index,
+				element.GetComponentCount(),
+				ShaderDataTypeToOpenGLBaseType(element.Type),
+				element.Normalized ? GL_TRUE : GL_FALSE,
+				layout.GetStride(),
+				(const void*)element.Offset
+			);
+			index++;
+		}
 
 		uint32_t indices[3] = {
 			0, 1, 2
@@ -49,10 +91,15 @@ namespace SOMEENGINE
 														// 'a_position' is related to 'float vertices[3 * 3]' above
 														// 'location=0' is related to '0' of 'glVertexAttribPointer(0,..)' above
 			"\n"
+			"layout(location = 1) in vec4 a_Color;"
+			"\n"
 			"out vec3 v_Position;\n"
+			"\n"
+			"out vec4 v_Color;\n"
 			"\n"
 			"void main()\n"
 			"{\n"
+			"   v_Color = a_Color;\n"
 			"	v_Position = a_Position;\n"
 			"	gl_Position = vec4(a_Position,1.0);\n"
 			"}\n";
@@ -64,9 +111,11 @@ namespace SOMEENGINE
 			"\n"
 			"in vec3 v_Position;\n"
 			"\n"
+			"in vec4 v_Color;\n"
+			"\n"
 			"void main()\n"
 			"{\n"
-			"	color = vec4(v_Position * 0.5 + 0.5, 1.0);\n"
+			"	color = v_Color;\n"
 			"}\n";
 
 		_Shader.reset(new Shader(vertexSrc, fragmentSrc));

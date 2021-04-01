@@ -122,9 +122,6 @@
     <ClCompile Include="src\stuff\imgui\ImGuiLayer.cpp">
       <Filter>stuff\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="src\stuff\renderer\GraphicsContext.cpp">
-      <Filter>stuff\renderer</Filter>
-    </ClCompile>
     <ClCompile Include="src\platform\opengl\OpenGLContext.cpp">
       <Filter>platform\opengl</Filter>
     </ClCompile>

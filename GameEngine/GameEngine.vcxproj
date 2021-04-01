@@ -189,7 +189,6 @@
     <ClCompile Include="src\stuff\imgui\ImGuiBuild.cpp" />
     <ClCompile Include="src\stuff\imgui\ImGuiLayer.cpp" />
     <ClCompile Include="src\stuff\renderer\Buffer.cpp" />
-    <ClCompile Include="src\stuff\renderer\GraphicsContext.cpp" />
     <ClCompile Include="src\stuff\renderer\Renderer.cpp" />
     <ClCompile Include="src\stuff\renderer\Shader.cpp" />
   </ItemGroup>

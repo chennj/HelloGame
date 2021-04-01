@@ -95,12 +95,12 @@ namespace tests
 		// 设置1位置的属性
 		GLCall(glEnableVertexAttribArray(1));
 		GLCall(glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, Color)));
-		// 对应BatchRenderer.shader的 layout(location = 1) in vec2	a_TexCoord;
+		// 对应BatchRenderer.shader的 layout(location = 2) in vec2	a_TexCoord;
 		// 绑定_VB到_VA的2位置，并置为有效
 		// 设置2位置的属性
 		GLCall(glEnableVertexAttribArray(2));
 		GLCall(glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, TexCoords)));
-		// 对应BatchRenderer.shader的 layout(location = 1) in float a_TexIndex;
+		// 对应BatchRenderer.shader的 layout(location = 3) in float a_TexIndex;
 		// 绑定_VB到_VA的3位置，并置为有效
 		// 设置3位置的属性
 		GLCall(glEnableVertexAttribArray(3));
