@@ -1,5 +1,7 @@
 #pragma once
 
+#include "glm\glm.hpp"
+
 namespace SOMEENGINE
 {
 	class Shader
@@ -14,5 +16,7 @@ namespace SOMEENGINE
 	public:
 		void Bind() const;
 		void Unbind() const;
+
+		void UpdateUniformMat4(const std::string& name, const glm::mat4& matrix);
 	};
 }

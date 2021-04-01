@@ -167,6 +167,7 @@
     <ClInclude Include="src\stuff\MouseButtonCodes.h" />
     <ClInclude Include="src\stuff\renderer\Buffer.h" />
     <ClInclude Include="src\stuff\renderer\GraphicsContext.h" />
+    <ClInclude Include="src\stuff\renderer\OrthographicCamera.h" />
     <ClInclude Include="src\stuff\renderer\RenderCommand.h" />
     <ClInclude Include="src\stuff\renderer\Renderer.h" />
     <ClInclude Include="src\stuff\renderer\RendererAPI.h" />
@@ -196,6 +197,7 @@
     <ClCompile Include="src\stuff\imgui\ImGuiBuild.cpp" />
     <ClCompile Include="src\stuff\imgui\ImGuiLayer.cpp" />
     <ClCompile Include="src\stuff\renderer\Buffer.cpp" />
+    <ClCompile Include="src\stuff\renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\stuff\renderer\RenderCommand.cpp" />
     <ClCompile Include="src\stuff\renderer\Renderer.cpp" />
     <ClCompile Include="src\stuff\renderer\RendererAPI.cpp" />

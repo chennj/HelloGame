@@ -12,6 +12,8 @@
 #include "renderer\Buffer.h"
 #include "renderer\VertexArray.h"
 
+#include "renderer\OrthographicCamera.h"
+
 namespace SOMEENGINE
 {
 	class SOME_API Application
@@ -28,6 +30,8 @@ namespace SOMEENGINE
 		//ËÄ±ßÐÎ
 		std::shared_ptr<Shader> _ShaderSquare;
 		std::shared_ptr<VertexArray> _SquareVA;
+
+		OrthographicCamera _Camera;
 
 	private:
 		static Application* s_Instance;

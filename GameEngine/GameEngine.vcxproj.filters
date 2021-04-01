@@ -110,6 +110,9 @@
     <ClInclude Include="src\platform\opengl\OpenGLRendererAPI.h">
       <Filter>platform\opengl</Filter>
     </ClInclude>
+    <ClInclude Include="src\stuff\renderer\OrthographicCamera.h">
+      <Filter>stuff\renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\platform\windows\WindowsInpu.cpp">
@@ -166,6 +169,9 @@
     </ClCompile>
     <ClCompile Include="src\platform\opengl\OpenGLRendererAPI.cpp">
       <Filter>platform\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stuff\renderer\OrthographicCamera.cpp">
+      <Filter>stuff\renderer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

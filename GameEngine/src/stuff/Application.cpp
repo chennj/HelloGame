@@ -14,6 +14,7 @@ namespace SOMEENGINE
 	Application* Application::s_Instance = nullptr;
 
 	Application::Application()
+		: _Camera(-2.0f, 2.0f, -1.0f, 1.0f)
 	{
 		SE_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
@@ -55,11 +56,11 @@ namespace SOMEENGINE
 		std::string vertexSrc =
 			"#version 330 core\n"
 			"\n"
-			"layout(location = 0) in vec3 a_Position;"	// 输入上面定义的vertices数组的地址，是一个三维向量
-														// 'a_position' is related to 'float vertices[3 * 3]' above
-														// 'location=0' is related to '0' of 'glVertexAttribPointer(0,..)' above
+			"layout(location = 0) in vec3 a_Position;"
 			"\n"
 			"layout(location = 1) in vec4 a_Color;"
+			"\n"
+			"uniform mat4 u_ViewProjection;\n"
 			"\n"
 			"out vec3 v_Position;\n"
 			"\n"
@@ -69,7 +70,7 @@ namespace SOMEENGINE
 			"{\n"
 			"   v_Color = a_Color;\n"
 			"	v_Position = a_Position;\n"
-			"	gl_Position = vec4(a_Position,1.0);\n"
+			"	gl_Position = u_ViewProjection * vec4(a_Position,1.0);\n"
 			"}\n";
 		
 		std::string fragmentSrc =
@@ -121,12 +122,14 @@ namespace SOMEENGINE
 			"\n"
 			"layout(location = 0) in vec3 a_Position;"	
 			"\n"
+			"uniform mat4 u_ViewProjection;\n"
+			"\n"
 			"out vec3 v_Position;\n"
 			"\n"
 			"void main()\n"
 			"{\n"
 			"	v_Position = a_Position;\n"
-			"	gl_Position = vec4(a_Position,1.0);\n"
+			"	gl_Position = u_ViewProjection * vec4(a_Position,1.0);\n"
 			"}\n";
 
 		std::string fragmentSrc2 =
@@ -174,13 +177,15 @@ namespace SOMEENGINE
 			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 			RenderCommand::Clear();
 
-			Renderer::BeginScene();
+			// Camera向右上角移动，相当于物体向左下角移动
+			_Camera.SetPosition({0.5f, 0.5f, 0.0f});
+			// Camera绕Z轴逆时针旋转30度，相当于物体绕Z轴顺时针旋转30度
+			_Camera.SetRotation(30.0f);
 
-			_ShaderSquare->Bind();
-			Renderer::Submit(_SquareVA);
+			Renderer::BeginScene(_Camera);
 
-			_Shader->Bind();
-			Renderer::Submit(_VertexArray);
+			Renderer::Submit(_ShaderSquare, _SquareVA);
+			Renderer::Submit(_Shader, _VertexArray);
 
 			Renderer::EndScene();
 
