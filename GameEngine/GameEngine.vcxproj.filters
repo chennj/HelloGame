@@ -95,6 +95,12 @@
     <ClInclude Include="src\stuff\renderer\Renderer.h">
       <Filter>stuff\renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\stuff\renderer\VertexArray.h">
+      <Filter>stuff\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\opengl\OpenGLVertexArray.h">
+      <Filter>platform\opengl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\platform\windows\WindowsInpu.cpp">
@@ -136,6 +142,12 @@
     </ClCompile>
     <ClCompile Include="src\stuff\renderer\Renderer.cpp">
       <Filter>stuff\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stuff\renderer\VertexArray.cpp">
+      <Filter>stuff\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\opengl\OpenGLVertexArray.cpp">
+      <Filter>platform\opengl</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

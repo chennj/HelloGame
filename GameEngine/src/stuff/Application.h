@@ -10,6 +10,7 @@
 
 #include "renderer\Shader.h"
 #include "renderer\Buffer.h"
+#include "renderer\VertexArray.h"
 
 namespace SOMEENGINE
 {
@@ -21,11 +22,14 @@ namespace SOMEENGINE
 		bool _Running = true;
 		LayerStack _LayerStack;
 
-		unsigned int _VertexArray;
+		std::shared_ptr<Shader> _Shader;
+		std::shared_ptr<VertexArray> _VertexArray;
+		std::shared_ptr<VertexBuffer> _VertexBuffer;
+		std::shared_ptr<IndexBuffer> _IndexBuffer;
 
-		std::unique_ptr<Shader> _Shader;
-		std::unique_ptr<VertexBuffer> _VertexBuffer;
-		std::unique_ptr<IndexBuffer> _IndexBuffer;
+		//ËÄ±ßÐÎ
+		std::shared_ptr<Shader> _ShaderSquare;
+		std::shared_ptr<VertexArray> _SquareVA;
 
 	private:
 		static Application* s_Instance;

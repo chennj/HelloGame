@@ -150,6 +150,7 @@
   <ItemGroup>
     <ClInclude Include="src\platform\opengl\OpenGLBuffer.h" />
     <ClInclude Include="src\platform\opengl\OpenGLContext.h" />
+    <ClInclude Include="src\platform\opengl\OpenGLVertexArray.h" />
     <ClInclude Include="src\Some.h" />
     <ClInclude Include="src\platform\windows\WindowsInput.h" />
     <ClInclude Include="src\platform\windows\WindowsWindow.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="src\stuff\renderer\GraphicsContext.h" />
     <ClInclude Include="src\stuff\renderer\Renderer.h" />
     <ClInclude Include="src\stuff\renderer\Shader.h" />
+    <ClInclude Include="src\stuff\renderer\VertexArray.h" />
     <ClInclude Include="src\stuff\Window.h" />
     <ClInclude Include="src\stuff\events\ApplicationEvent.h" />
     <ClInclude Include="src\stuff\events\Event.h" />
@@ -177,6 +179,7 @@
   <ItemGroup>
     <ClCompile Include="src\platform\opengl\OpenGLBuffer.cpp" />
     <ClCompile Include="src\platform\opengl\OpenGLContext.cpp" />
+    <ClCompile Include="src\platform\opengl\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\platform\windows\WindowsInpu.cpp" />
     <ClCompile Include="src\platform\windows\WindowsWindow.cpp" />
     <ClCompile Include="src\sopch.cpp">
@@ -191,6 +194,7 @@
     <ClCompile Include="src\stuff\renderer\Buffer.cpp" />
     <ClCompile Include="src\stuff\renderer\Renderer.cpp" />
     <ClCompile Include="src\stuff\renderer\Shader.cpp" />
+    <ClCompile Include="src\stuff\renderer\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\glfw\GLFW.vcxproj">

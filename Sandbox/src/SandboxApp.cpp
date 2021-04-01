@@ -1,11 +1,13 @@
-// 资料地址 ----------------------------------------------
+// 资料地址 //////////////////////////////////////////////
 // opengl 数学库
 // http://glm.g-truc.net/
 // https://github.com/g-truc/glm
 // opengl shader compilation
 // http://www.khronos.org/opengl/wiki/Shader_Compilation
 // -----------------------------------------------------
-
+// 知识点 ///////////////////////////////////////////////
+// VertexBuffer、IndexBuffer只有放入VertexArray中才会起作用
+// ----------------------------------------------------
 #include "sopch.h"
 
 #include <Some.h>
