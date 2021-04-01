@@ -50,7 +50,7 @@ namespace SOMEENGINE
 		SE_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex buffer has no layout!");
 
 		glBindVertexArray(_RendererID);
-		//vertexBuffer->Bind();
+		vertexBuffer->Bind();
 
 		uint32_t index = 0;
 		const auto& layout = vertexBuffer->GetLayout();
@@ -74,7 +74,7 @@ namespace SOMEENGINE
 	void OpenGLVertexArray::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer)
 	{
 		glBindVertexArray(_RendererID);
-		//indexBuffer->Bind();
+		indexBuffer->Bind();
 
 		_IndexBuffer = indexBuffer;
 	}

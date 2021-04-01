@@ -5,6 +5,8 @@
 #include "glad\glad.h"
 #include "GLFW\glfw3.h"
 
+#include "renderer\Renderer.h"
+
 #include "Input.h"
 
 namespace SOMEENGINE
@@ -31,23 +33,24 @@ namespace SOMEENGINE
 			 0.0f,  0.5f, 0.0f,	1.0f, 1.0f, 0.0f, 1.0f,
 		};
 		
-		_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
+		std::shared_ptr<VertexBuffer> vertexBuffer;
+		vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 
-		BufferLayout layout = {
+		vertexBuffer->SetLayout({
 			{ ShaderDataType::Float3, "a_Position" },
 			{ ShaderDataType::Float4, "a_Color" }
 
-		};
+		});
 
-		_VertexBuffer->SetLayout(layout);
-		_VertexArray->AddVertexBuffer(_VertexBuffer);
+		_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = {
 			0, 1, 2
 		};
 
-		_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices)/sizeof(uint32_t)));
-		_VertexArray->SetIndexBuffer(_IndexBuffer);
+		std::shared_ptr<IndexBuffer> indexBuffer;
+		indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices)/sizeof(uint32_t)));
+		_VertexArray->SetIndexBuffer(indexBuffer);
 
 		std::string vertexSrc =
 			"#version 330 core\n"
@@ -168,17 +171,18 @@ namespace SOMEENGINE
 	{
 		while (_Running)
 		{
-			glClearColor(0.1f, 0.1f, 0.1f, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+			RenderCommand::Clear();
 
-			// ÏÈ»­¾ØÐÎ
+			Renderer::BeginScene();
+
 			_ShaderSquare->Bind();
-			_SquareVA->Bind();
-			glDrawElements(GL_TRIANGLES, _SquareVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::Submit(_SquareVA);
 
 			_Shader->Bind();
-			_VertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, _IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::Submit(_VertexArray);
+
+			Renderer::EndScene();
 
 			for (Layer* layer : _LayerStack)
 			{
@@ -193,6 +197,7 @@ namespace SOMEENGINE
 			_ImGuiLayer->End();
 
 			_Window->OnUpdate();
+
 		}
 	}
 

@@ -101,6 +101,15 @@
     <ClInclude Include="src\platform\opengl\OpenGLVertexArray.h">
       <Filter>platform\opengl</Filter>
     </ClInclude>
+    <ClInclude Include="src\stuff\renderer\RendererAPI.h">
+      <Filter>stuff\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\renderer\RenderCommand.h">
+      <Filter>stuff\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\opengl\OpenGLRendererAPI.h">
+      <Filter>platform\opengl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\platform\windows\WindowsInpu.cpp">
@@ -147,6 +156,15 @@
       <Filter>stuff\renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\platform\opengl\OpenGLVertexArray.cpp">
+      <Filter>platform\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stuff\renderer\RendererAPI.cpp">
+      <Filter>stuff\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stuff\renderer\RenderCommand.cpp">
+      <Filter>stuff\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\opengl\OpenGLRendererAPI.cpp">
       <Filter>platform\opengl</Filter>
     </ClCompile>
   </ItemGroup>

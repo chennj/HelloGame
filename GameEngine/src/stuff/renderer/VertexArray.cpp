@@ -9,8 +9,8 @@ namespace SOMEENGINE
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:	SE_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::OpenGL: return new OpenGLVertexArray();
+		case RendererAPI::API::None:	SE_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL: return new OpenGLVertexArray();
 		}
 
 		SE_CORE_ASSERT(false, "Unknown RendererAPI!");

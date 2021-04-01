@@ -24,8 +24,6 @@ namespace SOMEENGINE
 
 		std::shared_ptr<Shader> _Shader;
 		std::shared_ptr<VertexArray> _VertexArray;
-		std::shared_ptr<VertexBuffer> _VertexBuffer;
-		std::shared_ptr<IndexBuffer> _IndexBuffer;
 
 		//ËÄ±ßÐÎ
 		std::shared_ptr<Shader> _ShaderSquare;
