@@ -7,6 +7,12 @@
 // -----------------------------------------------------
 // 知识点 ///////////////////////////////////////////////
 // VertexBuffer、IndexBuffer只有放入VertexArray中才会起作用
+// 我们观察到的物体	= Projection * View * Model * VerticesPosition(Mask)
+//					= VP(PV) * Model * VerticesPosition(Mask)
+//					= CAMERA * Model * VerticesPosition(Mask)
+//					= MVP * VerticesPosition(Mask)
+// Projection(Matrix) * View(Matrix) = Camera : 投影（矩阵）变换 * 视图（矩阵）变换 = 观察点位置
+// Model-Matrix = Object : 模型变换 = 物体位置
 // ----------------------------------------------------
 #include "sopch.h"
 
