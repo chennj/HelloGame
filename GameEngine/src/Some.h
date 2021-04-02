@@ -10,6 +10,17 @@
 
 #include "stuff\imgui\ImGuiLayer.h"
 
-// -- Entry Point ------------------------
+// -- Renderer -------------------------------
+#include "stuff\renderer\Renderer.h"
+#include "stuff\renderer\RenderCommand.h"
+
+#include "stuff\renderer\Buffer.h"
+#include "stuff\renderer\Shader.h"
+#include "stuff\renderer\VertexArray.h"
+
+#include "stuff\renderer\OrthographicCamera.h"
+// -------------------------------------------
+
+// -- Entry Point ---------------------------
 #include "stuff\EntryPoint.h"
-// ---------------------------------------
+// ------------------------------------------

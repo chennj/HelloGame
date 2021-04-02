@@ -8,30 +8,15 @@
 #include "events\ApplicationEvent.h"
 #include "imgui\ImGuiLayer.h"
 
-#include "renderer\Shader.h"
-#include "renderer\Buffer.h"
-#include "renderer\VertexArray.h"
-
-#include "renderer\OrthographicCamera.h"
-
 namespace SOMEENGINE
 {
-	class SOME_API Application
+	class Application
 	{
 	private:
 		std::unique_ptr<Window> _Window;
 		ImGuiLayer* _ImGuiLayer;
 		bool _Running = true;
 		LayerStack _LayerStack;
-
-		std::shared_ptr<Shader> _Shader;
-		std::shared_ptr<VertexArray> _VertexArray;
-
-		//ËÄ±ßÐÎ
-		std::shared_ptr<Shader> _ShaderSquare;
-		std::shared_ptr<VertexArray> _SquareVA;
-
-		OrthographicCamera _Camera;
 
 	private:
 		static Application* s_Instance;
