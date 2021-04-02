@@ -6,6 +6,9 @@
 #include "LayerStack.h"
 #include "events\Event.h"
 #include "events\ApplicationEvent.h"
+
+#include "core\Timestep.h"
+
 #include "imgui\ImGuiLayer.h"
 
 namespace SOMEENGINE
@@ -17,6 +20,8 @@ namespace SOMEENGINE
 		ImGuiLayer* _ImGuiLayer;
 		bool _Running = true;
 		LayerStack _LayerStack;
+
+		float _LastFrameTime = 0.0f;
 
 	private:
 		static Application* s_Instance;

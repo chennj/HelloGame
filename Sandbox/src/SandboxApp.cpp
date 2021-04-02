@@ -6,13 +6,19 @@
 // http://www.khronos.org/opengl/wiki/Shader_Compilation
 // -----------------------------------------------------
 // 知识点 ///////////////////////////////////////////////
+// -------------
 // VertexBuffer、IndexBuffer只有放入VertexArray中才会起作用
+// -------------
 // 我们观察到的物体	= Projection * View * Model * VerticesPosition(Mask)
 //					= VP(PV) * Model * VerticesPosition(Mask)
 //					= CAMERA * Model * VerticesPosition(Mask)
 //					= MVP * VerticesPosition(Mask)
 // Projection(Matrix) * View(Matrix) = Camera : 投影（矩阵）变换 * 视图（矩阵）变换 = 观察点位置
 // Model-Matrix = Object : 模型变换 = 物体位置
+// -------------
+// Timestep 的作用：使用它之后，无论是否设置强制垂直同步，也不管
+// 刷新频率是否相同，最后图形的移动效果都是一致的。具体看
+// ExampleLayer::OnUpdate 和 _Window->SetVSync(false/true);
 // ----------------------------------------------------
 #include "sopch.h"
 
@@ -33,9 +39,9 @@ private:
 	SOMEENGINE::OrthographicCamera _Camera;
 
 	glm::vec3 _CameraPosition;
-	float _CameraMoveSpeed = 0.1f;
+	float _CameraMoveSpeed = 1.0f;
 	float _CameraRotation = 0.0f;
-	float _CameraRotationSpeed = 0.1f;
+	float _CameraRotationSpeed = 30.0f;
 
 public:
 	ExampleLayer() :Layer("Example"), _Camera(-2.0f, 2.0f, -1.0f, 1.0f), _CameraPosition(0.0)
@@ -163,22 +169,24 @@ public:
 	}
 
 public:
-	void OnUpdate() override
+	void OnUpdate(SOMEENGINE::Timestep ts) override
 	{
+		//SE_TRACE("Delta time: {0}s ({1}ms)", ts.GetSeconds(), ts.GetMilliseconds());
+
 		if (SOMEENGINE::Input::IsKeyPressed(SE_KEY_LEFT))
-			_CameraPosition.x -= _CameraMoveSpeed;
+			_CameraPosition.x -= _CameraMoveSpeed * ts;
 		else if (SOMEENGINE::Input::IsKeyPressed(SE_KEY_RIGHT))
-			_CameraPosition.x += _CameraMoveSpeed;
+			_CameraPosition.x += _CameraMoveSpeed * ts;
 
 		if (SOMEENGINE::Input::IsKeyPressed(SE_KEY_UP))
-			_CameraPosition.y += _CameraMoveSpeed;
+			_CameraPosition.y += _CameraMoveSpeed * ts;
 		else if (SOMEENGINE::Input::IsKeyPressed(SE_KEY_DOWN))
-			_CameraPosition.y -= _CameraMoveSpeed;
+			_CameraPosition.y -= _CameraMoveSpeed * ts;
 
 		if (SOMEENGINE::Input::IsKeyPressed(SE_KEY_A))
-			_CameraRotation -= _CameraRotationSpeed;
+			_CameraRotation -= _CameraRotationSpeed * ts;
 		if (SOMEENGINE::Input::IsKeyPressed(SE_KEY_D))
-			_CameraRotation += _CameraRotationSpeed;
+			_CameraRotation += _CameraRotationSpeed * ts;
 
 		SOMEENGINE::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		SOMEENGINE::RenderCommand::Clear();

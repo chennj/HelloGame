@@ -22,6 +22,9 @@
     <Filter Include="platform\opengl">
       <UniqueIdentifier>{2ae0709b-5e25-4a59-9706-f45d4557b3ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="stuff\core">
+      <UniqueIdentifier>{433bd4cc-6c60-4d54-9b23-422d1667fb33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Some.h" />
@@ -112,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="src\stuff\renderer\OrthographicCamera.h">
       <Filter>stuff\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\core\Timestep.h">
+      <Filter>stuff\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

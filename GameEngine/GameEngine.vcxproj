@@ -158,6 +158,7 @@
     <ClInclude Include="src\sopch.h" />
     <ClInclude Include="src\stuff\Application.h" />
     <ClInclude Include="src\stuff\Core.h" />
+    <ClInclude Include="src\stuff\core\Timestep.h" />
     <ClInclude Include="src\stuff\EntryPoint.h" />
     <ClInclude Include="src\stuff\Input.h" />
     <ClInclude Include="src\stuff\KeyCodes.h" />

@@ -20,6 +20,7 @@ namespace SOMEENGINE
 
 		_Window = std::unique_ptr<Window>(Window::Create());
 		_Window->SetEventCallback(SE_BIND_EVENT_FN(Application::OnEvent));
+		//_Window->SetVSync(false);
 
 		_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(_ImGuiLayer);
@@ -52,9 +53,14 @@ namespace SOMEENGINE
 	{
 		while (_Running)
 		{
+			float time = (float)glfwGetTime();
+			Timestep timestep = time - _LastFrameTime;
+
+			_LastFrameTime = time;
+
 			for (Layer* layer : _LayerStack)
 			{
-				layer->OnUpdate();
+				layer->OnUpdate(timestep);
 			}
 
 			_ImGuiLayer->Begin();
