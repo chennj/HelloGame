@@ -25,7 +25,11 @@
 
 #include <Some.h>
 
+#include "../imgui/imgui.h"
+
 #include "stuff\imgui\ImGuiLayer.h"
+
+#include "platform\opengl\OpenGLShader.h"
 
 #include "glm/gtc/matrix_transform.hpp"
 
@@ -36,7 +40,7 @@ private:
 	std::shared_ptr<SOMEENGINE::VertexArray> _VertexArray;
 
 	//四边形
-	std::shared_ptr<SOMEENGINE::Shader> _ShaderSquare;
+	std::shared_ptr<SOMEENGINE::Shader> _FlatColorShader;
 	std::shared_ptr<SOMEENGINE::VertexArray> _SquareVA;
 
 	SOMEENGINE::OrthographicCamera _Camera;
@@ -50,11 +54,13 @@ private:
 	float _SquareRotation = 0.0f;
 	float _SquareRotationSpeed = 60.0f;
 
+	glm::vec4 _SquareColor = { 0.2, 0.3, 0.8, 1.0 };
+
 public:
 	ExampleLayer() 
 		:
 		Layer("Example"), 
-		_Camera(-2.0f, 2.0f, -2.0f, 2.0f), _CameraPosition(0.0), _SquarePosition(0.0)
+		_Camera(-1.5f, 1.5f, -1.5f, 1.5f), _CameraPosition(0.0), _SquarePosition(0.0)
 	{
 		// 三角形 //////////////////////////////////////////////////////////////
 		_VertexArray.reset(SOMEENGINE::VertexArray::Create());
@@ -120,7 +126,7 @@ public:
 			"	color = v_Color;\n"
 			"}\n";
 
-		_Shader.reset(new SOMEENGINE::Shader(vertexSrc, fragmentSrc));
+		_Shader.reset(SOMEENGINE::Shader::Create(vertexSrc, fragmentSrc));
 
 		//四边形 //////////////////////////////////////////////////////////////
 		_SquareVA.reset(SOMEENGINE::VertexArray::Create());
@@ -174,12 +180,14 @@ public:
 			"\n"
 			"in vec3 v_Position;\n"
 			"\n"
+			"uniform vec4 u_Color;\n"
+			"\n"
 			"void main()\n"
 			"{\n"
-			"	color = vec4(0.2, 0.3, 0.8, 1.0);\n"
+			"	color = u_Color;\n"
 			"}\n";
 
-		_ShaderSquare.reset(new SOMEENGINE::Shader(vertexSrc2, fragmentSrc2));
+		_FlatColorShader.reset(SOMEENGINE::Shader::Create(vertexSrc2, fragmentSrc2));
 	}
 
 public:
@@ -222,19 +230,28 @@ public:
 		_Camera.SetRotation(_CameraRotation);
 
 		SOMEENGINE::Renderer::BeginScene(_Camera);
+		
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
-		for (int y = 0; y < 10; y++)
+		//glm::vec4 redColor = {0.8, 0.2, 0.3, 1.0};
+		//glm::vec4 blueColor = { 0.2, 0.3, 0.8, 1.0 };
+
+		std::dynamic_pointer_cast<SOMEENGINE::OpenGLShader>(_FlatColorShader)->Bind();
+		std::dynamic_pointer_cast<SOMEENGINE::OpenGLShader>(_FlatColorShader)->UpdateUniformFloat4("u_Color", _SquareColor);
+
+
+		for (int y = 0; y < 20; y++)
 		for (int x = 0; x < 20; x++)
 		{
 			glm::vec3 pos(x*0.11f, y*0.11f, 0.0f);
 			glm::mat4 modelTransform = glm::translate(glm::mat4(1.0f), pos) * scale;
-			SOMEENGINE::Renderer::Submit(_ShaderSquare, _SquareVA, modelTransform);
+			//if (x % 2 == 0)
+			//	_FlatColorShader->UpdateUniformFloat4("u_Color", redColor);
+			//else
+			//	_FlatColorShader->UpdateUniformFloat4("u_Color", blueColor);
+			SOMEENGINE::Renderer::Submit(_FlatColorShader, _SquareVA, modelTransform);
 		}
 
-		glm::mat4 modelTransform = glm::translate(glm::mat4(1.0f), _SquarePosition);
-
-		SOMEENGINE::Renderer::Submit(_ShaderSquare, _SquareVA, modelTransform);
 		SOMEENGINE::Renderer::Submit(_Shader, _VertexArray);
 
 		SOMEENGINE::Renderer::EndScene();
@@ -246,6 +263,9 @@ public:
 
 	void OnImGuiRender()
 	{
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit4("Square Color ", &_SquareColor.x);
+		ImGui::End();
 	}
 
 };

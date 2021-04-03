@@ -119,6 +119,9 @@
     <ClInclude Include="src\stuff\core\Timestep.h">
       <Filter>stuff\core</Filter>
     </ClInclude>
+    <ClInclude Include="src\platform\opengl\OpenGLShader.h">
+      <Filter>platform\opengl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\platform\windows\WindowsInpu.cpp">
@@ -178,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="src\stuff\renderer\OrthographicCamera.cpp">
       <Filter>stuff\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\opengl\OpenGLShader.cpp">
+      <Filter>platform\opengl</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

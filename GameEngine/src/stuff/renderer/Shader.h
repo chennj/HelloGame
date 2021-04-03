@@ -7,16 +7,15 @@ namespace SOMEENGINE
 	class Shader
 	{
 	private:
-		uint32_t _RendererID;
 
 	public:
-		Shader(const std::string& vertexSrc, const std::string& fragmentSrc);
-		~Shader();
+		virtual ~Shader() = default;
 
 	public:
-		void Bind() const;
-		void Unbind() const;
+		virtual void Bind() const =0;
+		virtual void Unbind() const =0;
 
-		void UpdateUniformMat4(const std::string& name, const glm::mat4& matrix);
+	public:
+		static Shader* Create(const std::string & vertexSrc, const std::string & fragmentSrc);
 	};
 }

@@ -111,7 +111,7 @@ namespace SOMEENGINE
 	private:
 
 	public:
-		virtual ~VertexBuffer() {};
+		virtual ~VertexBuffer() = default;
 
 	public:
 		virtual void Bind()   const = 0;
@@ -128,7 +128,7 @@ namespace SOMEENGINE
 	private:
 
 	public:
-		virtual ~IndexBuffer() {};
+		virtual ~IndexBuffer() = default;
 
 	public:
 		virtual void Bind()   const = 0;
