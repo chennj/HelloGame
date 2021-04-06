@@ -20,6 +20,12 @@
 // 刷新频率是否相同，最后图形的移动效果都是一致的。具体看
 // ExampleLayer::OnUpdate 和 _Window->SetVSync(false/true);
 // git commit "TIMESTEP and Delta Time"
+// -------------
+// OpenGL Version 4.5版本之后，引入了一个新的扩展 ARB_direct_state_access,
+// 这个扩展为OpenGL引入了一个新的特性就是Direct State Acess，称为DSA。在绑定
+// 纹理的时候，和旧的版本写法不一样，在OpenGLTexture2D中有体现。有了DSA可以为程序
+// 设计带来很多的方便。你仅仅需要在真正绘制的时候绑定object，而不是在各种初始化时就
+// 要绑定它，从一定程度上减少了状态机切换的次数。
 // ----------------------------------------------------
 #include "sopch.h"
 
@@ -190,38 +196,8 @@ public:
 		_FlatColorShader.reset(SOMEENGINE::Shader::Create(vertexSrc2, fragmentSrc2));
 
 		// 紋理貼圖 ////////////////////////////////////////////////////////////////
-		std::string vertexSrc3 =
-			"#version 330 core\n"
-			"\n"
-			"layout(location = 0) in vec3 a_Position;\n"
-			"layout(location = 1) in vec2 a_TexCoord;\n"
-			"\n"
-			"uniform mat4 u_ViewProjection;\n"
-			"uniform mat4 u_Model;\n"
-			"\n"
-			"out vec2 v_TexCoord;\n"
-			"\n"
-			"void main()\n"
-			"{\n"
-			"	v_TexCoord = a_TexCoord;\n"
-			"	gl_Position = u_ViewProjection * u_Model * vec4(a_Position,1.0);\n"
-			"}\n";
-
-		std::string fragmentSrc3 =
-			"#version 330 core\n"
-			"\n"
-			"layout(location = 0) out vec4 color;"
-			"\n"
-			"in vec2 v_TexCoord;\n"
-			"\n"
-			"uniform sampler2D u_Texture;\n"
-			"\n"
-			"void main()\n"
-			"{\n"
-			"	color = texture(u_Texture, v_TexCoord);\n"
-			"}\n";
-
-		_TextureShader.reset(SOMEENGINE::Shader::Create(vertexSrc3, fragmentSrc3));
+		
+		_TextureShader.reset(SOMEENGINE::Shader::Create("../GameEngine/assets/shaders/Texture.glsl"));
 
 		_Texture		= SOMEENGINE::Texture2D::Create("../res/texture/cnchess/WHITE.GIF");
 		_FlowerTexture	= SOMEENGINE::Texture2D::Create("../res/texture/texture-02.png");

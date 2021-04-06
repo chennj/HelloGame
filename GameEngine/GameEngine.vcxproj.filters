@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="assets">
+      <UniqueIdentifier>{583885F2-44DA-AFC8-2D95-C31C19D63619}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assets\shaders">
+      <UniqueIdentifier>{51CD2FD9-3D9B-23DF-262F-9405129CFF43}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src">
       <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
@@ -1475,5 +1481,10 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\shaders\Texture.glsl">
+      <Filter>assets\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
