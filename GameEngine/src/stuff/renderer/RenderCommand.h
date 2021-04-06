@@ -23,5 +23,10 @@ namespace SOMEENGINE
 		{
 			s_RendererAPI->Clear();
 		}
+
+		inline static void Init()
+		{
+			s_RendererAPI->Init();
+		}
 	};
 }

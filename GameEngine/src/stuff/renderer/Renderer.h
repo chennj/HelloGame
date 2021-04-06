@@ -26,5 +26,7 @@ namespace SOMEENGINE
 			const Ref<Shader>& shader, 
 			const Ref<VertexArray>& vertexArray,
 			glm::mat4& transform = glm::mat4(1.0f));
+
+		static void Init();
 	};
 }

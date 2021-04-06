@@ -43,14 +43,38 @@ namespace SOMEENGINE
 		_Width = width;
 		_Height = height;
 
-		glGenTextures(1, &_RendererID);
-		glBindTexture(GL_TEXTURE_2D, _RendererID);
+		GLenum internalFormat = 0, outputFormat = 0;
+		if (channels == 4)
+		{
+			internalFormat = GL_RGBA8;
+			outputFormat = GL_RGBA;
+		}
+		else if (channels == 3)
+		{
+			internalFormat = GL_RGB8;
+			outputFormat = GL_RGB;
+		}
 
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		SE_CORE_ASSERT(internalFormat & outputFormat, "Format not supported!");
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, _Width, _Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-
+		if (OPENGL_VERSION >= 4.5)
+		{
+			glCreateTextures	(GL_TEXTURE_2D, 1, &_RendererID);
+			glTextureParameteri	(_RendererID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTextureParameteri	(_RendererID, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTextureStorage2D	(_RendererID, 1, internalFormat, _Width, _Height);
+			glTextureSubImage2D	(_RendererID, 0, 0, 0, _Width, _Height, outputFormat, GL_UNSIGNED_BYTE, data);
+		}
+		else
+		{
+			glGenTextures		(1, &_RendererID);
+			glBindTexture		(GL_TEXTURE_2D, _RendererID);
+			glTexParameteri		(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameteri		(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexStorage2D		(GL_TEXTURE_2D, 1, internalFormat, _Width, _Height);
+			glTexSubImage2D		(GL_TEXTURE_2D, 0, 0, 0, _Width, _Height, outputFormat, GL_UNSIGNED_BYTE, data);
+		}
+		
 		stbi_image_free(data);
 	}
 
@@ -61,7 +85,18 @@ namespace SOMEENGINE
 
 	void OpenGLTexture2D::Bind(uint32_t slot) const
 	{
-		glActiveTexture(GL_TEXTURE0 + slot);
-		glBindTexture(GL_TEXTURE0 + slot, _RendererID);
+		if (OPENGL_VERSION >= 4.5)
+		{
+			glBindTextureUnit(GL_TEXTURE0 + slot, _RendererID);
+		}
+		else
+		{
+			//½â³ý°ó¶¨
+			glBindTexture(GL_TEXTURE_2D, 0);
+			glBindTexture(GL_TEXTURE_2D, _RendererID);
+
+			glActiveTexture(GL_TEXTURE0 + slot);
+			glBindTexture(GL_TEXTURE0 + slot, _RendererID);
+		}
 	}
 }

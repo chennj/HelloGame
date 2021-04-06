@@ -41,7 +41,7 @@ private:
 	SOMEENGINE::Ref<SOMEENGINE::Shader> _FlatColorShader, _TextureShader;
 	SOMEENGINE::Ref<SOMEENGINE::VertexArray> _SquareVA;
 
-	SOMEENGINE::Ref<SOMEENGINE::Texture2D> _Texture;
+	SOMEENGINE::Ref<SOMEENGINE::Texture2D> _Texture, _FlowerTexture;
 
 	SOMEENGINE::OrthographicCamera _Camera;
 
@@ -223,7 +223,8 @@ public:
 
 		_TextureShader.reset(SOMEENGINE::Shader::Create(vertexSrc3, fragmentSrc3));
 
-		_Texture = SOMEENGINE::Texture2D::Create("../res/texture/cnchess/WHITE.GIF");
+		_Texture		= SOMEENGINE::Texture2D::Create("../res/texture/cnchess/WHITE.GIF");
+		_FlowerTexture	= SOMEENGINE::Texture2D::Create("../res/texture/texture-02.png");
 
 		std::dynamic_pointer_cast<SOMEENGINE::OpenGLShader>(_TextureShader)->Bind();
 		std::dynamic_pointer_cast<SOMEENGINE::OpenGLShader>(_TextureShader)->UpdateUniformInt("u_Texture", 0);
@@ -271,31 +272,24 @@ public:
 
 		SOMEENGINE::Renderer::BeginScene(_Camera);
 		
-
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
-		//glm::vec4 redColor = {0.8, 0.2, 0.3, 1.0};
-		//glm::vec4 blueColor = { 0.2, 0.3, 0.8, 1.0 };
 
 		std::dynamic_pointer_cast<SOMEENGINE::OpenGLShader>(_FlatColorShader)->Bind();
 		std::dynamic_pointer_cast<SOMEENGINE::OpenGLShader>(_FlatColorShader)->UpdateUniformFloat4("u_Color", _SquareColor);
-
 
 		for (int y = 0; y < 20; y++)
 		for (int x = 0; x < 20; x++)
 		{
 			glm::vec3 pos(x*0.11f, y*0.16f, 0.0f);
 			glm::mat4 modelTransform = glm::translate(glm::mat4(1.0f), pos) * scale;
-			//if (x % 2 == 0)
-			//	_FlatColorShader->UpdateUniformFloat4("u_Color", redColor);
-			//else
-			//	_FlatColorShader->UpdateUniformFloat4("u_Color", blueColor);
 			SOMEENGINE::Renderer::Submit(_FlatColorShader, _SquareVA, modelTransform);
 		}
 
 		_Texture->Bind();
 		SOMEENGINE::Renderer::Submit(_TextureShader, _SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-
-		//SOMEENGINE::Renderer::Submit(_Shader, _VertexArray);
+		_FlowerTexture->Bind();
+		SOMEENGINE::Renderer::Submit(_TextureShader, _SquareVA, 
+			glm::translate(glm::mat4(1.0), glm::vec3(0.25,-0.25,0.0)) * glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		SOMEENGINE::Renderer::EndScene();
 	}

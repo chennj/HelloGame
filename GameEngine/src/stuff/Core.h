@@ -1,5 +1,7 @@
 #pragma once
 
+#define OPENGL_VERSION 4.4
+
 #include <memory>
 
 #ifdef SE_PLATFORM_WINDOWS
