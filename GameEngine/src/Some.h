@@ -19,6 +19,7 @@
 
 #include "stuff\renderer\Buffer.h"
 #include "stuff\renderer\Shader.h"
+#include "stuff\renderer\Texture.h"
 #include "stuff\renderer\VertexArray.h"
 
 #include "stuff\renderer\OrthographicCamera.h"

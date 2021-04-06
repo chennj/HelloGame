@@ -27,8 +27,6 @@
 
 #include "../imgui/imgui.h"
 
-#include "stuff\imgui\ImGuiLayer.h"
-
 #include "platform\opengl\OpenGLShader.h"
 
 #include "glm/gtc/matrix_transform.hpp"
@@ -36,12 +34,14 @@
 class ExampleLayer : public SOMEENGINE::Layer
 {
 private:
-	std::shared_ptr<SOMEENGINE::Shader> _Shader;
-	std::shared_ptr<SOMEENGINE::VertexArray> _VertexArray;
+	SOMEENGINE::Ref<SOMEENGINE::Shader> _Shader;
+	SOMEENGINE::Ref<SOMEENGINE::VertexArray> _VertexArray;
 
 	//四边形
-	std::shared_ptr<SOMEENGINE::Shader> _FlatColorShader;
-	std::shared_ptr<SOMEENGINE::VertexArray> _SquareVA;
+	SOMEENGINE::Ref<SOMEENGINE::Shader> _FlatColorShader, _TextureShader;
+	SOMEENGINE::Ref<SOMEENGINE::VertexArray> _SquareVA;
+
+	SOMEENGINE::Ref<SOMEENGINE::Texture2D> _Texture;
 
 	SOMEENGINE::OrthographicCamera _Camera;
 
@@ -71,7 +71,7 @@ public:
 			 0.0f,  0.5f, 0.0f,	1.0f, 1.0f, 0.0f, 1.0f,
 		};
 
-		std::shared_ptr<SOMEENGINE::VertexBuffer> vertexBuffer;
+		SOMEENGINE::Ref<SOMEENGINE::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(SOMEENGINE::VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		vertexBuffer->SetLayout({
@@ -86,7 +86,7 @@ public:
 			0, 1, 2
 		};
 
-		std::shared_ptr<SOMEENGINE::IndexBuffer> indexBuffer;
+		SOMEENGINE::Ref<SOMEENGINE::IndexBuffer> indexBuffer;
 		indexBuffer.reset(SOMEENGINE::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		_VertexArray->SetIndexBuffer(indexBuffer);
 
@@ -131,18 +131,18 @@ public:
 		//四边形 //////////////////////////////////////////////////////////////
 		_SquareVA.reset(SOMEENGINE::VertexArray::Create());
 
-		float squareVertices[3 * 4] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f,
+		float squareVertices[5 * 4] = {
+			-0.5f, -0.75f, 0.0f, 0.0, 0.0,
+			 0.5f, -0.75f, 0.0f, 1.0, 0.0,
+			 0.5f,  0.75f, 0.0f, 1.0, 1.0,
+			-0.5f,  0.75f, 0.0f, 0.0, 1.0,
 		};
-		std::shared_ptr<SOMEENGINE::VertexBuffer> squareVB;
+		SOMEENGINE::Ref<SOMEENGINE::VertexBuffer> squareVB;
 		squareVB.reset(SOMEENGINE::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 
 		squareVB->SetLayout({
-			{ SOMEENGINE::ShaderDataType::Float3, "a_Position" }
-
+			{ SOMEENGINE::ShaderDataType::Float3, "a_Position" },
+			{ SOMEENGINE::ShaderDataType::Float2, "a_TexCoord" }
 		});
 
 		_SquareVA->AddVertexBuffer(squareVB);
@@ -152,7 +152,7 @@ public:
 			2, 3, 0,
 		};
 
-		std::shared_ptr<SOMEENGINE::IndexBuffer> squareIB;
+		SOMEENGINE::Ref<SOMEENGINE::IndexBuffer> squareIB;
 		squareIB.reset(SOMEENGINE::IndexBuffer::Create(squreIndices, sizeof(squreIndices) / sizeof(uint32_t)));
 		_SquareVA->SetIndexBuffer(squareIB);
 
@@ -188,6 +188,46 @@ public:
 			"}\n";
 
 		_FlatColorShader.reset(SOMEENGINE::Shader::Create(vertexSrc2, fragmentSrc2));
+
+		// 紋理貼圖 ////////////////////////////////////////////////////////////////
+		std::string vertexSrc3 =
+			"#version 330 core\n"
+			"\n"
+			"layout(location = 0) in vec3 a_Position;\n"
+			"layout(location = 1) in vec2 a_TexCoord;\n"
+			"\n"
+			"uniform mat4 u_ViewProjection;\n"
+			"uniform mat4 u_Model;\n"
+			"\n"
+			"out vec2 v_TexCoord;\n"
+			"\n"
+			"void main()\n"
+			"{\n"
+			"	v_TexCoord = a_TexCoord;\n"
+			"	gl_Position = u_ViewProjection * u_Model * vec4(a_Position,1.0);\n"
+			"}\n";
+
+		std::string fragmentSrc3 =
+			"#version 330 core\n"
+			"\n"
+			"layout(location = 0) out vec4 color;"
+			"\n"
+			"in vec2 v_TexCoord;\n"
+			"\n"
+			"uniform sampler2D u_Texture;\n"
+			"\n"
+			"void main()\n"
+			"{\n"
+			"	color = texture(u_Texture, v_TexCoord);\n"
+			"}\n";
+
+		_TextureShader.reset(SOMEENGINE::Shader::Create(vertexSrc3, fragmentSrc3));
+
+		_Texture = SOMEENGINE::Texture2D::Create("../res/texture/cnchess/WHITE.GIF");
+
+		std::dynamic_pointer_cast<SOMEENGINE::OpenGLShader>(_TextureShader)->Bind();
+		std::dynamic_pointer_cast<SOMEENGINE::OpenGLShader>(_TextureShader)->UpdateUniformInt("u_Texture", 0);
+
 	}
 
 public:
@@ -243,7 +283,7 @@ public:
 		for (int y = 0; y < 20; y++)
 		for (int x = 0; x < 20; x++)
 		{
-			glm::vec3 pos(x*0.11f, y*0.11f, 0.0f);
+			glm::vec3 pos(x*0.11f, y*0.16f, 0.0f);
 			glm::mat4 modelTransform = glm::translate(glm::mat4(1.0f), pos) * scale;
 			//if (x % 2 == 0)
 			//	_FlatColorShader->UpdateUniformFloat4("u_Color", redColor);
@@ -252,7 +292,10 @@ public:
 			SOMEENGINE::Renderer::Submit(_FlatColorShader, _SquareVA, modelTransform);
 		}
 
-		SOMEENGINE::Renderer::Submit(_Shader, _VertexArray);
+		_Texture->Bind();
+		SOMEENGINE::Renderer::Submit(_TextureShader, _SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+		//SOMEENGINE::Renderer::Submit(_Shader, _VertexArray);
 
 		SOMEENGINE::Renderer::EndScene();
 	}

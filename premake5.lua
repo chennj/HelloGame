@@ -13,10 +13,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Import GLFW and GLAD and ImGui---------------------------------------
 IncludeDir = {}
-IncludeDir["GLFW"]	= "GameEngine/vendor/glfw/include"
-IncludeDir["GLAD"]	= "GameEngine/vendor/glad/include"
-IncludeDir["ImGui"] = "GameEngine/vendor/imgui"
-IncludeDir["glm"]	= "GameEngine/vendor/glm"
+IncludeDir["GLFW"]		= "GameEngine/vendor/glfw/include"
+IncludeDir["GLAD"]		= "GameEngine/vendor/glad/include"
+IncludeDir["ImGui"]		= "GameEngine/vendor/imgui"
+IncludeDir["glm"]		= "GameEngine/vendor/glm"
+IncludeDir["stb_image"]	= "GameEngine/vendor/stb_image"
 
 include "GameEngine/vendor/glfw"
 include "GameEngine/vendor/glad"
@@ -39,7 +40,11 @@ project "GameEngine"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	includedirs
@@ -49,7 +54,8 @@ project "GameEngine"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}",
 	}
 
 	links

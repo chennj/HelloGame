@@ -23,8 +23,8 @@ namespace SOMEENGINE
 		static void EndScene();
 
 		static void Submit(
-			const std::shared_ptr<Shader>& shader, 
-			const std::shared_ptr<VertexArray>& vertexArray,
+			const Ref<Shader>& shader, 
+			const Ref<VertexArray>& vertexArray,
 			glm::mat4& transform = glm::mat4(1.0f));
 	};
 }

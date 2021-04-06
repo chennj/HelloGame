@@ -16,7 +16,7 @@ namespace SOMEENGINE
 	{
 	}
 
-	void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray, glm::mat4& transform)
+	void Renderer::Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray, glm::mat4& transform)
 	{
 		// °ó¶¨×ÅÉ«Æ÷
 		shader->Bind();
