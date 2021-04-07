@@ -1,7 +1,7 @@
 #include "sopch.h"
 #include "WindowsInput.h"
 
-#include "stuff\Application.h"
+#include "stuff\core\Application.h"
 #include "GLFW\glfw3.h"
 
 namespace SOMEENGINE

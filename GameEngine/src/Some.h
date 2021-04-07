@@ -1,16 +1,16 @@
 #pragma once
 
 // For use by Some Application
-#include "stuff\Application.h"
-#include "stuff\Layer.h"
-#include "stuff\Log.h"
+#include "stuff\core\Application.h"
+#include "stuff\core\Layer.h"
+#include "stuff\core\Log.h"
 
 #include "stuff\core\Timestep.h"
 
-#include "stuff\Input.h"
-#include "stuff\KeyCodes.h"
-#include "stuff\MouseButtonCodes.h"
-#include "stuff\OrthographicCameraController.h"
+#include "stuff\core\Input.h"
+#include "stuff\core\KeyCodes.h"
+#include "stuff\core\MouseButtonCodes.h"
+#include "stuff\renderer\OrthographicCameraController.h"
 
 #include "stuff\imgui\ImGuiLayer.h"
 
@@ -27,5 +27,5 @@
 // -------------------------------------------
 
 // -- Entry Point ---------------------------
-#include "stuff\EntryPoint.h"
+#include "stuff\core\EntryPoint.h"
 // ------------------------------------------

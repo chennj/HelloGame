@@ -1,11 +1,11 @@
 #pragma once
 
-#include "renderer\OrthographicCamera.h"
+#include "stuff\renderer\OrthographicCamera.h"
 #include "stuff\core\Timestep.h"
 
-#include "events\ApplicationEvent.h"
-#include "events\KeyEvent.h"
-#include "events\MouseEvent.h"
+#include "stuff\events\ApplicationEvent.h"
+#include "stuff\events\KeyEvent.h"
+#include "stuff\events\MouseEvent.h"
 
 namespace SOMEENGINE
 {

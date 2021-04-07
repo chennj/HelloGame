@@ -158,18 +158,17 @@
     <ClInclude Include="src\platform\windows\WindowsInput.h" />
     <ClInclude Include="src\platform\windows\WindowsWindow.h" />
     <ClInclude Include="src\sopch.h" />
-    <ClInclude Include="src\stuff\Application.h" />
-    <ClInclude Include="src\stuff\Core.h" />
-    <ClInclude Include="src\stuff\EntryPoint.h" />
-    <ClInclude Include="src\stuff\Input.h" />
-    <ClInclude Include="src\stuff\KeyCodes.h" />
-    <ClInclude Include="src\stuff\Layer.h" />
-    <ClInclude Include="src\stuff\LayerStack.h" />
-    <ClInclude Include="src\stuff\Log.h" />
-    <ClInclude Include="src\stuff\MouseButtonCodes.h" />
-    <ClInclude Include="src\stuff\OrthographicCameraController.h" />
-    <ClInclude Include="src\stuff\Window.h" />
+    <ClInclude Include="src\stuff\core\Application.h" />
+    <ClInclude Include="src\stuff\core\Core.h" />
+    <ClInclude Include="src\stuff\core\EntryPoint.h" />
+    <ClInclude Include="src\stuff\core\Input.h" />
+    <ClInclude Include="src\stuff\core\KeyCodes.h" />
+    <ClInclude Include="src\stuff\core\Layer.h" />
+    <ClInclude Include="src\stuff\core\LayerStack.h" />
+    <ClInclude Include="src\stuff\core\Log.h" />
+    <ClInclude Include="src\stuff\core\MouseButtonCodes.h" />
     <ClInclude Include="src\stuff\core\Timestep.h" />
+    <ClInclude Include="src\stuff\core\Window.h" />
     <ClInclude Include="src\stuff\events\ApplicationEvent.h" />
     <ClInclude Include="src\stuff\events\Event.h" />
     <ClInclude Include="src\stuff\events\KeyEvent.h" />
@@ -178,6 +177,7 @@
     <ClInclude Include="src\stuff\renderer\Buffer.h" />
     <ClInclude Include="src\stuff\renderer\GraphicsContext.h" />
     <ClInclude Include="src\stuff\renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\stuff\renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\stuff\renderer\RenderCommand.h" />
     <ClInclude Include="src\stuff\renderer\Renderer.h" />
     <ClInclude Include="src\stuff\renderer\RendererAPI.h" />
@@ -611,15 +611,15 @@
     <ClCompile Include="src\sopch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\stuff\Application.cpp" />
-    <ClCompile Include="src\stuff\Layer.cpp" />
-    <ClCompile Include="src\stuff\LayerStack.cpp" />
-    <ClCompile Include="src\stuff\Log.cpp" />
+    <ClCompile Include="src\stuff\core\Application.cpp" />
+    <ClCompile Include="src\stuff\core\Layer.cpp" />
+    <ClCompile Include="src\stuff\core\LayerStack.cpp" />
+    <ClCompile Include="src\stuff\core\Log.cpp" />
     <ClCompile Include="src\stuff\imgui\ImGuiBuild.cpp" />
     <ClCompile Include="src\stuff\imgui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\stuff\OrthographicCameraController.cpp" />
     <ClCompile Include="src\stuff\renderer\Buffer.cpp" />
     <ClCompile Include="src\stuff\renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\stuff\renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\stuff\renderer\RenderCommand.cpp" />
     <ClCompile Include="src\stuff\renderer\Renderer.cpp" />
     <ClCompile Include="src\stuff\renderer\RendererAPI.cpp" />

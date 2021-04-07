@@ -1,5 +1,5 @@
 #include "sopch.h"
-#include "stuff\Log.h"
+#include "stuff\core\Log.h"
 #include "WindowsWindow.h"
 
 #include "stuff\events\ApplicationEvent.h"

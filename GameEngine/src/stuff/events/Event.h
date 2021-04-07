@@ -1,6 +1,6 @@
 #pragma once
 
-#include "stuff\Core.h"
+#include "stuff\core\Core.h"
 
 namespace SOMEENGINE
 {

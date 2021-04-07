@@ -1,7 +1,7 @@
 #include "sopch.h"
 #include "OrthographicCameraController.h"
-#include "Input.h"
-#include "KeyCodes.h"
+#include "stuff\core\Input.h"
+#include "stuff\core\KeyCodes.h"
 
 namespace SOMEENGINE
 {

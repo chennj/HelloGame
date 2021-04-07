@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Core.h"
-#include "core\Timestep.h"
-#include "events\Event.h"
+#include "stuff\core\Timestep.h"
+#include "stuff\events\Event.h"
 
 namespace SOMEENGINE
 {

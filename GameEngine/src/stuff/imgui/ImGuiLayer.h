@@ -1,6 +1,6 @@
 #pragma once
 
-#include "stuff\Layer.h"
+#include "stuff\core\Layer.h"
 #include "stuff\events\ApplicationEvent.h"
 #include "stuff\events\MouseEvent.h"
 #include "stuff\events\KeyEvent.h"

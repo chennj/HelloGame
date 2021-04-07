@@ -1,11 +1,11 @@
 #include "sopch.h"
 #include "Application.h"
 
-#include "stuff\Log.h"
+#include "stuff\core\Log.h"
 #include "glad\glad.h"
 #include "GLFW\glfw3.h"
 
-#include "renderer\Renderer.h"
+#include "stuff\renderer\Renderer.h"
 
 #include "Input.h"
 

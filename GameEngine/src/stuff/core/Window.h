@@ -2,7 +2,7 @@
 
 #include "sopch.h"
 #include "Core.h"
-#include "events\Event.h"
+#include "stuff\events\Event.h"
 
 namespace SOMEENGINE
 {

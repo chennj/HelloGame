@@ -90,36 +90,6 @@
     <ClInclude Include="src\sopch.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\stuff\Application.h">
-      <Filter>src\stuff</Filter>
-    </ClInclude>
-    <ClInclude Include="src\stuff\Core.h">
-      <Filter>src\stuff</Filter>
-    </ClInclude>
-    <ClInclude Include="src\stuff\EntryPoint.h">
-      <Filter>src\stuff</Filter>
-    </ClInclude>
-    <ClInclude Include="src\stuff\Input.h">
-      <Filter>src\stuff</Filter>
-    </ClInclude>
-    <ClInclude Include="src\stuff\KeyCodes.h">
-      <Filter>src\stuff</Filter>
-    </ClInclude>
-    <ClInclude Include="src\stuff\Layer.h">
-      <Filter>src\stuff</Filter>
-    </ClInclude>
-    <ClInclude Include="src\stuff\LayerStack.h">
-      <Filter>src\stuff</Filter>
-    </ClInclude>
-    <ClInclude Include="src\stuff\Log.h">
-      <Filter>src\stuff</Filter>
-    </ClInclude>
-    <ClInclude Include="src\stuff\MouseButtonCodes.h">
-      <Filter>src\stuff</Filter>
-    </ClInclude>
-    <ClInclude Include="src\stuff\Window.h">
-      <Filter>src\stuff</Filter>
-    </ClInclude>
     <ClInclude Include="src\stuff\core\Timestep.h">
       <Filter>src\stuff\core</Filter>
     </ClInclude>
@@ -1407,8 +1377,38 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\stuff\OrthographicCameraController.h">
-      <Filter>src\stuff</Filter>
+    <ClInclude Include="src\stuff\core\Application.h">
+      <Filter>src\stuff\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\core\Core.h">
+      <Filter>src\stuff\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\core\EntryPoint.h">
+      <Filter>src\stuff\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\core\Input.h">
+      <Filter>src\stuff\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\core\KeyCodes.h">
+      <Filter>src\stuff\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\core\Layer.h">
+      <Filter>src\stuff\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\core\LayerStack.h">
+      <Filter>src\stuff\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\core\Log.h">
+      <Filter>src\stuff\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\core\MouseButtonCodes.h">
+      <Filter>src\stuff\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\core\Window.h">
+      <Filter>src\stuff\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\renderer\OrthographicCameraController.h">
+      <Filter>src\stuff\renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1438,18 +1438,6 @@
     </ClCompile>
     <ClCompile Include="src\sopch.cpp">
       <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\stuff\Application.cpp">
-      <Filter>src\stuff</Filter>
-    </ClCompile>
-    <ClCompile Include="src\stuff\Layer.cpp">
-      <Filter>src\stuff</Filter>
-    </ClCompile>
-    <ClCompile Include="src\stuff\LayerStack.cpp">
-      <Filter>src\stuff</Filter>
-    </ClCompile>
-    <ClCompile Include="src\stuff\Log.cpp">
-      <Filter>src\stuff</Filter>
     </ClCompile>
     <ClCompile Include="src\stuff\imgui\ImGuiBuild.cpp">
       <Filter>src\stuff\imgui</Filter>
@@ -1484,8 +1472,20 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\stuff\OrthographicCameraController.cpp">
-      <Filter>src\stuff</Filter>
+    <ClCompile Include="src\stuff\core\Application.cpp">
+      <Filter>src\stuff\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stuff\core\Layer.cpp">
+      <Filter>src\stuff\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stuff\core\LayerStack.cpp">
+      <Filter>src\stuff\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stuff\core\Log.cpp">
+      <Filter>src\stuff\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stuff\renderer\OrthographicCameraController.cpp">
+      <Filter>src\stuff\renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

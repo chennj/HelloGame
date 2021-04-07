@@ -4,12 +4,12 @@
 
 #include "Window.h"
 #include "LayerStack.h"
-#include "events\Event.h"
-#include "events\ApplicationEvent.h"
+#include "stuff\events\Event.h"
+#include "stuff\events\ApplicationEvent.h"
 
-#include "core\Timestep.h"
+#include "stuff\core\Timestep.h"
 
-#include "imgui\ImGuiLayer.h"
+#include "stuff\imgui\ImGuiLayer.h"
 
 namespace SOMEENGINE
 {

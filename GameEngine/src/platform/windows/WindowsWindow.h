@@ -1,6 +1,6 @@
 #pragma once
 
-#include "stuff\Window.h"
+#include "stuff\core\Window.h"
 #include "stuff\renderer\GraphicsContext.h"
 
 // 在没有包含glfw的情况下假定定义
