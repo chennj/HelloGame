@@ -167,6 +167,7 @@
     <ClInclude Include="src\stuff\LayerStack.h" />
     <ClInclude Include="src\stuff\Log.h" />
     <ClInclude Include="src\stuff\MouseButtonCodes.h" />
+    <ClInclude Include="src\stuff\OrthographicCameraController.h" />
     <ClInclude Include="src\stuff\Window.h" />
     <ClInclude Include="src\stuff\core\Timestep.h" />
     <ClInclude Include="src\stuff\events\ApplicationEvent.h" />
@@ -616,6 +617,7 @@
     <ClCompile Include="src\stuff\Log.cpp" />
     <ClCompile Include="src\stuff\imgui\ImGuiBuild.cpp" />
     <ClCompile Include="src\stuff\imgui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\stuff\OrthographicCameraController.cpp" />
     <ClCompile Include="src\stuff\renderer\Buffer.cpp" />
     <ClCompile Include="src\stuff\renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\stuff\renderer\RenderCommand.cpp" />

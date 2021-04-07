@@ -44,6 +44,8 @@ namespace SOMEENGINE
 		const glm::mat4& GetViewMatrix()const { return _ViewMatrix; }
 		const glm::mat4& GetProjectionMatrix()const { return _ProjectionMatrix; }
 
+		void SetProjection(float left, float right, float bottom, float top);
+
 	private:
 		void RecalculateViewMatrix();
 	};

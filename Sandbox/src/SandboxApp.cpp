@@ -1,4 +1,5 @@
 // 资料地址 //////////////////////////////////////////////
+// 引擎地址：github.com/TheCherno/hazel
 // opengl 数学库
 // http://glm.g-truc.net/
 // https://github.com/g-truc/glm
@@ -53,16 +54,7 @@ private:
 
 	SOMEENGINE::Ref<SOMEENGINE::Texture2D> _Texture, _FlowerTexture;
 
-	SOMEENGINE::OrthographicCamera _Camera;
-
-	glm::vec3 _CameraPosition;
-	float _CameraMoveSpeed = 2.0f;
-	float _CameraRotation = 0.0f;
-	float _CameraRotationSpeed = 30.0f;
-	glm::vec3 _SquarePosition;
-	float _SquareMoveSpeed = 4.0f;
-	float _SquareRotation = 0.0f;
-	float _SquareRotationSpeed = 60.0f;
+	SOMEENGINE::OrthographicCameraController _CameraController;
 
 	glm::vec4 _SquareColor = { 0.2, 0.3, 0.8, 1.0 };
 
@@ -70,7 +62,7 @@ public:
 	ExampleLayer() 
 		:
 		Layer("Example"), 
-		_Camera(-1.5f, 1.5f, -1.5f, 1.5f), _CameraPosition(0.0), _SquarePosition(0.0)
+		_CameraController(960.0f / 540.0f, true)
 	{
 		// 三角形 //////////////////////////////////////////////////////////////
 		_VertexArray.reset(SOMEENGINE::VertexArray::Create());
@@ -214,43 +206,12 @@ public:
 public:
 	void OnUpdate(SOMEENGINE::Timestep ts) override
 	{
-		//SE_TRACE("Delta time: {0}s ({1}ms)", ts.GetSeconds(), ts.GetMilliseconds());
-
-		if (SOMEENGINE::Input::IsKeyPressed(SE_KEY_LEFT))
-			_CameraPosition.x -= _CameraMoveSpeed * ts;
-		else if (SOMEENGINE::Input::IsKeyPressed(SE_KEY_RIGHT))
-			_CameraPosition.x += _CameraMoveSpeed * ts;
-
-		if (SOMEENGINE::Input::IsKeyPressed(SE_KEY_UP))
-			_CameraPosition.y += _CameraMoveSpeed * ts;
-		else if (SOMEENGINE::Input::IsKeyPressed(SE_KEY_DOWN))
-			_CameraPosition.y -= _CameraMoveSpeed * ts;
-
-		if (SOMEENGINE::Input::IsKeyPressed(SE_KEY_A))
-			_CameraRotation -= _CameraRotationSpeed * ts;
-		if (SOMEENGINE::Input::IsKeyPressed(SE_KEY_D))
-			_CameraRotation += _CameraRotationSpeed * ts;
-
-
-		if (SOMEENGINE::Input::IsKeyPressed(SE_KEY_J))
-			_SquarePosition.x -= _SquareMoveSpeed * ts;
-		else if (SOMEENGINE::Input::IsKeyPressed(SE_KEY_L))
-			_SquarePosition.x += _SquareMoveSpeed * ts;
-
-		if (SOMEENGINE::Input::IsKeyPressed(SE_KEY_I))
-			_SquarePosition.y += _SquareMoveSpeed * ts;
-		else if (SOMEENGINE::Input::IsKeyPressed(SE_KEY_K))
-			_SquarePosition.y -= _SquareMoveSpeed * ts;
+		_CameraController.OnUpdate(ts);
 
 		SOMEENGINE::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		SOMEENGINE::RenderCommand::Clear();
 
-		// Camera向右上角移动，相当于物体向左下角移动
-		_Camera.SetPosition(_CameraPosition);
-		// Camera绕Z轴逆时针旋转n度，相当于物体绕Z轴顺时针旋转n度
-		_Camera.SetRotation(_CameraRotation);
-
-		SOMEENGINE::Renderer::BeginScene(_Camera);
+		SOMEENGINE::Renderer::BeginScene(_CameraController.GetCamera());
 		
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -278,6 +239,7 @@ public:
 
 	void OnEvent(SOMEENGINE::Event& event) override
 	{
+		_CameraController.OnEvent(event);
 	}
 
 	void OnImGuiRender()
