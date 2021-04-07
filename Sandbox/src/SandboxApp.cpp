@@ -40,11 +40,15 @@
 class ExampleLayer : public SOMEENGINE::Layer
 {
 private:
+	// cache shader
+	SOMEENGINE::ShaderLibrary _shaderLibrary;
+
+	//三角形
 	SOMEENGINE::Ref<SOMEENGINE::Shader> _Shader;
 	SOMEENGINE::Ref<SOMEENGINE::VertexArray> _VertexArray;
 
 	//四边形
-	SOMEENGINE::Ref<SOMEENGINE::Shader> _FlatColorShader, _TextureShader;
+	SOMEENGINE::Ref<SOMEENGINE::Shader> _FlatColorShader;
 	SOMEENGINE::Ref<SOMEENGINE::VertexArray> _SquareVA;
 
 	SOMEENGINE::Ref<SOMEENGINE::Texture2D> _Texture, _FlowerTexture;
@@ -132,7 +136,7 @@ public:
 			"	color = v_Color;\n"
 			"}\n";
 
-		_Shader.reset(SOMEENGINE::Shader::Create(vertexSrc, fragmentSrc));
+		_Shader = SOMEENGINE::Shader::Create("vertexColorTriangle", vertexSrc, fragmentSrc);
 
 		//四边形 //////////////////////////////////////////////////////////////
 		_SquareVA.reset(SOMEENGINE::VertexArray::Create());
@@ -193,11 +197,11 @@ public:
 			"	color = u_Color;\n"
 			"}\n";
 
-		_FlatColorShader.reset(SOMEENGINE::Shader::Create(vertexSrc2, fragmentSrc2));
+		_FlatColorShader = SOMEENGINE::Shader::Create("vertexColorSquare", vertexSrc2, fragmentSrc2);
 
 		// 紋理貼圖 ////////////////////////////////////////////////////////////////
 		
-		_TextureShader.reset(SOMEENGINE::Shader::Create("../GameEngine/assets/shaders/Texture.glsl"));
+		auto _TextureShader = _shaderLibrary.Load("../GameEngine/assets/shaders/Texture.glsl");
 
 		_Texture		= SOMEENGINE::Texture2D::Create("../res/texture/cnchess/WHITE.GIF");
 		_FlowerTexture	= SOMEENGINE::Texture2D::Create("../res/texture/texture-02.png");
@@ -260,6 +264,8 @@ public:
 			glm::mat4 modelTransform = glm::translate(glm::mat4(1.0f), pos) * scale;
 			SOMEENGINE::Renderer::Submit(_FlatColorShader, _SquareVA, modelTransform);
 		}
+
+		auto _TextureShader = _shaderLibrary.Get("Texture");
 
 		_Texture->Bind();
 		SOMEENGINE::Renderer::Submit(_TextureShader, _SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));

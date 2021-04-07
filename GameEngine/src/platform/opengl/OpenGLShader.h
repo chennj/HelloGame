@@ -12,13 +12,16 @@ namespace SOMEENGINE
 	{
 	private:
 		uint32_t _RendererID;
+		std::string _Name;
 
 	public:
 		OpenGLShader(const std::string& filepath);
-		OpenGLShader(const std::string& vertexSrc, const std::string& fragmentSrc);
+		OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc);
 		virtual ~OpenGLShader();
 
 	public:
+		const std::string& GetName()override { return _Name; }
+
 		void Bind() const override;
 		void Unbind() const override;
 
