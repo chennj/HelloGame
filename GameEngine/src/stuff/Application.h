@@ -22,6 +22,7 @@ namespace SOMEENGINE
 		LayerStack _LayerStack;
 
 		float _LastFrameTime = 0.0f;
+		bool _Minimized = false;
 
 	private:
 		static Application* s_Instance;
@@ -42,6 +43,7 @@ namespace SOMEENGINE
 		inline static Application& Get() { return *s_Instance; }
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
 	};
 
 	// To be define in CLIENT

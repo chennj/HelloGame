@@ -31,6 +31,9 @@ namespace SOMEENGINE
 
 		OrthographicCamera& GetCamera() { return _Camera; }
 		const OrthographicCamera& GetCamera() const { return _Camera; }
+
+		void SetZoomLevel(float level) { _ZoomLevel = level; }
+		float GetZoomLevel() const { return _ZoomLevel; }
 	private:
 		bool OnMouseScrolled(MouseScrolledEvent& e);
 		bool OnWindowResized(WindowResizeEvent& e);

@@ -41,6 +41,7 @@ namespace SOMEENGINE
 		//	return this->OnWindowClose(e1);
 		//});
 		dispatcher.Dispatch<WindowCloseEvent>(SE_BIND_EVENT_FN(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(SE_BIND_EVENT_FN(Application::OnWindowResize));
 
 		//SE_CORE_TRACE("{0}",e);
 
@@ -61,9 +62,12 @@ namespace SOMEENGINE
 
 			_LastFrameTime = time;
 
-			for (Layer* layer : _LayerStack)
+			if (!_Minimized)
 			{
-				layer->OnUpdate(timestep);
+				for (Layer* layer : _LayerStack)
+				{
+					layer->OnUpdate(timestep);
+				}
 			}
 
 			_ImGuiLayer->Begin();
@@ -72,6 +76,7 @@ namespace SOMEENGINE
 				layer->OnImGuiRender();
 			}
 			_ImGuiLayer->End();
+
 
 			_Window->OnUpdate();
 
@@ -82,6 +87,20 @@ namespace SOMEENGINE
 	{
 		_Running = false;
 		return true;
+	}
+
+	bool Application::OnWindowResize(WindowResizeEvent & e)
+	{
+		if (e.GetWidth() == 0 || e.GetHeight() == 0)
+		{
+			_Minimized = true;
+			return false;
+		}
+
+		_Minimized = false;
+		Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+
+		return false;
 	}
 
 	void Application::PushLayer(Layer* layer)
