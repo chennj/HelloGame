@@ -12,8 +12,8 @@ namespace SOMEENGINE
 	struct Renderer2DStorage
 	{
 		Ref<VertexArray> QaudVA;
-		Ref<Shader> FlatColorShader;
 		Ref<Shader> TextureShader;
+		Ref<Texture2D> WhiteTexture;
 	};
 
 	static Renderer2DStorage* s_Data;
@@ -25,10 +25,10 @@ namespace SOMEENGINE
 		s_Data->QaudVA = VertexArray::Create();
 
 		float squareVertices[5 * 4] = {
-			-0.5f, -0.75f, 0.0f, 0.0, 0.0,
-			 0.5f, -0.75f, 0.0f, 1.0, 0.0,
-			 0.5f,  0.75f, 0.0f, 1.0, 1.0,
-			-0.5f,  0.75f, 0.0f, 0.0, 1.0,
+			-0.5f, -0.5f, 0.0f, 0.0, 0.0,
+			 0.5f, -0.5f, 0.0f, 1.0, 0.0,
+			 0.5f,  0.5f, 0.0f, 1.0, 1.0,
+			-0.5f,  0.5f, 0.0f, 0.0, 1.0,
 		};
 		Ref<VertexBuffer> squareVB;
 		squareVB = VertexBuffer::Create(squareVertices, sizeof(squareVertices));
@@ -48,7 +48,9 @@ namespace SOMEENGINE
 
 		s_Data->QaudVA->SetIndexBuffer(squareIB);
 
-		s_Data->FlatColorShader = Shader::Create("../GameEngine/assets/shaders/FlatColor.glsl");
+		s_Data->WhiteTexture = Texture2D::Create(1,1);
+		uint32_t whiteTextureData = 0xffffffff;
+		s_Data->WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
 
 		s_Data->TextureShader = Shader::Create("../GameEngine/assets/shaders/Texture.glsl");
 		s_Data->TextureShader->Bind();
@@ -62,9 +64,6 @@ namespace SOMEENGINE
 
 	void Renderer2D::BeginScene(const OrthographicCamera & camera)
 	{
-		s_Data->FlatColorShader->Bind();
-		s_Data->FlatColorShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
-
 		s_Data->TextureShader->Bind();
 		s_Data->TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 	}
@@ -80,11 +79,12 @@ namespace SOMEENGINE
 
 	void Renderer2D::DrawQuad(const glm::vec3 & position, const glm::vec2 & size, const glm::vec4 & color)
 	{
-		s_Data->FlatColorShader->Bind();
-		s_Data->FlatColorShader->SetFloat4("u_Color", color);
+		s_Data->TextureShader->SetFloat4("u_Color", color);
+		// Bind white texture here
+		s_Data->WhiteTexture->Bind();
 
 		glm::mat4 modelTranform = glm::translate(glm::mat4(1.0), position) * glm::scale(glm::mat4(1.0), glm::vec3(size.x, size.y, 1.0));
-		s_Data->FlatColorShader->SetMat4("u_Model", modelTranform);
+		s_Data->TextureShader->SetMat4("u_Model", modelTranform);
 
 		s_Data->QaudVA->Bind();
 		RenderCommand::DrawIndexed(s_Data->QaudVA);
@@ -97,12 +97,13 @@ namespace SOMEENGINE
 
 	void Renderer2D::DrawQuad(const glm::vec3 & position, const glm::vec2 & size, const Ref<Texture2D>& texture)
 	{
-		s_Data->TextureShader->Bind();
+		// u_Color equal white
+		s_Data->TextureShader->SetFloat4("u_Color", glm::vec4(1.0));
+
+		texture->Bind();
 
 		glm::mat4 modelTranform = glm::translate(glm::mat4(1.0), position) * glm::scale(glm::mat4(1.0), glm::vec3(size.x, size.y, 1.0));
 		s_Data->TextureShader->SetMat4("u_Model", modelTranform);
-
-		texture->Bind();
 
 		s_Data->QaudVA->Bind();
 		RenderCommand::DrawIndexed(s_Data->QaudVA);
