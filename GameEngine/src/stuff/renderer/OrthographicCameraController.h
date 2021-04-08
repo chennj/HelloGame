@@ -20,7 +20,7 @@ namespace SOMEENGINE
 		glm::vec3 _CameraPosition = { 0.0,0.0,0.0 };
 		float _CameraRotation = 0.0f;
 		float _CameraTranslationSpeed = 5.0f;
-		float _CameraRotationSpeed = 180.0f;
+		float _CameraRotationSpeed = 60.0f;
 
 	public:
 		OrthographicCameraController(float aspectRatio, bool rotation = false);	// aspectratio * 2 units

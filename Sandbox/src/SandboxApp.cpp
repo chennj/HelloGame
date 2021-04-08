@@ -32,11 +32,18 @@
 
 #include <Some.h>
 
+// -- Entry Point ---------------------------
+#include "stuff\core\EntryPoint.h"
+// ------------------------------------------
+
 #include "../imgui/imgui.h"
 
 #include "platform\opengl\OpenGLShader.h"
 
 #include "glm/gtc/matrix_transform.hpp"
+
+#include "Sandbox2D.h"
+
 
 class ExampleLayer : public SOMEENGINE::Layer
 {
@@ -65,7 +72,7 @@ public:
 		_CameraController(960.0f / 540.0f, true)
 	{
 		// 三角形 //////////////////////////////////////////////////////////////
-		_VertexArray.reset(SOMEENGINE::VertexArray::Create());
+		_VertexArray = SOMEENGINE::VertexArray::Create();
 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f,
@@ -74,7 +81,7 @@ public:
 		};
 
 		SOMEENGINE::Ref<SOMEENGINE::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(SOMEENGINE::VertexBuffer::Create(vertices, sizeof(vertices)));
+		vertexBuffer = SOMEENGINE::VertexBuffer::Create(vertices, sizeof(vertices));
 
 		vertexBuffer->SetLayout({
 			{ SOMEENGINE::ShaderDataType::Float3, "a_Position" },
@@ -89,7 +96,7 @@ public:
 		};
 
 		SOMEENGINE::Ref<SOMEENGINE::IndexBuffer> indexBuffer;
-		indexBuffer.reset(SOMEENGINE::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		indexBuffer = SOMEENGINE::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		_VertexArray->SetIndexBuffer(indexBuffer);
 
 		std::string vertexSrc =
@@ -131,7 +138,7 @@ public:
 		_Shader = SOMEENGINE::Shader::Create("vertexColorTriangle", vertexSrc, fragmentSrc);
 
 		//四边形 //////////////////////////////////////////////////////////////
-		_SquareVA.reset(SOMEENGINE::VertexArray::Create());
+		_SquareVA = SOMEENGINE::VertexArray::Create();
 
 		float squareVertices[5 * 4] = {
 			-0.5f, -0.75f, 0.0f, 0.0, 0.0,
@@ -140,7 +147,7 @@ public:
 			-0.5f,  0.75f, 0.0f, 0.0, 1.0,
 		};
 		SOMEENGINE::Ref<SOMEENGINE::VertexBuffer> squareVB;
-		squareVB.reset(SOMEENGINE::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		squareVB = SOMEENGINE::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 
 		squareVB->SetLayout({
 			{ SOMEENGINE::ShaderDataType::Float3, "a_Position" },
@@ -155,7 +162,7 @@ public:
 		};
 
 		SOMEENGINE::Ref<SOMEENGINE::IndexBuffer> squareIB;
-		squareIB.reset(SOMEENGINE::IndexBuffer::Create(squreIndices, sizeof(squreIndices) / sizeof(uint32_t)));
+		squareIB = SOMEENGINE::IndexBuffer::Create(squreIndices, sizeof(squreIndices) / sizeof(uint32_t));
 		_SquareVA->SetIndexBuffer(squareIB);
 
 		std::string vertexSrc2 =
@@ -256,7 +263,8 @@ class Sandbox : public SOMEENGINE::Application
 public:
 	Sandbox()
 	{
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 
 	~Sandbox()
