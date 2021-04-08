@@ -55,6 +55,21 @@ namespace SOMEENGINE
 		glUseProgram(0);
 	}
 
+	void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3 & value)
+	{
+		UpdateUniformFloat3(name, value);
+	}
+
+	void OpenGLShader::SetFloat4(const std::string& name, const glm::vec4 & value)
+	{
+		UpdateUniformFloat4(name, value);
+	}
+
+	void OpenGLShader::SetMat4(const std::string& name, const glm::mat4 & value)
+	{
+		UpdateUniformMat4(name, value);
+	}
+
 	void OpenGLShader::UpdateUniformInt(const std::string & name, int value)
 	{
 		GLint location = glGetUniformLocation(_RendererID, name.c_str());

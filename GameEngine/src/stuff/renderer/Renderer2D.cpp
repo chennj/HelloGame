@@ -5,7 +5,7 @@
 #include "Shader.h"
 #include "VertexArray.h"
 
-#include "platform\opengl\OpenGLShader.h"
+#include "glm/gtc/matrix_transform.hpp"
 
 namespace SOMEENGINE
 {
@@ -56,9 +56,8 @@ namespace SOMEENGINE
 
 	void Renderer2D::BeginScene(const OrthographicCamera & camera)
 	{
-		std::dynamic_pointer_cast<OpenGLShader>(s_Data->_FlatColorShader)->Bind();
-		std::dynamic_pointer_cast<OpenGLShader>(s_Data->_FlatColorShader)->UpdateUniformMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
-		std::dynamic_pointer_cast<OpenGLShader>(s_Data->_FlatColorShader)->UpdateUniformMat4("u_Model", glm::mat4(1.0));
+		s_Data->_FlatColorShader->Bind();
+		s_Data->_FlatColorShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 	}
 
 	void Renderer2D::EndScene()
@@ -72,8 +71,11 @@ namespace SOMEENGINE
 
 	void Renderer2D::DrawQuad(const glm::vec3 & position, const glm::vec2 & size, const glm::vec4 & color)
 	{
-		std::dynamic_pointer_cast<OpenGLShader>(s_Data->_FlatColorShader)->Bind();
-		std::dynamic_pointer_cast<OpenGLShader>(s_Data->_FlatColorShader)->UpdateUniformFloat4("u_Color", color);
+		s_Data->_FlatColorShader->Bind();
+		s_Data->_FlatColorShader->SetFloat4("u_Color", color);
+
+		glm::mat4 modelTranform = glm::translate(glm::mat4(1.0), position) * glm::scale(glm::mat4(1.0), glm::vec3(size.x, size.y, 1.0));
+		s_Data->_FlatColorShader->SetMat4("u_Model", modelTranform);
 
 		s_Data->_QaudVA->Bind();
 		RenderCommand::DrawIndexed(s_Data->_QaudVA);

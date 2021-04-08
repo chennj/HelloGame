@@ -1,6 +1,5 @@
 #include "Sandbox2D.h"
 #include "../imgui/imgui.h"
-#include "platform\opengl\OpenGLShader.h"
 
 Sandbox2D::Sandbox2D()
 	: 
@@ -29,7 +28,8 @@ void Sandbox2D::OnUpdate(SOMEENGINE::Timestep ts)
 
 	SOMEENGINE::Renderer2D::BeginScene(_CameraController.GetCamera());
 
-	SOMEENGINE::Renderer2D::DrawQuad({ 0.0,0.0 }, { 1.0,1.0 }, { 0.8,0.2,0.3,1.0 });
+	SOMEENGINE::Renderer2D::DrawQuad({ -1.0,0.0 }, { 0.8,0.8 }, { 0.8,0.2,0.3,1.0 });
+	SOMEENGINE::Renderer2D::DrawQuad({ 0.5,-0.5 }, { 0.5,0.75 }, { 0.2,0.3,0.8,1.0 });
 
 	SOMEENGINE::Renderer2D::EndScene();
 }
