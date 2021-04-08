@@ -10,7 +10,7 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
-
+	_ChessTexture2D = SOMEENGINE::Texture2D::Create("../res/texture/cnchess/WHITE.GIF");
 }
 
 void Sandbox2D::OnDetach()
@@ -29,7 +29,9 @@ void Sandbox2D::OnUpdate(SOMEENGINE::Timestep ts)
 	SOMEENGINE::Renderer2D::BeginScene(_CameraController.GetCamera());
 
 	SOMEENGINE::Renderer2D::DrawQuad({ -1.0,0.0 }, { 0.8,0.8 }, { 0.8,0.2,0.3,1.0 });
-	SOMEENGINE::Renderer2D::DrawQuad({ 0.5,-0.5 }, { 0.5,0.75 }, { 0.2,0.3,0.8,1.0 });
+	SOMEENGINE::Renderer2D::DrawQuad({ 0.2,-0.5 }, { 0.5,0.25 }, { 0.2,0.3,0.8,1.0 });
+	SOMEENGINE::Renderer2D::DrawQuad({ 1.0,0.0 }, { 1.0,1.0 }, _ChessTexture2D);
+	SOMEENGINE::Renderer2D::DrawQuad({ 0.0,0.0 }, { 5.0,5.0 }, _ChessTexture2D);
 
 	SOMEENGINE::Renderer2D::EndScene();
 }

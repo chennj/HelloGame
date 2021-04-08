@@ -10,7 +10,7 @@ private:
 	// Temp
 	SOMEENGINE::Ref<SOMEENGINE::VertexArray> _SquareVA;
 	SOMEENGINE::Ref<SOMEENGINE::Shader> _FlatColorShader;
-	SOMEENGINE::Ref<SOMEENGINE::Texture2D> _Texture;
+	SOMEENGINE::Ref<SOMEENGINE::Texture2D> _ChessTexture2D;
 
 	glm::vec4 _SquareColor = { 0.2, 0.3, 0.8, 1.0 };
 

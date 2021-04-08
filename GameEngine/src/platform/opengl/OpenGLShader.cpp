@@ -55,6 +55,11 @@ namespace SOMEENGINE
 		glUseProgram(0);
 	}
 
+	void OpenGLShader::SetInt(const std::string & name, int value)
+	{
+		UpdateUniformInt(name, value);
+	}
+
 	void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3 & value)
 	{
 		UpdateUniformFloat3(name, value);
