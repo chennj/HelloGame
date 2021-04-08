@@ -33,6 +33,7 @@ namespace SOMEENGINE
 
 	OpenGLVertexArray::~OpenGLVertexArray()
 	{
+		glDeleteVertexArrays(1, &_RendererID);
 	}
 
 	void OpenGLVertexArray::Bind() const

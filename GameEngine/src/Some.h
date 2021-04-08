@@ -16,6 +16,7 @@
 
 // -- Renderer -------------------------------
 #include "stuff\renderer\Renderer.h"
+#include "stuff\renderer\Renderer2D.h"
 #include "stuff\renderer\RenderCommand.h"
 
 #include "stuff\renderer\Buffer.h"

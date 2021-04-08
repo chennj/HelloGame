@@ -6,6 +6,7 @@
 #include "GLFW\glfw3.h"
 
 #include "stuff\renderer\Renderer.h"
+#include "stuff\renderer\Renderer2D.h"
 
 #include "Input.h"
 
@@ -24,6 +25,7 @@ namespace SOMEENGINE
 		//_Window->SetVSync(false);
 
 		Renderer::Init();
+		Renderer2D::Init();
 
 		_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(_ImGuiLayer);
