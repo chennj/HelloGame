@@ -22,7 +22,7 @@ namespace SOMEENGINE
 		_Window = std::unique_ptr<Window>(Window::Create());
 		_Window->SetEventCallback(SE_BIND_EVENT_FN(Application::OnEvent));
 		//设置刷新频率是否垂直同步
-		//_Window->SetVSync(false);
+		_Window->SetVSync(true);
 
 		Renderer::Init();
 		Renderer2D::Init();

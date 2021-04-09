@@ -10,9 +10,17 @@ private:
 	// Temp
 	SOMEENGINE::Ref<SOMEENGINE::VertexArray> _SquareVA;
 	SOMEENGINE::Ref<SOMEENGINE::Shader> _FlatColorShader;
-	SOMEENGINE::Ref<SOMEENGINE::Texture2D> _ChessTexture2D;
+	SOMEENGINE::Ref<SOMEENGINE::Texture2D> _FlowerTexture2D;
 
 	glm::vec4 _SquareColor = { 0.2, 0.3, 0.8, 1.0 };
+
+	struct ProfileResult
+	{
+		const char * Name;
+		float Time;
+	};
+
+	std::vector<ProfileResult> _ProfileResults;
 
 public:
 	Sandbox2D();

@@ -57,8 +57,6 @@ namespace SOMEENGINE
 		_Context->Init();
 
 		glfwSetWindowUserPointer(_Window, &_Data);
-		SetVSync(true);
-
 
 		// Set GLFW callbacks
 		glfwSetWindowSizeCallback(_Window, [](GLFWwindow* window, int width, int height)

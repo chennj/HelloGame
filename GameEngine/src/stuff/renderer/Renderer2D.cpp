@@ -98,7 +98,7 @@ namespace SOMEENGINE
 	void Renderer2D::DrawQuad(const glm::vec3 & position, const glm::vec2 & size, const Ref<Texture2D>& texture)
 	{
 		// u_Color equal white
-		s_Data->TextureShader->SetFloat4("u_Color", glm::vec4(1.0));
+		s_Data->TextureShader->SetFloat4("u_Color", {0.41,0.47,0.79,1.0});
 
 		texture->Bind();
 
