@@ -16,7 +16,7 @@ namespace SOMEENGINE
 	class Application
 	{
 	private:
-		std::unique_ptr<Window> _Window;
+		Scope<Window> _Window;
 		ImGuiLayer* _ImGuiLayer;
 		bool _Running = true;
 		LayerStack _LayerStack;

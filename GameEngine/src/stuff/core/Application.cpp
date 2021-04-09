@@ -6,7 +6,6 @@
 #include "GLFW\glfw3.h"
 
 #include "stuff\renderer\Renderer.h"
-#include "stuff\renderer\Renderer2D.h"
 
 #include "Input.h"
 
@@ -16,16 +15,17 @@ namespace SOMEENGINE
 
 	Application::Application()
 	{
+		SE_PROFILE_FUNCTION();
+
 		SE_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
-		_Window = std::unique_ptr<Window>(Window::Create());
+		_Window = Window::Create();
 		_Window->SetEventCallback(SE_BIND_EVENT_FN(Application::OnEvent));
 		//设置刷新频率是否垂直同步
 		_Window->SetVSync(true);
 
 		Renderer::Init();
-		Renderer2D::Init();
 
 		_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(_ImGuiLayer);
@@ -33,10 +33,13 @@ namespace SOMEENGINE
 
 	Application::~Application()
 	{
+		SE_PROFILE_FUNCTION();
 	}
 
 	void Application::OnEvent(Event& e)
 	{
+		SE_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(e);
 		//dispatcher.Dispatch<WindowCloseEvent>([this](WindowCloseEvent& e1)->bool
 		//{
@@ -57,8 +60,12 @@ namespace SOMEENGINE
 
 	void Application::Run()
 	{
+		SE_PROFILE_FUNCTION();
+
 		while (_Running)
 		{
+			SE_PROFILE_SCOPE("RunLoop");
+
 			float time = (float)glfwGetTime();
 			Timestep timestep = time - _LastFrameTime;
 
@@ -66,18 +73,26 @@ namespace SOMEENGINE
 
 			if (!_Minimized)
 			{
-				for (Layer* layer : _LayerStack)
 				{
-					layer->OnUpdate(timestep);
-				}
-			}
+					SE_PROFILE_SCOPE("LayerStack OnUpdate");
 
-			_ImGuiLayer->Begin();
-			for (Layer* layer : _LayerStack)
-			{
-				layer->OnImGuiRender();
+					for (Layer* layer : _LayerStack)
+					{
+						layer->OnUpdate(timestep);
+					}
+				}
+
+				_ImGuiLayer->Begin();
+				{
+					SE_PROFILE_SCOPE("LayStack OnImGuiRender");
+
+					for (Layer* layer : _LayerStack)
+					{
+						layer->OnImGuiRender();
+					}
+				}
+				_ImGuiLayer->End();
 			}
-			_ImGuiLayer->End();
 
 
 			_Window->OnUpdate();
@@ -93,6 +108,8 @@ namespace SOMEENGINE
 
 	bool Application::OnWindowResize(WindowResizeEvent & e)
 	{
+		SE_PROFILE_FUNCTION();
+
 		if (e.GetWidth() == 0 || e.GetHeight() == 0)
 		{
 			_Minimized = true;
@@ -107,12 +124,16 @@ namespace SOMEENGINE
 
 	void Application::PushLayer(Layer* layer)
 	{
+		SE_PROFILE_FUNCTION();
+
 		_LayerStack.PushLayer(layer);
 		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* overlay)
 	{
+		SE_PROFILE_FUNCTION();
+
 		_LayerStack.PushOverlay(overlay);
 		overlay->OnAttach();
 	}

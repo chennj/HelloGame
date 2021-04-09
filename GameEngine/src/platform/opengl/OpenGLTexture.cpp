@@ -8,6 +8,7 @@ namespace SOMEENGINE
 	OpenGLTexture2D::OpenGLTexture2D(uint32_t width, uint32_t height)
 		: _Width(width), _Height(height), _InternalFormat(GL_RGBA8), _OutputFormat(GL_RGBA)
 	{
+		SE_PROFILE_FUNCTION();
 
 		if (OPENGL_VERSION >= 4.5)
 		{
@@ -31,11 +32,16 @@ namespace SOMEENGINE
 	OpenGLTexture2D::OpenGLTexture2D(const std::string & path)
 		: _Path(path)
 	{
+		SE_PROFILE_FUNCTION();
+
 		int width, height, channels;
 
+		stbi_uc* data = nullptr;
 		stbi_set_flip_vertically_on_load(1);
-
-		stbi_uc* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
+		{
+			SE_PROFILE_SCOPE("stbi_load - OpenGLTexture2D::OpenGLTexture2D(path)");
+			data = stbi_load(path.c_str(), &width, &height, &channels, 0);
+		}
 		SE_CORE_ASSERT(data, "Failed to load image!");
 		_Width = width;
 		_Height = height;
@@ -81,11 +87,15 @@ namespace SOMEENGINE
 
 	OpenGLTexture2D::~OpenGLTexture2D()
 	{
+		SE_PROFILE_FUNCTION();
+
 		glDeleteTextures(1, &_RendererID);
 	}
 
 	void OpenGLTexture2D::SetData(void * data, uint32_t size)
 	{
+		SE_PROFILE_FUNCTION();
+
 		uint32_t bpp = _OutputFormat == GL_RGBA ? 4 : 3;
 
 		SE_CORE_ASSERT(size == _Width * _Height * bpp, "Data must be entire texture!");
@@ -102,6 +112,8 @@ namespace SOMEENGINE
 
 	void OpenGLTexture2D::Bind(uint32_t slot) const
 	{
+		SE_PROFILE_FUNCTION();
+
 		if (OPENGL_VERSION >= 4.5)
 		{
 			glBindTextureUnit(GL_TEXTURE0 + slot, _RendererID);

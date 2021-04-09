@@ -24,6 +24,8 @@ namespace SOMEENGINE
 
 	void ImGuiLayer::OnAttach()
 	{
+		SE_PROFILE_FUNCTION();
+
 		// Setup Dear ImGui context
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
@@ -57,6 +59,8 @@ namespace SOMEENGINE
 
 	void ImGuiLayer::OnDetach()
 	{
+		SE_PROFILE_FUNCTION();
+
 		ImGui_ImplOpenGL3_Shutdown();
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
@@ -64,6 +68,8 @@ namespace SOMEENGINE
 
 	void ImGuiLayer::Begin()
 	{
+		SE_PROFILE_FUNCTION();
+
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
@@ -71,6 +77,8 @@ namespace SOMEENGINE
 
 	void ImGuiLayer::End()
 	{
+		SE_PROFILE_FUNCTION();
+
 		Application& app = Application::Get();
 
 		ImGuiIO& io = ImGui::GetIO();

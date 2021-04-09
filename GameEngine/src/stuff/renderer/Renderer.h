@@ -14,7 +14,7 @@ namespace SOMEENGINE
 		{
 			glm::mat4 ViewProjectionMatrix;
 		};
-		static SceneData* _SceneData;
+		static Scope<SceneData> _SceneData;
 
 	public:
 		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }

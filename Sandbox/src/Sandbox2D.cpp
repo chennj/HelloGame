@@ -54,6 +54,8 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
+	SE_PROFILE_FUNCTION();
+
 	//_ChessTexture2D		= SOMEENGINE::Texture2D::Create("../res/texture/cnchess/WHITE.GIF");
 	_FlowerTexture2D	= SOMEENGINE::Texture2D::Create("../res/texture/texture-02.png");
 }
@@ -64,23 +66,22 @@ void Sandbox2D::OnDetach()
 
 void Sandbox2D::OnUpdate(SOMEENGINE::Timestep ts)
 {
-	PROFILE_SCOPE("Sandbox2D::OnUpdate");
+	SE_PROFILE_FUNCTION();
 
 	//Update
-	{
-		PROFILE_SCOPE("CameraController::OnUpdate");
-		_CameraController.OnUpdate(ts);
-	}
+	_CameraController.OnUpdate(ts);
 
 	//Render
 	{
-		PROFILE_SCOPE("Render Prep");
+		SE_PROFILE_SCOPE("Render Prep");
+		//PROFILE_SCOPE("Render Prep");
 		SOMEENGINE::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		SOMEENGINE::RenderCommand::Clear();
 	}
 
 	{
-		PROFILE_SCOPE("Render Draw");
+		SE_PROFILE_SCOPE("Render Draw");
+		//PROFILE_SCOPE("Render Draw");
 		SOMEENGINE::Renderer2D::BeginScene(_CameraController.GetCamera());
 
 		SOMEENGINE::Renderer2D::DrawQuad({ -1.0,0.0 }, { 0.8,0.8 }, { 0.8,0.2,0.3,1.0 });
@@ -98,15 +99,17 @@ void Sandbox2D::OnEvent(SOMEENGINE::Event & event)
 
 void Sandbox2D::OnImGuiRender()
 {
+	SE_PROFILE_FUNCTION();
+
 	ImGui::Begin("Settings");
 	ImGui::ColorEdit4("Square Color ", &_SquareColor.x);
-	for (auto& result : _ProfileResults)
-	{
-		char label[50];
-		strcpy(label, "%.3fms ");
-		strcat(label, result.Name);
-		ImGui::Text(label, result.Time);
-	}
-	_ProfileResults.clear();
+	//for (auto& result : _ProfileResults)
+	//{
+	//	char label[50];
+	//	strcpy(label, "%.3fms ");
+	//	strcat(label, result.Name);
+	//	ImGui::Text(label, result.Time);
+	//}
+	//_ProfileResults.clear();
 	ImGui::End();
 }

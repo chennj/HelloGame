@@ -58,6 +58,9 @@
     <Filter Include="vendor\stb_image">
       <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\stuff\debug">
+      <UniqueIdentifier>{a8baf865-c74b-48a1-b65f-af04c29a7ad2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Some.h">
@@ -1412,6 +1415,9 @@
     </ClInclude>
     <ClInclude Include="src\stuff\renderer\Renderer2D.h">
       <Filter>src\stuff\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\debug\Instrumentor.h">
+      <Filter>src\stuff\debug</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

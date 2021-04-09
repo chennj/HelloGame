@@ -17,6 +17,8 @@
 
 #include "stuff\core\Log.h"
 
-#ifdef SO_PLATFORM_WINDOWS
+#include "stuff/debug/Instrumentor.h"
+
+#ifdef SE_PLATFORM_WINDOWS
 #include <Windows.h>
 #endif

@@ -2,10 +2,11 @@
 
 #include "Renderer.h"
 #include "platform\opengl\OpenGLShader.h"
+#include "stuff\renderer\Renderer2D.h"
 
 namespace SOMEENGINE
 {
-	Renderer::SceneData* Renderer::_SceneData = new Renderer::SceneData;
+	Scope<Renderer::SceneData> Renderer::_SceneData = CreateScope<Renderer::SceneData>();
 
 	void Renderer::BeginScene(OrthographicCamera& camera)
 	{
@@ -33,7 +34,11 @@ namespace SOMEENGINE
 
 	void Renderer::Init()
 	{
+		SE_PROFILE_FUNCTION();
+
 		RenderCommand::Init();
+		Renderer2D::Init();
+
 	}
 
 	void Renderer::OnWindowResize(uint32_t width, uint32_t height)

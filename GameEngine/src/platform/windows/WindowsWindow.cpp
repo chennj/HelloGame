@@ -20,23 +20,29 @@ namespace SOMEENGINE
 		SE_CORE_ERROR("GLFW ERROR ({0}): {1}", error_code, description);
 	}
 
-	Window* Window::Create(const WindowProps& props)
+	Scope<Window> Window::Create(const WindowProps& props)
 	{
-		return new WindowsWindow(props);
+		return CreateScope<WindowsWindow>(props);
 	}
 
 	WindowsWindow::WindowsWindow(const WindowProps & props)
 	{
+		SE_PROFILE_FUNCTION();
+
 		Init(props);
 	}
 
 	WindowsWindow::~WindowsWindow()
 	{
+		SE_PROFILE_FUNCTION();
+
 		Shutdown();
 	}
 
 	void WindowsWindow::Init(const WindowProps & props)
 	{
+		SE_PROFILE_FUNCTION();
+
 		_Data.Title		= props.Title;
 		_Data.Width		= props.Width;
 		_Data.Height	= props.Height;
@@ -153,12 +159,16 @@ namespace SOMEENGINE
 
 	void WindowsWindow::OnUpdate()
 	{
+		SE_PROFILE_FUNCTION();
+
 		glfwPollEvents();
 		_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
 	{
+		SE_PROFILE_FUNCTION();
+
 		if (enabled)
 			glfwSwapInterval(1);
 		else
@@ -174,6 +184,8 @@ namespace SOMEENGINE
 
 	void WindowsWindow::Shutdown()
 	{
+		SE_PROFILE_FUNCTION();
+
 		glfwDestroyWindow(_Window);
 	}
 }
