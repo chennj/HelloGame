@@ -32,13 +32,20 @@ namespace SOMEENGINE
 		RenderCommand::DrawIndexed(vertexArray);
 	}
 
-	void Renderer::Init()
+	void Renderer::Init(const std::string & filePath)
 	{
 		SE_PROFILE_FUNCTION();
 
 		RenderCommand::Init();
-		Renderer2D::Init();
+		Renderer2D::Init(filePath);
+	}
 
+	void Renderer::Init(const std::string & vertexFilePath, const std::string & fragmentFilePath)
+	{
+		SE_PROFILE_FUNCTION();
+
+		RenderCommand::Init();
+		Renderer2D::Init(vertexFilePath, fragmentFilePath);
 	}
 
 	void Renderer::OnWindowResize(uint32_t width, uint32_t height)

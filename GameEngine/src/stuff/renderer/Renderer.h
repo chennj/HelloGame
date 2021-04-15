@@ -27,7 +27,8 @@ namespace SOMEENGINE
 			const Ref<VertexArray>& vertexArray,
 			glm::mat4& transform = glm::mat4(1.0f));
 
-		static void Init();
+		static void Init(const std::string& filePath);
+		static void Init(const std::string& vertexFilePath , const std::string& fragmentFilePath);
 
 		static void OnWindowResize(uint32_t width, uint32_t height);
 	};

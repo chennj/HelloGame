@@ -14,7 +14,7 @@ namespace SOMEENGINE
 
 		WindowProps(
 			const std::string& title = "Some Engine",
-			unsigned int width = 960,
+			unsigned int width = 1080,
 			unsigned int height = 540)
 			:
 			Title(title),Width(width), Height(height)

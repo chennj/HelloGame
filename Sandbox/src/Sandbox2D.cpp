@@ -84,9 +84,9 @@ void Sandbox2D::OnUpdate(SOMEENGINE::Timestep ts)
 		//PROFILE_SCOPE("Render Draw");
 		SOMEENGINE::Renderer2D::BeginScene(_CameraController.GetCamera());
 
-		SOMEENGINE::Renderer2D::DrawQuad({ -1.0,0.0 }, { 0.8,0.8 }, { 0.8,0.2,0.3,1.0 });
-		SOMEENGINE::Renderer2D::DrawQuad({ 0.2,-0.5 }, { 1.0,1.25 }, { 0.2,0.3,0.8,1.0 });
-		SOMEENGINE::Renderer2D::DrawQuad({ 1.0,0.0,-0.1 }, { 10.0,10.0 }, _FlowerTexture2D);
+		SOMEENGINE::Renderer2D::DrawQuad({ -1.0,0.0 }, { 0.8,0.8 }, { 0.8,0.2,0.3,1.0 }, glm::radians(-30.0));
+		SOMEENGINE::Renderer2D::DrawQuad({ 0.2,-0.5 }, { 1.0,1.25 }, { 0.2,0.3,0.8,1.0 }, glm::radians(30.0));
+		SOMEENGINE::Renderer2D::DrawQuad({ 1.0,0.0,-0.1 }, { 10.0,10.0 }, _FlowerTexture2D, 10.0, glm::radians(45.0), glm::vec4( 0.8,0.2,0.2,1.0 ));
 
 		SOMEENGINE::Renderer2D::EndScene();
 	}

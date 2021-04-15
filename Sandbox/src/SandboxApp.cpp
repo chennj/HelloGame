@@ -48,6 +48,8 @@
 
 #include "Sandbox2D.h"
 
+#include "GameLayer.h"
+
 
 class ExampleLayer : public SOMEENGINE::Layer
 {
@@ -265,10 +267,17 @@ public:
 class Sandbox : public SOMEENGINE::Application
 {
 public:
-	Sandbox()
+	//Sandbox()
+	//{
+	//	PushLayer(new Sandbox2D());
+	//}
+
+	Sandbox(const std::string& filePath)
+		:Application(filePath)
 	{
 		//PushLayer(new ExampleLayer());
-		PushLayer(new Sandbox2D());
+		//PushLayer(new Sandbox2D());
+		PushLayer(new GameLayer());
 	}
 
 	~Sandbox()
@@ -279,5 +288,6 @@ public:
 
 SOMEENGINE::Application* SOMEENGINE::CreateApplication()
 {
-	return new Sandbox();
+	//return new Sandbox("../GameEngine/assets/shaders/Texture.glsl");
+	return new Sandbox("../GameEngine/assets/shaders/TextureGame.glsl");
 }
