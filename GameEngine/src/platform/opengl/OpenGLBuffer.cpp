@@ -10,6 +10,17 @@ namespace SOMEENGINE
 	// VertexBuffer
 	///////////////////////////////////////////////////////////////////////
 
+	OpenGLVertexBuffer::OpenGLVertexBuffer(uint32_t size)
+	{
+		SE_PROFILE_FUNCTION();
+
+		//OpenGL version >= 4.5
+		//glCreateBuffers(1, &_RendererID);
+		glGenBuffers(1, &_RendererID);
+		glBindBuffer(GL_ARRAY_BUFFER, _RendererID);
+		glBufferData(GL_ARRAY_BUFFER, size, nullptr, GL_DYNAMIC_DRAW);
+	}
+
 	OpenGLVertexBuffer::OpenGLVertexBuffer(float * vertices, uint32_t size)
 	{
 		SE_PROFILE_FUNCTION();
@@ -40,6 +51,12 @@ namespace SOMEENGINE
 		SE_PROFILE_FUNCTION();
 
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
+	}
+
+	void OpenGLVertexBuffer::SetData(const void * data, uint32_t size)
+	{
+		glBindBuffer(GL_ARRAY_BUFFER, _RendererID);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
 	}
 
 	///////////////////////////////////////////////////////////////////////

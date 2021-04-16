@@ -276,8 +276,8 @@ public:
 		:Application(filePath)
 	{
 		//PushLayer(new ExampleLayer());
-		//PushLayer(new Sandbox2D());
-		PushLayer(new GameLayer());
+		PushLayer(new Sandbox2D());
+		//PushLayer(new GameLayer());
 	}
 
 	~Sandbox()
@@ -288,6 +288,6 @@ public:
 
 SOMEENGINE::Application* SOMEENGINE::CreateApplication()
 {
-	//return new Sandbox("../GameEngine/assets/shaders/Texture.glsl");
-	return new Sandbox("../GameEngine/assets/shaders/TextureGame.glsl");
+	return new Sandbox("../GameEngine/assets/shaders/Texture.glsl");
+	//return new Sandbox("../GameEngine/assets/shaders/TextureGame.glsl");
 }
