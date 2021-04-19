@@ -72,30 +72,37 @@ void Sandbox2D::OnUpdate(SOMEENGINE::Timestep ts)
 	_CameraController.OnUpdate(ts);
 
 	//Render
+	SOMEENGINE::Renderer2D::ResetStats();
 	{
 		SE_PROFILE_SCOPE("Render Prep");
-		//PROFILE_SCOPE("Render Prep");
 		SOMEENGINE::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		SOMEENGINE::RenderCommand::Clear();
 	}
 
 	{
 		SE_PROFILE_SCOPE("Render Draw");
-		//PROFILE_SCOPE("Render Draw");
 		SOMEENGINE::Renderer2D::BeginScene(_CameraController.GetCamera());
-
-		//SOMEENGINE::Renderer2D::DrawQuad({ -1.0,0.0 }, { 0.8,0.8 }, { 0.8,0.2,0.3,1.0 }, glm::radians(-30.0));
-		//SOMEENGINE::Renderer2D::DrawQuad({ 0.2,-0.5 }, { 1.0,1.25 }, { 0.2,0.3,0.8,1.0 }, glm::radians(30.0));
-		//SOMEENGINE::Renderer2D::DrawQuad({ 1.0,0.0,-0.1 }, { 10.0,10.0 }, _FlowerTexture2D, 10.0, glm::radians(0.0), glm::vec4( 0.8,0.2,0.2,1.0 ));
 
 		static float rotation = 0.0f;
 		rotation += ts * 20.0f;
 
 		SOMEENGINE::Renderer2D::DrawQuad({ 0.0,0.0 }, { 0.8,0.8 }, { 0.8,0.2,0.3,1.0 }, rotation);
+		SOMEENGINE::Renderer2D::DrawQuad({ -1.0,0.0 }, { 0.8,0.8 }, { 0.5,0.2,0.3,1.0 }, rotation);
 		SOMEENGINE::Renderer2D::DrawQuad({ 1.5,0.0 }, { 1.0,1.25 }, { 0.2,0.3,0.8,1.0 }, -rotation);
-		SOMEENGINE::Renderer2D::DrawQuad({ 0.0,0.0,-0.1 }, { 10.0,10.0 }, _FlowerTexture2D, 10.0, 0.0f, glm::vec4(0.8, 0.2, 0.2, 1.0));
+		SOMEENGINE::Renderer2D::DrawQuad({ 0.0,0.0,-0.1 }, { 20.0,20.0 }, _FlowerTexture2D, 10.0, 0.0f, glm::vec4(0.8, 0.2, 0.2, 1.0));
 		SOMEENGINE::Renderer2D::DrawQuad({ 0.0,0.0,-0.05 }, { 5.0,5.0 }, _FlowerTexture2D, 20.0, rotation, glm::vec4(0.5, 0.2, 0.2, 1.0));
 
+		SOMEENGINE::Renderer2D::EndScene();
+
+		SOMEENGINE::Renderer2D::BeginScene(_CameraController.GetCamera());
+		for (float y = -5.0f; y < 5.0f; y += 0.5f)
+		{
+			for (float x = -5.0f; x < 5.0f; x += 0.5f)
+			{
+				glm::vec4 color = { (x + 0.5f) / 10.0f, 0.4f, (y + 0.5f) / 10.0f, 0.5f };
+				SOMEENGINE::Renderer2D::DrawQuad({ x,y }, { 0.45f,0.45f }, color, 0.0f);
+			}
+		}
 		SOMEENGINE::Renderer2D::EndScene();
 	}
 }
@@ -111,13 +118,13 @@ void Sandbox2D::OnImGuiRender()
 
 	ImGui::Begin("Settings");
 	ImGui::ColorEdit4("Square Color ", &_SquareColor.x);
-	//for (auto& result : _ProfileResults)
-	//{
-	//	char label[50];
-	//	strcpy(label, "%.3fms ");
-	//	strcat(label, result.Name);
-	//	ImGui::Text(label, result.Time);
-	//}
-	//_ProfileResults.clear();
+
+	auto stats = SOMEENGINE::Renderer2D::GetStats();
+	ImGui::Text("Renderer2D Statistics:");
+	ImGui::Text("Draw Calls: %d", stats.DrawCalls);
+	ImGui::Text("Quads: %d", stats.QuadCount);
+	ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
+	ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
+
 	ImGui::End();
 }
