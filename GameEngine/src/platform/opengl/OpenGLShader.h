@@ -26,6 +26,7 @@ namespace SOMEENGINE
 		void Unbind() const override;
 
 		void SetInt(const std::string& name, int value) override;
+		void SetIntArray(const std::string& name, int* data, int count) override;
 		void SetFloat1(const std::string& name, float value)			override;
 		void SetFloat2(const std::string& name, const glm::vec2& value) override;
 		void SetFloat3(const std::string& name, const glm::vec3& value) override;
@@ -33,8 +34,9 @@ namespace SOMEENGINE
 		void SetMat4  (const std::string& name, const glm::mat4& value) override;
 
 		void UpdateUniformInt(const std::string& name, int value);
+		void UpdateUniformIntArray(const std::string& name, int* data, int count);
 
-		void UpdateUniformFloat(const std::string& name, float value);
+		void UpdateUniformFloat1(const std::string& name, float value);
 		void UpdateUniformFloat2(const std::string& name, const glm::vec2& value);
 		void UpdateUniformFloat3(const std::string& name, const glm::vec3& value);
 		void UpdateUniformFloat4(const std::string& name, const glm::vec4& value);

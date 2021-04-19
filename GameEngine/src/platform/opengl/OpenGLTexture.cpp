@@ -110,7 +110,7 @@ namespace SOMEENGINE
 		}
 	}
 
-	void OpenGLTexture2D::Bind(uint32_t slot) const
+	void OpenGLTexture2D::Bind(uint32_t slot, bool batch) const
 	{
 		SE_PROFILE_FUNCTION();
 
@@ -121,11 +121,13 @@ namespace SOMEENGINE
 		else
 		{
 			//½â³ý°ó¶¨
-			glBindTexture(GL_TEXTURE_2D, 0);
-			glBindTexture(GL_TEXTURE_2D, _RendererID);
+			if (!batch)
+			{
+				glBindTexture(GL_TEXTURE_2D, 0);
+			}
 
 			glActiveTexture(GL_TEXTURE0 + slot);
-			glBindTexture(GL_TEXTURE0 + slot, _RendererID);
+			glBindTexture(GL_TEXTURE_2D, _RendererID);
 		}
 	}
 }

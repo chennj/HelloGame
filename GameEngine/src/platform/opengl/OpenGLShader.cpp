@@ -70,9 +70,14 @@ namespace SOMEENGINE
 		UpdateUniformInt(name, value);
 	}
 
+	void OpenGLShader::SetIntArray(const std::string & name, int * data, int count)
+	{
+		UpdateUniformIntArray(name, data, count);
+	}
+
 	void OpenGLShader::SetFloat1(const std::string & name, float value)
 	{
-		UpdateUniformFloat(name, value);
+		UpdateUniformFloat1(name, value);
 	}
 
 	void OpenGLShader::SetFloat2(const std::string & name, const glm::vec2 & value)
@@ -103,7 +108,15 @@ namespace SOMEENGINE
 		glUniform1i(location, value);
 	}
 
-	void OpenGLShader::UpdateUniformFloat(const std::string & name, float value)
+	void OpenGLShader::UpdateUniformIntArray(const std::string & name, int * data, int count)
+	{
+		SE_PROFILE_FUNCTION();
+
+		GLint location = glGetUniformLocation(_RendererID, name.c_str());
+		glUniform1iv(location, count, data);
+	}
+
+	void OpenGLShader::UpdateUniformFloat1(const std::string & name, float value)
 	{
 		SE_PROFILE_FUNCTION();
 

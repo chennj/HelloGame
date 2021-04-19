@@ -24,9 +24,13 @@ namespace SOMEENGINE
 		virtual uint32_t GetWidth()const  override { return _Width; }
 		virtual uint32_t GetHeight()const override { return _Height; }
 
-		void SetData(void* data, uint32_t size) override;
+		virtual void SetData(void* data, uint32_t size) override;
 
-		virtual void Bind(uint32_t slot = 0)const override;
+		virtual void Bind(uint32_t slot = 0, bool batch = false)const override;
 
+		virtual bool operator ==(const Texture& other) const override
+		{
+			return _RendererID == ((OpenGLTexture2D&)other)._RendererID;
+		}
 	};
 }
