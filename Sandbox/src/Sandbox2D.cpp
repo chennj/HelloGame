@@ -88,10 +88,13 @@ void Sandbox2D::OnUpdate(SOMEENGINE::Timestep ts)
 		//SOMEENGINE::Renderer2D::DrawQuad({ 0.2,-0.5 }, { 1.0,1.25 }, { 0.2,0.3,0.8,1.0 }, glm::radians(30.0));
 		//SOMEENGINE::Renderer2D::DrawQuad({ 1.0,0.0,-0.1 }, { 10.0,10.0 }, _FlowerTexture2D, 10.0, glm::radians(0.0), glm::vec4( 0.8,0.2,0.2,1.0 ));
 
-		SOMEENGINE::Renderer2D::DrawQuad({ -1.0,0.0 }, { 0.8,0.8 }, { 0.8,0.2,0.3,1.0 });
-		SOMEENGINE::Renderer2D::DrawQuad({ 0.2,-0.5 }, { 1.0,1.25 }, { 0.2,0.3,0.8,1.0 });
-		SOMEENGINE::Renderer2D::DrawQuad({ -5.0,-5.0,-0.1 }, { 10.0,10.0 }, _FlowerTexture2D, 10.0, glm::radians(0.0), glm::vec4(0.8, 0.2, 0.2, 1.0));
-		SOMEENGINE::Renderer2D::DrawQuad({ 2.5,-2.5,-0.05 }, { 5.0,5.0 }, _FlowerTexture2D, 20.0, glm::radians(0.0), glm::vec4(0.8, 0.2, 0.2, 1.0));
+		static float rotation = 0.0f;
+		rotation += ts * 20.0f;
+
+		SOMEENGINE::Renderer2D::DrawQuad({ 0.0,0.0 }, { 0.8,0.8 }, { 0.8,0.2,0.3,1.0 }, rotation);
+		SOMEENGINE::Renderer2D::DrawQuad({ 1.5,0.0 }, { 1.0,1.25 }, { 0.2,0.3,0.8,1.0 }, -rotation);
+		SOMEENGINE::Renderer2D::DrawQuad({ 0.0,0.0,-0.1 }, { 10.0,10.0 }, _FlowerTexture2D, 10.0, 0.0f, glm::vec4(0.8, 0.2, 0.2, 1.0));
+		SOMEENGINE::Renderer2D::DrawQuad({ 0.0,0.0,-0.05 }, { 5.0,5.0 }, _FlowerTexture2D, 20.0, rotation, glm::vec4(0.5, 0.2, 0.2, 1.0));
 
 		SOMEENGINE::Renderer2D::EndScene();
 	}
