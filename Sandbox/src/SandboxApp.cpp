@@ -5,6 +5,8 @@
 // https://github.com/g-truc/glm
 // opengl shader compilation
 // http://www.khronos.org/opengl/wiki/Shader_Compilation
+// 小游戏:
+// https://github.com/freeman40/ChernoHazel
 // -----------------------------------------------------
 // 知识点 ///////////////////////////////////////////////
 // -------------

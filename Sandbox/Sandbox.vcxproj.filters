@@ -4,6 +4,12 @@
     <Filter Include="src">
       <UniqueIdentifier>{f9324c67-4536-4ef2-8df2-f39608b2e1bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\tests">
+      <UniqueIdentifier>{8f020615-96fb-4130-a8bb-c6819fa289c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\tests\particle">
+      <UniqueIdentifier>{5a77c143-ecf2-4a66-bfbe-f06811fbc6d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\SandboxApp.cpp">
@@ -27,6 +33,9 @@
     <ClCompile Include="src\ParticleSystem.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\tests\particle\Particle.cpp">
+      <Filter>src\tests\particle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Sandbox2D.h">
@@ -49,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="src\Color.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tests\particle\Particle.h">
+      <Filter>src\tests\particle</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

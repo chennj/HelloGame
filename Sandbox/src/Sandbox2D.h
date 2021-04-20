@@ -2,6 +2,8 @@
 
 #include <Some.h>
 
+#include "tests\particle\Particle.h"
+
 class Sandbox2D : public SOMEENGINE::Layer
 {
 private:
@@ -11,6 +13,8 @@ private:
 	SOMEENGINE::Ref<SOMEENGINE::VertexArray> _SquareVA;
 	SOMEENGINE::Ref<SOMEENGINE::Shader> _FlatColorShader;
 	SOMEENGINE::Ref<SOMEENGINE::Texture2D> _FlowerTexture2D;
+	SOMEENGINE::Ref<SOMEENGINE::Texture2D> _WheatTexture2D;
+	SOMEENGINE::Ref<SOMEENGINE::Texture2D> _ChessTexture2D;
 
 	glm::vec4 _SquareColor = { 0.2, 0.3, 0.8, 1.0 };
 
@@ -21,6 +25,9 @@ private:
 	};
 
 	std::vector<ProfileResult> _ProfileResults;
+
+	TESTS::ParticleSystem _ParticleSystem;
+	TESTS::ParticleProps _Particle;
 
 public:
 	Sandbox2D();

@@ -9,12 +9,31 @@
 
 namespace SOMEENGINE
 {
+	struct OrthographicCameraBounds
+	{
+		float Left, Right;
+		float Bottom, Top;
+
+		float GetWidth() { return Right - Left; }
+		float GetHeight() { return Top - Bottom; }
+
+		OrthographicCameraBounds& operator()(float l, float r, float b, float t)
+		{
+			this->Left = l;
+			this->Right = r;
+			this->Bottom = b;
+			this->Top = t;
+			return *this;
+		}
+	};
+
 	class OrthographicCameraController
 	{
 	private:
 		float _AspectRatio;
 		float _ZoomLevel = 1.0f;
 		OrthographicCamera _Camera;
+		OrthographicCameraBounds _Bounds;
 
 		bool _Rotation;
 		glm::vec3 _CameraPosition = { 0.0,0.0,0.0 };
@@ -34,6 +53,8 @@ namespace SOMEENGINE
 
 		void SetZoomLevel(float level) { _ZoomLevel = level; }
 		float GetZoomLevel() const { return _ZoomLevel; }
+
+		const OrthographicCameraBounds& GetBounds()const { return _Bounds; }
 	private:
 		bool OnMouseScrolled(MouseScrolledEvent& e);
 		bool OnWindowResized(WindowResizeEvent& e);

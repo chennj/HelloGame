@@ -137,6 +137,7 @@
     <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\Random.h" />
     <ClInclude Include="src\Sandbox2D.h" />
+    <ClInclude Include="src\tests\particle\Particle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameLayer.cpp" />
@@ -146,6 +147,7 @@
     <ClCompile Include="src\Random.cpp" />
     <ClCompile Include="src\Sandbox2D.cpp" />
     <ClCompile Include="src\SandboxApp.cpp" />
+    <ClCompile Include="src\tests\particle\Particle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameEngine\GameEngine.vcxproj">
