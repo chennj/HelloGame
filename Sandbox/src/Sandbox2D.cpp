@@ -79,10 +79,10 @@ void Sandbox2D::OnUpdate(SOMEENGINE::Timestep ts)
 {
 	SE_PROFILE_FUNCTION();
 
-	//Update
+	// Update
 	_CameraController.OnUpdate(ts);
 
-	//Render
+	// Render
 	SOMEENGINE::Renderer2D::ResetStats();
 	{
 		SE_PROFILE_SCOPE("Render Prep");
@@ -90,6 +90,14 @@ void Sandbox2D::OnUpdate(SOMEENGINE::Timestep ts)
 		SOMEENGINE::RenderCommand::Clear();
 	}
 
+	// SpriteSheet
+	{
+		SOMEENGINE::Renderer2D::BeginScene(_CameraController.GetCamera());
+		SOMEENGINE::Renderer2D::DrawQuad({ 0.0f,0.0f,1.0f }, { 1.0f,0.5f }, _ChessTexture2D, 1.0, 0.0f, glm::vec4(0.8, 0.2, 0.2, 0.5));
+		SOMEENGINE::Renderer2D::EndScene();
+	}
+
+#if 0
 	{
 		SE_PROFILE_SCOPE("Render Draw");
 		SOMEENGINE::Renderer2D::BeginScene(_CameraController.GetCamera());
@@ -119,6 +127,7 @@ void Sandbox2D::OnUpdate(SOMEENGINE::Timestep ts)
 
 		SOMEENGINE::Renderer2D::EndScene();
 	}
+#endif
 
 	if (SOMEENGINE::Input::IsMouseButtonPressed(SE_MOUSE_BUTTON_LEFT))
 	{
@@ -132,7 +141,7 @@ void Sandbox2D::OnUpdate(SOMEENGINE::Timestep ts)
 		auto cameraPos = _CameraController.GetCamera().GetPosition();
 		x = (x / width)*bounds.GetWidth() - bounds.GetWidth()*0.5f;
 		y = bounds.GetHeight()*0.5f - (y / height)*bounds.GetHeight();
-		_Particle.Position = { x + cameraPos.x,y + cameraPos.y };
+		_Particle.Position = { x + cameraPos.x,y + cameraPos.y};
 		for (int i = 0; i < 50; i++)
 		{
 			_ParticleSystem.Emit(_Particle);

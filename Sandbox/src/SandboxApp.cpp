@@ -7,6 +7,8 @@
 // http://www.khronos.org/opengl/wiki/Shader_Compilation
 // 小游戏:
 // https://github.com/freeman40/ChernoHazel
+// 游戏素材
+// http://kenney.nl
 // -----------------------------------------------------
 // 知识点 ///////////////////////////////////////////////
 // -------------

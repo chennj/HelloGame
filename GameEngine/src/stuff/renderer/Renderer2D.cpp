@@ -187,7 +187,7 @@ namespace SOMEENGINE
 
 		s_Data.QuadVertexBufferPtr->Position = modelTranform * s_Data.QuadVertexPositions[0];	// { position.x, position.y, position.z, 1.0f };
 		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f,0.0f };
+		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f, 0.0f };
 		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
 		s_Data.QuadVertexBufferPtr->TilingFactor = tilingFactor;
 		s_Data.QuadVertexBufferPtr++;
@@ -227,6 +227,22 @@ namespace SOMEENGINE
 	{
 		SE_PROFILE_FUNCTION();
 
+		// test spritesheet ------------------------------------------------------------
+		const float x = 0.0f, y = 3.0f;
+		const float sheetWidth = 377.0f, sheetHeight = 417.0f;
+		const float spriteWidth = 377.0f, spriteHeight = 60.0f;
+		const glm::vec2 textureCoords[] = {
+			{ (x*spriteWidth) / sheetWidth,				(y*spriteHeight) / sheetHeight },
+			{ ((x + 1.0f)*spriteWidth) / sheetWidth,	(y*spriteHeight) / sheetHeight },
+			{ ((x + 1.0f)*spriteWidth) / sheetWidth,	((y + 1.0f)*spriteHeight) / sheetHeight },
+			{ (x*spriteWidth) / sheetWidth,				((y + 1.0f)*spriteHeight) / sheetHeight },
+			//{ 0.0f, 0.0f },
+			//{ 1.0f, 0.0f },
+			//{ 1.0f, 1.0f },
+			//{ 0.0f, 1.0f },
+		};
+		// -----------------------------------------------------------------------------
+
 		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices)
 		{
 			FlushAndReset();
@@ -259,28 +275,28 @@ namespace SOMEENGINE
 
 		s_Data.QuadVertexBufferPtr->Position = modelTranform * s_Data.QuadVertexPositions[0];	// { position.x, position.y, position.z };
 		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f,0.0f };
+		s_Data.QuadVertexBufferPtr->TexCoord = textureCoords[0];	//{ 0.0f,0.0f };
 		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
 		s_Data.QuadVertexBufferPtr->TilingFactor = tilingFactor;
 		s_Data.QuadVertexBufferPtr++;
 
 		s_Data.QuadVertexBufferPtr->Position = modelTranform * s_Data.QuadVertexPositions[1];	// { position.x + size.x, position.y, position.z };
 		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f,0.0f };
+		s_Data.QuadVertexBufferPtr->TexCoord = textureCoords[1];	//{ 1.0f,0.0f };
 		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
 		s_Data.QuadVertexBufferPtr->TilingFactor = tilingFactor;
 		s_Data.QuadVertexBufferPtr++;
 
 		s_Data.QuadVertexBufferPtr->Position = modelTranform * s_Data.QuadVertexPositions[2];	// { position.x + size.x, position.y + size.y, position.z };
 		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f,1.0f };
+		s_Data.QuadVertexBufferPtr->TexCoord = textureCoords[2];	//{ 1.0f,1.0f };
 		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
 		s_Data.QuadVertexBufferPtr->TilingFactor = tilingFactor;
 		s_Data.QuadVertexBufferPtr++;
 
 		s_Data.QuadVertexBufferPtr->Position = modelTranform * s_Data.QuadVertexPositions[3];	// { position.x, position.y + size.y, position.z };
 		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f,1.0f };
+		s_Data.QuadVertexBufferPtr->TexCoord = textureCoords[3];	//{ 0.0f,1.0f };
 		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
 		s_Data.QuadVertexBufferPtr->TilingFactor = tilingFactor;
 		s_Data.QuadVertexBufferPtr++;
