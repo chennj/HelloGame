@@ -15,6 +15,8 @@ private:
 	SOMEENGINE::Ref<SOMEENGINE::Texture2D> _FlowerTexture2D;
 	SOMEENGINE::Ref<SOMEENGINE::Texture2D> _WheatTexture2D;
 	SOMEENGINE::Ref<SOMEENGINE::Texture2D> _ChessTexture2D;
+	SOMEENGINE::Ref<SOMEENGINE::Texture2D> _SpriteSheet;
+	SOMEENGINE::Ref<SOMEENGINE::SubTexture2D> _TextureStair, _TexturePerson, _TextureTree;
 
 	glm::vec4 _SquareColor = { 0.2, 0.3, 0.8, 1.0 };
 

@@ -184,6 +184,7 @@
     <ClInclude Include="src\stuff\renderer\Renderer2D.h" />
     <ClInclude Include="src\stuff\renderer\RendererAPI.h" />
     <ClInclude Include="src\stuff\renderer\Shader.h" />
+    <ClInclude Include="src\stuff\renderer\SubTexture2D.h" />
     <ClInclude Include="src\stuff\renderer\Texture.h" />
     <ClInclude Include="src\stuff\renderer\VertexArray.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -627,6 +628,7 @@
     <ClCompile Include="src\stuff\renderer\Renderer2D.cpp" />
     <ClCompile Include="src\stuff\renderer\RendererAPI.cpp" />
     <ClCompile Include="src\stuff\renderer\Shader.cpp" />
+    <ClCompile Include="src\stuff\renderer\SubTexture2D.cpp" />
     <ClCompile Include="src\stuff\renderer\Texture.cpp" />
     <ClCompile Include="src\stuff\renderer\VertexArray.cpp" />
     <ClCompile Include="vendor\stb_image\stb_image.cpp" />

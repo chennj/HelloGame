@@ -60,6 +60,11 @@ void Sandbox2D::OnAttach()
 	_FlowerTexture2D	= SOMEENGINE::Texture2D::Create("../res/texture/texture-02.png");
 	_WheatTexture2D		= SOMEENGINE::Texture2D::Create("../res/texture/texture-01.png");
 
+	_SpriteSheet		= SOMEENGINE::Texture2D::Create("../res/texture/game/tilemap.png");
+	_TextureStair		= SOMEENGINE::SubTexture2D::CreateFromCoords(_SpriteSheet, glm::vec2(12, 4), glm::vec2(17,17));
+	_TextureTree		= SOMEENGINE::SubTexture2D::CreateFromCoords(_SpriteSheet, { 10, 5 }, { 17, 17 }, { 3,3 });
+	_TexturePerson		= SOMEENGINE::SubTexture2D::CreateFromCoords(_SpriteSheet, { 1, 0 }, { 17, 17 });
+
 	_Particle.ColorBegin= { 254 / 255.0f, 109 / 255.0f, 41 / 255.0f, 1.0f };
 	_Particle.ColorEnd	= { 254 / 255.0f, 212 / 255.0f, 123 / 255.0f, 1.0f };
 	_Particle.SizeBegin = 0.3f;
@@ -93,7 +98,10 @@ void Sandbox2D::OnUpdate(SOMEENGINE::Timestep ts)
 	// SpriteSheet
 	{
 		SOMEENGINE::Renderer2D::BeginScene(_CameraController.GetCamera());
-		SOMEENGINE::Renderer2D::DrawQuad({ 0.0f,0.0f,1.0f }, { 1.0f,0.5f }, _ChessTexture2D, 1.0, 0.0f, glm::vec4(0.8, 0.2, 0.2, 0.5));
+		SOMEENGINE::Renderer2D::DrawQuad({  0.0f, 0.0f,-0.1f }, { 2.133333f,1.0f }, _SpriteSheet);
+		SOMEENGINE::Renderer2D::DrawQuad({ -0.5f, 0.0f, 0.0f }, { 0.5f,0.5f }, _TextureStair);
+		SOMEENGINE::Renderer2D::DrawQuad({  0.0f, 0.0f, 0.0f }, { 0.5f,0.5f }, _TextureTree);
+		SOMEENGINE::Renderer2D::DrawQuad({  0.5f, 0.0f, 0.0f }, { 0.5f,0.5f }, _TexturePerson);
 		SOMEENGINE::Renderer2D::EndScene();
 	}
 
@@ -105,7 +113,7 @@ void Sandbox2D::OnUpdate(SOMEENGINE::Timestep ts)
 		static float rotation = 0.0f;
 		rotation += ts * 20.0f;
 
-		SOMEENGINE::Renderer2D::DrawQuad({ 0.0,10.0,0.0 }, { 5.0f,5.0f }, _WheatTexture2D, 1.0, 0.0f, glm::vec4(0.8, 0.2, 0.2, 0.5));
+		SOMEENGINE::Renderer2D::DrawQuad({ 0.0,10.0,0.0 }, { 1.0f,1.0f }, _WheatTexture2D, 1.0, 0.0f, glm::vec4(0.8, 0.2, 0.2, 0.5));
 		SOMEENGINE::Renderer2D::DrawQuad({ 0.0,0.0 }, { 0.8,0.8 }, { 0.8,0.2,0.3,1.0 }, rotation);
 		SOMEENGINE::Renderer2D::DrawQuad({ -1.0,0.0 }, { 0.8,0.8 }, _SquareColor, rotation);
 		SOMEENGINE::Renderer2D::DrawQuad({ 1.5,0.0 }, { 1.0,1.25 }, { 0.2,0.3,0.8,1.0 }, -rotation);

@@ -149,8 +149,8 @@ void Level::OnRender()
 
 	for (auto& pillar : _Pillars)
 	{
-		SOMEENGINE::Renderer2D::DrawQuad(pillar.TopPosition, pillar.TopScale, glm::radians(180.0f), _TriangleTexture, color);
-		SOMEENGINE::Renderer2D::DrawQuad(pillar.BottomPosition, pillar.BottomScale, glm::radians(0.0f), _TriangleTexture, color);
+		SOMEENGINE::Renderer2D::DrawQuad(pillar.TopPosition, pillar.TopScale, _TriangleTexture, 180.0f);
+		SOMEENGINE::Renderer2D::DrawQuad(pillar.BottomPosition, pillar.BottomScale, _TriangleTexture, 0.0f);
 	}
 
 	_Player.OnRender();
