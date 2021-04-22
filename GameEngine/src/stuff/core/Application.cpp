@@ -67,6 +67,11 @@ namespace SOMEENGINE
 		}
 	}
 
+	void Application::Close()
+	{
+		_Running = false;
+	}
+
 	void Application::Run()
 	{
 		SE_PROFILE_FUNCTION();
