@@ -3,6 +3,7 @@
 
 #include <chrono>
 
+#pragma region 性能分析demo，已经有改进的版本
 template<typename Fn>
 class Timer
 {
@@ -44,7 +45,28 @@ public:
 };
 
 #define PROFILE_SCOPE(name) Timer<std::function<void(ProfileResult)>> timer##__LINE__(name, [&](ProfileResult profileResult) {_ProfileResults.push_back(profileResult); })
+#pragma endregion
 
+static const float s_cellWidth	= 16.0f;
+static const float s_cellHeight = 16.0f;
+// 14 x 24 grass tiles
+static const uint32_t s_MapWidth = 24;
+static const char* s_MapTiles =
+"WWWWWWWWWWWWWWWWWWWWWWWW"
+"WWWWWWWDDDDDDWWWWWWWWWWW"
+"WWWWWDDDDDDDDDDDWWWWWWWW"
+"WWWWDDDDDDDDDDDDDDDWWWWW"
+"WWWDDDDDDDDDDDDDDDDDDWWW"
+"WWDDDDWWWDDDDDDDDDDDDDWW"
+"WDDDDDWWWDDDDDDDDDDDDWWW"
+"WWDDDDDDDDDDDDDDDDDDWWWW"
+"WWWDDDDDDDDDDDDDDDDWWWWW"
+"WWWWDDDDDDDDDDDDDDWWWWWW"
+"WWWWWDDDDDDDDDDDWWWWWWWW"
+"WWWWWWDDDDDDDDWWWWWWWWWW"
+"WWWWWWWDDDDWWWWWWWWWWWWW"
+"WWWWWWWWWWWWWWWWWWWCWWWW"
+;
 Sandbox2D::Sandbox2D()
 	: 
 	Layer("Sandbox2D"),
@@ -60,10 +82,15 @@ void Sandbox2D::OnAttach()
 	_FlowerTexture2D	= SOMEENGINE::Texture2D::Create("../res/texture/texture-02.png");
 	_WheatTexture2D		= SOMEENGINE::Texture2D::Create("../res/texture/texture-01.png");
 
-	_SpriteSheet		= SOMEENGINE::Texture2D::Create("../res/texture/game/tilemap.png");
-	_TextureStair		= SOMEENGINE::SubTexture2D::CreateFromCoords(_SpriteSheet, glm::vec2(12, 4), glm::vec2(17,17));
-	_TextureTree		= SOMEENGINE::SubTexture2D::CreateFromCoords(_SpriteSheet, { 10, 5 }, { 17, 17 }, { 3,3 });
-	_TexturePerson		= SOMEENGINE::SubTexture2D::CreateFromCoords(_SpriteSheet, { 1, 0 }, { 17, 17 });
+	_SpriteSheet		= SOMEENGINE::Texture2D::Create("../res/texture/game/tilemap_packed.png");
+	_TextureStair		= SOMEENGINE::SubTexture2D::CreateFromCoords(_SpriteSheet, { 12, 4 }, { s_cellWidth, s_cellHeight });
+	_TextureTree		= SOMEENGINE::SubTexture2D::CreateFromCoords(_SpriteSheet, { 10, 5 }, { s_cellWidth, s_cellHeight }, { 3,3 });
+	_TexturePerson		= SOMEENGINE::SubTexture2D::CreateFromCoords(_SpriteSheet, { 1, 0 }, { s_cellWidth, s_cellHeight });
+
+	_MapWidth = s_MapWidth;
+	_MapHeight = strlen(s_MapTiles) / s_MapWidth;
+	s_TextureMap['D'] = SOMEENGINE::SubTexture2D::CreateFromCoords(_SpriteSheet, { 8, 6 }, { s_cellWidth, s_cellHeight });
+	s_TextureMap['W'] = SOMEENGINE::SubTexture2D::CreateFromCoords(_SpriteSheet, { 2, 6 }, { s_cellWidth, s_cellHeight });
 
 	_Particle.ColorBegin= { 254 / 255.0f, 109 / 255.0f, 41 / 255.0f, 1.0f };
 	_Particle.ColorEnd	= { 254 / 255.0f, 212 / 255.0f, 123 / 255.0f, 1.0f };
@@ -74,6 +101,8 @@ void Sandbox2D::OnAttach()
 	_Particle.Velocity	= { 0.0f, 0.0f };
 	_Particle.VelocityVariation = { 3.0f,1.0f };
 	_Particle.Position	= { 0.0f, 0.0f };
+
+	_CameraController.SetZoomLevel(5.0f);
 }
 
 void Sandbox2D::OnDetach()
@@ -98,10 +127,32 @@ void Sandbox2D::OnUpdate(SOMEENGINE::Timestep ts)
 	// SpriteSheet
 	{
 		SOMEENGINE::Renderer2D::BeginScene(_CameraController.GetCamera());
-		SOMEENGINE::Renderer2D::DrawQuad({  0.0f, 0.0f,-0.1f }, { 2.133333f,1.0f }, _SpriteSheet);
-		SOMEENGINE::Renderer2D::DrawQuad({ -0.5f, 0.0f, 0.0f }, { 0.5f,0.5f }, _TextureStair);
-		SOMEENGINE::Renderer2D::DrawQuad({  0.0f, 0.0f, 0.0f }, { 0.5f,0.5f }, _TextureTree);
-		SOMEENGINE::Renderer2D::DrawQuad({  0.5f, 0.0f, 0.0f }, { 0.5f,0.5f }, _TexturePerson);
+		
+		for (uint32_t y = 0; y < _MapHeight; y++)
+		{
+			for (uint32_t x = 0; x < _MapWidth; x++)
+			{
+				char tileType = s_MapTiles[x + y*_MapWidth];
+				SOMEENGINE::Ref<SOMEENGINE::SubTexture2D> texture;
+				if (s_TextureMap.find(tileType) != s_TextureMap.end())
+				{
+					texture = s_TextureMap[tileType];
+				}
+				else
+				{
+					texture = _TextureStair;
+				}
+				// 图像上下反转
+				//SOMEENGINE::Renderer2D::DrawQuad({ x - _MapWidth / 2.0f, y - _MapHeight / 2.0f, 0.5f }, { 1.0f,1.0f }, texture);
+				// 图像上下不反转
+				SOMEENGINE::Renderer2D::DrawQuad({ x - _MapWidth / 2.0f , _MapHeight / 2.0f - y, 0.5f }, { 1.0f,1.0f }, texture);
+			}
+		}
+
+		//SOMEENGINE::Renderer2D::DrawQuad({ -0.5f, 0.0f, 0.0f }, { 0.5f,0.5f }, _TextureStair);
+		//SOMEENGINE::Renderer2D::DrawQuad({  0.0f, 0.0f, 0.0f }, { 0.5f,0.5f }, _TextureTree);
+		//SOMEENGINE::Renderer2D::DrawQuad({  0.5f, 0.0f, 0.0f }, { 0.5f,0.5f }, _TexturePerson);
+
 		SOMEENGINE::Renderer2D::EndScene();
 	}
 

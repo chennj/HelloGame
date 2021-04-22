@@ -51,12 +51,14 @@ namespace SOMEENGINE
 		OrthographicCamera& GetCamera() { return _Camera; }
 		const OrthographicCamera& GetCamera() const { return _Camera; }
 
-		void SetZoomLevel(float level) { _ZoomLevel = level; }
+		void SetZoomLevel(float level) { _ZoomLevel = level; CalculateView();}
 		float GetZoomLevel() const { return _ZoomLevel; }
 
 		const OrthographicCameraBounds& GetBounds()const { return _Bounds; }
 	private:
 		bool OnMouseScrolled(MouseScrolledEvent& e);
 		bool OnWindowResized(WindowResizeEvent& e);
+
+		void CalculateView();
 	};
 }

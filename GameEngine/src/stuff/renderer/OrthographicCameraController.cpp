@@ -58,8 +58,7 @@ namespace SOMEENGINE
 
 		_ZoomLevel -= e.GetYOffset() * 0.5f;
 		_ZoomLevel = std::max(_ZoomLevel, 0.25f);
-		_Bounds( -_AspectRatio * _ZoomLevel, _AspectRatio * _ZoomLevel, -_ZoomLevel, _ZoomLevel );
-		_Camera.SetProjection(-_AspectRatio * _ZoomLevel, _AspectRatio * _ZoomLevel, -_ZoomLevel, _ZoomLevel);
+		CalculateView();
 		return false;
 	}
 
@@ -68,8 +67,13 @@ namespace SOMEENGINE
 		SE_PROFILE_FUNCTION();
 
 		_AspectRatio = (float)e.GetWidth()/(float)e.GetHeight();
+		CalculateView();
+		return false;
+	}
+
+	void OrthographicCameraController::CalculateView()
+	{
 		_Bounds(-_AspectRatio * _ZoomLevel, _AspectRatio * _ZoomLevel, -_ZoomLevel, _ZoomLevel);
 		_Camera.SetProjection(-_AspectRatio * _ZoomLevel, _AspectRatio * _ZoomLevel, -_ZoomLevel, _ZoomLevel);
-		return false;
 	}
 }

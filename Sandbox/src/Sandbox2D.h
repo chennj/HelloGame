@@ -31,6 +31,8 @@ private:
 	TESTS::ParticleSystem _ParticleSystem;
 	TESTS::ParticleProps _Particle;
 
+	uint32_t _MapWidth, _MapHeight;
+	std::unordered_map<char, SOMEENGINE::Ref<SOMEENGINE::SubTexture2D>> s_TextureMap;
 public:
 	Sandbox2D();
 	virtual ~Sandbox2D() = default;
