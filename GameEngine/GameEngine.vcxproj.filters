@@ -1422,6 +1422,15 @@
     <ClInclude Include="src\stuff\renderer\SubTexture2D.h">
       <Filter>src\stuff\renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\stuff\renderer\FrameBuffer.h">
+      <Filter>src\stuff\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\opengl\OpenGLFrameBuffer.h">
+      <Filter>src\platform\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\opengl\OpenGLDebug.h">
+      <Filter>src\platform\opengl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\platform\opengl\OpenGLBuffer.cpp">
@@ -1504,6 +1513,15 @@
     </ClCompile>
     <ClCompile Include="src\stuff\renderer\SubTexture2D.cpp">
       <Filter>src\stuff\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stuff\renderer\FrameBuffer.cpp">
+      <Filter>src\stuff\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\opengl\OpenGLFrameBuffer.cpp">
+      <Filter>src\platform\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\opengl\OpenGLDebug.cpp">
+      <Filter>src\platform\opengl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

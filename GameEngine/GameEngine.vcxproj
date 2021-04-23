@@ -148,6 +148,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\platform\opengl\OpenGLDebug.h" />
+    <ClInclude Include="src\platform\opengl\OpenGLFrameBuffer.h" />
     <ClInclude Include="src\Some.h" />
     <ClInclude Include="src\platform\opengl\OpenGLBuffer.h" />
     <ClInclude Include="src\platform\opengl\OpenGLContext.h" />
@@ -176,6 +178,7 @@
     <ClInclude Include="src\stuff\events\MouseEvent.h" />
     <ClInclude Include="src\stuff\imgui\ImGuiLayer.h" />
     <ClInclude Include="src\stuff\renderer\Buffer.h" />
+    <ClInclude Include="src\stuff\renderer\FrameBuffer.h" />
     <ClInclude Include="src\stuff\renderer\GraphicsContext.h" />
     <ClInclude Include="src\stuff\renderer\OrthographicCamera.h" />
     <ClInclude Include="src\stuff\renderer\OrthographicCameraController.h" />
@@ -605,6 +608,8 @@
   <ItemGroup>
     <ClCompile Include="src\platform\opengl\OpenGLBuffer.cpp" />
     <ClCompile Include="src\platform\opengl\OpenGLContext.cpp" />
+    <ClCompile Include="src\platform\opengl\OpenGLDebug.cpp" />
+    <ClCompile Include="src\platform\opengl\OpenGLFrameBuffer.cpp" />
     <ClCompile Include="src\platform\opengl\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\platform\opengl\OpenGLShader.cpp" />
     <ClCompile Include="src\platform\opengl\OpenGLTexture.cpp" />
@@ -621,6 +626,7 @@
     <ClCompile Include="src\stuff\imgui\ImGuiBuild.cpp" />
     <ClCompile Include="src\stuff\imgui\ImGuiLayer.cpp" />
     <ClCompile Include="src\stuff\renderer\Buffer.cpp" />
+    <ClCompile Include="src\stuff\renderer\FrameBuffer.cpp" />
     <ClCompile Include="src\stuff\renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\stuff\renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\stuff\renderer\RenderCommand.cpp" />

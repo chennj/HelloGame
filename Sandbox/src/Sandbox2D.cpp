@@ -70,7 +70,7 @@ static const char* s_MapTiles =
 Sandbox2D::Sandbox2D()
 	: 
 	Layer("Sandbox2D"),
-	_CameraController(960.0f / 540.0f, true)
+	_CameraController(1080.0f / 540.0f, true)
 {
 }
 
@@ -103,6 +103,12 @@ void Sandbox2D::OnAttach()
 	_Particle.Position	= { 0.0f, 0.0f };
 
 	//_CameraController.SetZoomLevel(5.0f);
+
+	// 帧缓冲-一般2D用不上
+	SOMEENGINE::FrameBufferSpecification fbSpec;
+	fbSpec.Width = 1080;
+	fbSpec.Height = 540;
+	_frameBuffer = SOMEENGINE::FrameBuffer::Create(fbSpec);
 }
 
 void Sandbox2D::OnDetach()
@@ -120,6 +126,7 @@ void Sandbox2D::OnUpdate(SOMEENGINE::Timestep ts)
 	SOMEENGINE::Renderer2D::ResetStats();
 	{
 		SE_PROFILE_SCOPE("Render Prep");
+		_frameBuffer->Bind();
 		SOMEENGINE::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		SOMEENGINE::RenderCommand::Clear();
 	}
@@ -154,7 +161,7 @@ void Sandbox2D::OnUpdate(SOMEENGINE::Timestep ts)
 	}
 #endif
 
-#if 0
+#if 1
 	{
 		SE_PROFILE_SCOPE("Render Draw");
 		SOMEENGINE::Renderer2D::BeginScene(_CameraController.GetCamera());
@@ -182,6 +189,7 @@ void Sandbox2D::OnUpdate(SOMEENGINE::Timestep ts)
 		}
 
 		SOMEENGINE::Renderer2D::EndScene();
+		_frameBuffer->Unbind();
 	}
 #endif
 
@@ -291,8 +299,8 @@ void Sandbox2D::OnImGuiRender()
 	ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
 	ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
-	uint32_t textureID = _FlowerTexture2D->GetRendererID();
-	ImGui::Image((void*)textureID, ImVec2(64.0f, 64.0f));
+	uint32_t textureID = _frameBuffer->GetColorAttachmentRendererID();
+	ImGui::Image((void*)textureID, ImVec2(128.0f, 64.0f));
 	ImGui::End();
 
 	ImGui::End();
