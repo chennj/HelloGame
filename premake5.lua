@@ -221,3 +221,66 @@ project "HelloGame"
 
 	filter {"system:windows","configurations:Dist"}
 		buildoptions "/MT"
+
+project "Some-Editor"
+	location "Some-Editor"
+	kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++11"
+	staticruntime "on"
+
+	targetdir("bin/" .. outputdir .. "/%{prj.name}")
+	objdir("temp/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
+	}
+
+	includedirs
+	{
+		"GameEngine/vendor/spdlog/include",
+		"GameEngine/src",
+		"GameEngine/vender",
+		"%{IncludeDir.glm}"
+	}
+
+	links
+	{
+		"GameEngine"
+	}
+
+	filter "system:windows"
+		systemversion "latest"
+
+		defines
+		{
+			"SE_PLATFORM_WINDOWS"
+		}
+
+	filter "configurations:Debug"
+		defines "SANDBOX_DEBUG"
+		runtime "Debug"
+		symbols "on"
+
+	filter "configurations:Release"
+		defines "SANDBOX_RELEASE"
+		runtime "Release"
+		optimize "on"
+
+	filter "configurations:Dist"
+		defines "SANDBOX_DIST"
+		runtime "Release"
+		optimize "on"
+
+	filter {"system:windows","configurations:Debug"}
+		buildoptions "/MTd"
+
+	filter {"system:windows","configurations:Release"}
+		buildoptions "/MT"
+
+	filter {"system:windows","configurations:Dist"}
+		buildoptions "/MT"

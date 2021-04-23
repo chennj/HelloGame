@@ -18,14 +18,14 @@ namespace SOMEENGINE
 		Application("../GameEngine/assets/shaders/Texture.glsl");
 	}
 
-	Application::Application(const std::string & filePath)
+	Application::Application(const std::string & filePath, const std::string& name)
 	{
 		SE_PROFILE_FUNCTION();
 
 		SE_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
-		_Window = Window::Create();
+		_Window = Window::Create(WindowProps(name));
 		_Window->SetEventCallback(SE_BIND_EVENT_FN(Application::OnEvent));
 		//设置刷新频率是否垂直同步
 		_Window->SetVSync(true);
@@ -34,10 +34,6 @@ namespace SOMEENGINE
 
 		_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(_ImGuiLayer);
-	}
-
-	Application::Application(const std::string & vertexFilePath, const std::string & fragmentFilePath)
-	{
 	}
 
 	Application::~Application()

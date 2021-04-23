@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="assets">
@@ -24,6 +24,9 @@
     </Filter>
     <Filter Include="src\stuff\core">
       <UniqueIdentifier>{9C421A9D-8810-0EA3-71A4-7EC95D11EA07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\stuff\debug">
+      <UniqueIdentifier>{3AF16E40-A67C-DC04-AF8D-5FF91B983805}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\stuff\events">
       <UniqueIdentifier>{286BD751-1464-F6A3-3D96-DB2829EED5AF}</UniqueIdentifier>
@@ -58,9 +61,6 @@
     <Filter Include="vendor\stb_image">
       <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\stuff\debug">
-      <UniqueIdentifier>{a8baf865-c74b-48a1-b65f-af04c29a7ad2}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Some.h">
@@ -70,6 +70,12 @@
       <Filter>src\platform\opengl</Filter>
     </ClInclude>
     <ClInclude Include="src\platform\opengl\OpenGLContext.h">
+      <Filter>src\platform\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\opengl\OpenGLDebug.h">
+      <Filter>src\platform\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\opengl\OpenGLFrameBuffer.h">
       <Filter>src\platform\opengl</Filter>
     </ClInclude>
     <ClInclude Include="src\platform\opengl\OpenGLRendererAPI.h">
@@ -126,6 +132,9 @@
     <ClInclude Include="src\stuff\core\Window.h">
       <Filter>src\stuff\core</Filter>
     </ClInclude>
+    <ClInclude Include="src\stuff\debug\Instrumentor.h">
+      <Filter>src\stuff\debug</Filter>
+    </ClInclude>
     <ClInclude Include="src\stuff\events\ApplicationEvent.h">
       <Filter>src\stuff\events</Filter>
     </ClInclude>
@@ -144,6 +153,9 @@
     <ClInclude Include="src\stuff\renderer\Buffer.h">
       <Filter>src\stuff\renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\stuff\renderer\FrameBuffer.h">
+      <Filter>src\stuff\renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\stuff\renderer\GraphicsContext.h">
       <Filter>src\stuff\renderer</Filter>
     </ClInclude>
@@ -159,10 +171,16 @@
     <ClInclude Include="src\stuff\renderer\Renderer.h">
       <Filter>src\stuff\renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\stuff\renderer\Renderer2D.h">
+      <Filter>src\stuff\renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\stuff\renderer\RendererAPI.h">
       <Filter>src\stuff\renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\stuff\renderer\Shader.h">
+      <Filter>src\stuff\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\renderer\SubTexture2D.h">
       <Filter>src\stuff\renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\stuff\renderer\Texture.h">
@@ -1413,30 +1431,18 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\stuff\renderer\Renderer2D.h">
-      <Filter>src\stuff\renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\stuff\debug\Instrumentor.h">
-      <Filter>src\stuff\debug</Filter>
-    </ClInclude>
-    <ClInclude Include="src\stuff\renderer\SubTexture2D.h">
-      <Filter>src\stuff\renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\stuff\renderer\FrameBuffer.h">
-      <Filter>src\stuff\renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\platform\opengl\OpenGLFrameBuffer.h">
-      <Filter>src\platform\opengl</Filter>
-    </ClInclude>
-    <ClInclude Include="src\platform\opengl\OpenGLDebug.h">
-      <Filter>src\platform\opengl</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\platform\opengl\OpenGLBuffer.cpp">
       <Filter>src\platform\opengl</Filter>
     </ClCompile>
     <ClCompile Include="src\platform\opengl\OpenGLContext.cpp">
+      <Filter>src\platform\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\opengl\OpenGLDebug.cpp">
+      <Filter>src\platform\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\opengl\OpenGLFrameBuffer.cpp">
       <Filter>src\platform\opengl</Filter>
     </ClCompile>
     <ClCompile Include="src\platform\opengl\OpenGLRendererAPI.cpp">
@@ -1481,6 +1487,9 @@
     <ClCompile Include="src\stuff\renderer\Buffer.cpp">
       <Filter>src\stuff\renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\stuff\renderer\FrameBuffer.cpp">
+      <Filter>src\stuff\renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\stuff\renderer\OrthographicCamera.cpp">
       <Filter>src\stuff\renderer</Filter>
     </ClCompile>
@@ -1493,10 +1502,16 @@
     <ClCompile Include="src\stuff\renderer\Renderer.cpp">
       <Filter>src\stuff\renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\stuff\renderer\Renderer2D.cpp">
+      <Filter>src\stuff\renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\stuff\renderer\RendererAPI.cpp">
       <Filter>src\stuff\renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\stuff\renderer\Shader.cpp">
+      <Filter>src\stuff\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stuff\renderer\SubTexture2D.cpp">
       <Filter>src\stuff\renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\stuff\renderer\Texture.cpp">
@@ -1508,27 +1523,12 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\stuff\renderer\Renderer2D.cpp">
-      <Filter>src\stuff\renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\stuff\renderer\SubTexture2D.cpp">
-      <Filter>src\stuff\renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\stuff\renderer\FrameBuffer.cpp">
-      <Filter>src\stuff\renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\platform\opengl\OpenGLFrameBuffer.cpp">
-      <Filter>src\platform\opengl</Filter>
-    </ClCompile>
-    <ClCompile Include="src\platform\opengl\OpenGLDebug.cpp">
-      <Filter>src\platform\opengl</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="assets\shaders\Texture.glsl">
+    <None Include="assets\shaders\FlatColor.glsl">
       <Filter>assets\shaders</Filter>
     </None>
-    <None Include="assets\shaders\FlatColor.glsl">
+    <None Include="assets\shaders\Texture.glsl">
       <Filter>assets\shaders</Filter>
     </None>
     <None Include="assets\shaders\TextureGame.glsl">

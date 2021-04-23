@@ -29,8 +29,7 @@ namespace SOMEENGINE
 
 	public:
 		Application();
-		Application(const std::string& filePath);
-		Application(const std::string& vertexFilePath, const std::string& fragmentFilePath);
+		Application(const std::string& filePath, const std::string& name="");
 		virtual ~Application();
 
 	public:

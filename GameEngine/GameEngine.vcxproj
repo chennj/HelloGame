@@ -148,11 +148,11 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\platform\opengl\OpenGLDebug.h" />
-    <ClInclude Include="src\platform\opengl\OpenGLFrameBuffer.h" />
     <ClInclude Include="src\Some.h" />
     <ClInclude Include="src\platform\opengl\OpenGLBuffer.h" />
     <ClInclude Include="src\platform\opengl\OpenGLContext.h" />
+    <ClInclude Include="src\platform\opengl\OpenGLDebug.h" />
+    <ClInclude Include="src\platform\opengl\OpenGLFrameBuffer.h" />
     <ClInclude Include="src\platform\opengl\OpenGLRendererAPI.h" />
     <ClInclude Include="src\platform\opengl\OpenGLShader.h" />
     <ClInclude Include="src\platform\opengl\OpenGLTexture.h" />

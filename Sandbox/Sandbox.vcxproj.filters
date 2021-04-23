@@ -1,66 +1,35 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="src">
-      <UniqueIdentifier>{f9324c67-4536-4ef2-8df2-f39608b2e1bd}</UniqueIdentifier>
+    <Filter Include="tests">
+      <UniqueIdentifier>{78756B10-E489-93C1-AD0B-372119DF8FF2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\tests">
-      <UniqueIdentifier>{8f020615-96fb-4130-a8bb-c6819fa289c5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\tests\particle">
-      <UniqueIdentifier>{5a77c143-ecf2-4a66-bfbe-f06811fbc6d2}</UniqueIdentifier>
+    <Filter Include="tests\particle">
+      <UniqueIdentifier>{9B7CE46E-874A-D874-70DE-489B5C4BB4D9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\SandboxApp.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Sandbox2D.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameLayer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Level.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Player.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Random.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ParticleSystem.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\tests\particle\Particle.cpp">
-      <Filter>src\tests\particle</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\Sandbox2D.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameLayer.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Random.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Level.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Player.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ParticleSystem.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Color.h">
-      <Filter>src</Filter>
-    </ClInclude>
+    <ClInclude Include="src\Color.h" />
+    <ClInclude Include="src\GameLayer.h" />
+    <ClInclude Include="src\Level.h" />
+    <ClInclude Include="src\ParticleSystem.h" />
+    <ClInclude Include="src\Player.h" />
+    <ClInclude Include="src\Random.h" />
+    <ClInclude Include="src\Sandbox2D.h" />
     <ClInclude Include="src\tests\particle\Particle.h">
-      <Filter>src\tests\particle</Filter>
+      <Filter>tests\particle</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\GameLayer.cpp" />
+    <ClCompile Include="src\Level.cpp" />
+    <ClCompile Include="src\ParticleSystem.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Random.cpp" />
+    <ClCompile Include="src\Sandbox2D.cpp" />
+    <ClCompile Include="src\SandboxApp.cpp" />
+    <ClCompile Include="src\tests\particle\Particle.cpp">
+      <Filter>tests\particle</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
