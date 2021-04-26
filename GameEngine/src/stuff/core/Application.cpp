@@ -55,11 +55,18 @@ namespace SOMEENGINE
 
 		//SE_CORE_TRACE("{0}",e);
 
-		for (auto it = _LayerStack.end(); it != _LayerStack.begin();)
+		//for (auto it = _LayerStack.end(); it != _LayerStack.begin();)
+		//{
+		//	(*--it)->OnEvent(e);
+		//	if (e._Handled)
+		//		break;
+		//}
+
+		for (auto it = _LayerStack.begin(); it != _LayerStack.end(); it++)
 		{
-			(*--it)->OnEvent(e);
 			if (e._Handled)
 				break;
+			(*it)->OnEvent(e);
 		}
 	}
 

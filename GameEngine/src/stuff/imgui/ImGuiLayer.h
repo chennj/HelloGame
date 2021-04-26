@@ -11,6 +11,7 @@ namespace SOMEENGINE
 	{
 	private:
 		float _Time = 0.0f;
+		bool _BlockEvents = false;
 
 	public:
 		ImGuiLayer();
@@ -24,5 +25,7 @@ namespace SOMEENGINE
 
 		void Begin();
 		void End();
+
+		void BlockEvents(bool block) { _BlockEvents = block; }
 	};
 }

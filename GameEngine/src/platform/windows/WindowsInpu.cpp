@@ -1,28 +1,26 @@
 #include "sopch.h"
-#include "WindowsInput.h"
+#include "stuff\core\Input.h"
 
 #include "stuff\core\Application.h"
 #include "GLFW\glfw3.h"
 
 namespace SOMEENGINE
 {
-	Input* Input::s_Instance = new WindowsInput();
-
-	bool WindowsInput::IsKeyPressedImpl(int keycode)
+	bool Input::IsKeyPressed(int keycode)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		auto state = glfwGetKey(window, keycode);
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
 	}
 
-	bool  WindowsInput::IsMouseButtonPressedImpl(int button)
+	bool  Input::IsMouseButtonPressed(int button)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		auto state = glfwGetMouseButton(window, button);
 		return state == GLFW_PRESS;
 	}
 
-	std::pair<float, float> WindowsInput::GetMosuePositionImpl()
+	std::pair<float, float> Input::GetMousePosition()
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		double xpos, ypos;
@@ -30,15 +28,15 @@ namespace SOMEENGINE
 		return{ (float)xpos,(float)ypos };
 	}
 
-	float WindowsInput::GetMouseXImpl()
+	float Input::GetMouseX()
 	{
-		auto a = GetMosuePositionImpl();
+		auto a = Input::GetMousePosition();
 		return std::get<0>(a);
 	}
 
-	float WindowsInput::GetMosueYImpl()
+	float Input::GetMouseY()
 	{
-		auto a = GetMosuePositionImpl();
+		auto a = GetMousePosition();
 		return a.second;
 	}
 }

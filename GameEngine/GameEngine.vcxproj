@@ -157,7 +157,6 @@
     <ClInclude Include="src\platform\opengl\OpenGLShader.h" />
     <ClInclude Include="src\platform\opengl\OpenGLTexture.h" />
     <ClInclude Include="src\platform\opengl\OpenGLVertexArray.h" />
-    <ClInclude Include="src\platform\windows\WindowsInput.h" />
     <ClInclude Include="src\platform\windows\WindowsWindow.h" />
     <ClInclude Include="src\sopch.h" />
     <ClInclude Include="src\stuff\core\Application.h" />

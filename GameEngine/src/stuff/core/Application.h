@@ -42,8 +42,8 @@ namespace SOMEENGINE
 		void PushOverlay(Layer* overlay);
 
 		inline Window& GetWindow() const { return *_Window; }
+		inline ImGuiLayer* GetImGuiLayer() { return _ImGuiLayer; }
 		inline static Application& Get() { return *s_Instance; }
-
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);

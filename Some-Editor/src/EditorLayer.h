@@ -20,6 +20,9 @@ namespace SOMEENGINE
 
 		glm::vec2 _ViewportSize;
 
+		bool _ViewportFocused = false;
+		bool _ViewportHovered = false;
+
 	public:
 		EditorLayer();
 		virtual ~EditorLayer() = default;

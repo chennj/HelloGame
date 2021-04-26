@@ -15,6 +15,9 @@ namespace SOMEENGINE
 	private:
 
 	public:
+		virtual ~FrameBuffer() = default;
+
+	public:
 		virtual const FrameBufferSpecification& GetSpecification() const = 0;
 		virtual const uint32_t GetColorAttachmentRendererID() const = 0;
 

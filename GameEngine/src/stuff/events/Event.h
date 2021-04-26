@@ -42,6 +42,9 @@ namespace SOMEENGINE
 		bool _Handled = false;
 
 	public:
+		virtual ~Event() = default;
+
+	public:
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;

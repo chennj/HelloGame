@@ -36,7 +36,8 @@ namespace SOMEENGINE
 		SE_PROFILE_FUNCTION();
 
 		// Update
-		_CameraController.OnUpdate(ts);
+		if (_ViewportFocused)
+			_CameraController.OnUpdate(ts);
 
 		// Render
 		Renderer2D::ResetStats();
@@ -217,6 +218,11 @@ namespace SOMEENGINE
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0,0 });
 		ImGui::Begin("Viewport");
+		_ViewportFocused = ImGui::IsWindowFocused();
+		_ViewportHovered = ImGui::IsWindowHovered();
+		Application::Get().GetImGuiLayer()->BlockEvents(!_ViewportFocused || !_ViewportHovered);
+		//SE_WARN("Focused: {0}", ImGui::IsWindowFocused());
+		//SE_WARN("Hovered: {0}", ImGui::IsWindowHovered());
 		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 		if (_ViewportSize != *((glm::vec2*)&viewportPanelSize))
 		{
