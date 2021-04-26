@@ -52,6 +52,12 @@ namespace SOMEENGINE
 		dispatcher.Dispatch<WindowResizeEvent>	(SE_BIND_EVENT_FN(OrthographicCameraController::OnWindowResized));
 	}
 
+	void OrthographicCameraController::OnResize(float width, float height)
+	{
+		_AspectRatio = width / height;
+		_Camera.SetProjection(-_AspectRatio * _ZoomLevel, _AspectRatio * _ZoomLevel, -_ZoomLevel, _ZoomLevel);
+	}
+
 	bool OrthographicCameraController::OnMouseScrolled(MouseScrolledEvent & e)
 	{
 		SE_PROFILE_FUNCTION();

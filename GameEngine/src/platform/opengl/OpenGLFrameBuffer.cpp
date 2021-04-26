@@ -17,10 +17,19 @@ namespace SOMEENGINE
 	OpenGLFrameBuffer::~OpenGLFrameBuffer()
 	{
 		glDeleteFramebuffers(1, &_RendererID);
+		glDeleteTextures(1, &_ColorAttachment);
+		glDeleteTextures(1, &_DepthAttachment);
 	}
 
 	void OpenGLFrameBuffer::Invalide()
 	{
+		if (_RendererID)
+		{
+			glDeleteFramebuffers(1, &_RendererID);
+			glDeleteTextures(1, &_ColorAttachment);
+			glDeleteTextures(1, &_DepthAttachment);
+		}
+
 		if (OPENGL_VERSION >= 4.5)
 		{
 			glCreateFramebuffers(1, &_RendererID);
@@ -48,22 +57,20 @@ namespace SOMEENGINE
 			GLCall(glGenFramebuffers(1, &_RendererID));
 			GLCall(glBindFramebuffer(GL_FRAMEBUFFER, _RendererID));
 
-			GLCall(glGenTextures(1, &_ColorAttachment));
-			GLCall(glBindTexture(GL_TEXTURE_2D, _ColorAttachment));
-
 			GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
 			GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+
+			GLCall(glGenTextures(1, &_ColorAttachment));
+			GLCall(glBindTexture(GL_TEXTURE_2D, _ColorAttachment));
 			GLCall(glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, _Specification.Width, _Specification.Height));
 			//GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, _Specification.Width, _Specification.Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr));
-
 			GLCall(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _ColorAttachment, 0));
 			//GLCall(glBindTexture(GL_TEXTURE_2D, 0));
 
 			GLCall(glGenTextures(1, &_DepthAttachment));
 			GLCall(glBindTexture(GL_TEXTURE_2D, _DepthAttachment));
 			GLCall(glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH24_STENCIL8, _Specification.Width, _Specification.Height));
-			//GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8, _Specification.Width, _Specification.Height, 0, GL_DEPTH_STENCIL, GL_UNSIGNED_INT_24_8, NULL));
-			
+			//GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8, _Specification.Width, _Specification.Height, 0, GL_DEPTH_STENCIL, GL_UNSIGNED_INT_24_8, NULL));			
 			GLCall(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, _DepthAttachment, 0));
 			//GLCall(glBindTexture(GL_TEXTURE_2D, 0));
 		}
@@ -77,10 +84,21 @@ namespace SOMEENGINE
 	void OpenGLFrameBuffer::Bind()
 	{
 		glBindFramebuffer(GL_FRAMEBUFFER, _RendererID);
+		//在视口显示全部的图形，后果时图形的比例会出现变形
+		//如果不使用这个，则图形不会变形，但有可能只能显示一部分
+		glViewport(0, 0, _Specification.Width, _Specification.Height);
 	}
 
 	void OpenGLFrameBuffer::Unbind()
 	{
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	}
+
+	void OpenGLFrameBuffer::Resize(uint32_t width, uint32_t height)
+	{
+		_Specification.Width = width;
+		_Specification.Height = height;
+
+		Invalide();
 	}
 }

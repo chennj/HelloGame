@@ -7,9 +7,9 @@ namespace SOMEENGINE
 	class OpenGLFrameBuffer : public FrameBuffer
 	{
 	private:
-		uint32_t _RendererID;
-		uint32_t _ColorAttachment;
-		uint32_t _DepthAttachment;
+		uint32_t _RendererID = 0;
+		uint32_t _ColorAttachment = 0;
+		uint32_t _DepthAttachment = 0;
 		FrameBufferSpecification _Specification;
 
 	public:
@@ -24,5 +24,7 @@ namespace SOMEENGINE
 
 		virtual void Bind() override;
 		virtual void Unbind() override;
+
+		virtual void Resize(uint32_t width, uint32_t height) override;
 	};
 }

@@ -100,4 +100,11 @@ namespace SOMEENGINE
 		//static bool show_demo_window = true;
 		//ImGui::ShowDemoWindow(&show_demo_window);
 	}
+
+	void ImGuiLayer::OnEvent(Event & e)
+	{
+		//ImGuiIO& io = ImGui::GetIO();
+		//e._Handled |= e.IsInCategory(EventCategoryMouse) & io.WantCaptureMouse;
+		//e._Handled |= e.IsInCategory(EventCategoryKeyboard) & io.WantCaptureKeyboard;
+	}
 }
