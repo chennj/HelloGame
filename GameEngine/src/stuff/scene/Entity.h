@@ -7,7 +7,7 @@ namespace SOMEENGINE
 	class Entity
 	{
 	private:
-		entt::entity _EntityHandle{ 0 };
+		entt::entity _EntityHandle{ entt::null };
 		Scene* _Scene = nullptr;
 
 	public:
@@ -43,6 +43,6 @@ namespace SOMEENGINE
 			_Scene->_Registry.remove<T>(_EntityHandle);
 		}
 
-		operator bool()const { return _EntityHandle != 0; }
+		operator bool()const { return _EntityHandle != entt::null; }
 	};
 }

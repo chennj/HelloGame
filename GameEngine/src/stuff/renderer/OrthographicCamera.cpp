@@ -14,6 +14,7 @@ namespace SOMEENGINE
 
 		_ViewProjectionMatrix = _ProjectionMatrix * _ViewMatrix;
 	}
+
 	void OrthographicCamera::SetProjection(float left, float right, float bottom, float top)
 	{
 		SE_PROFILE_FUNCTION();
@@ -21,6 +22,7 @@ namespace SOMEENGINE
 		_ProjectionMatrix = glm::ortho(left, right, bottom, top, -1.0f, 1.0f);
 		_ViewProjectionMatrix = _ProjectionMatrix * _ViewMatrix;
 	}
+
 	void OrthographicCamera::RecalculateViewMatrix()
 	{
 		SE_PROFILE_FUNCTION();

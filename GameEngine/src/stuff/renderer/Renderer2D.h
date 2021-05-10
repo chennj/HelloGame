@@ -3,6 +3,7 @@
 #include "OrthographicCamera.h"
 #include "Texture.h"
 #include "SubTexture2D.h"
+#include "Camera.h"
 
 namespace SOMEENGINE
 {
@@ -16,7 +17,8 @@ namespace SOMEENGINE
 		static void Init(const std::string& vertexFilePath, const std::string& fragmentFilePath);
 		static void Shutdown();
 
-		static void BeginScene(const OrthographicCamera& camera);
+		static void BeginScene(const Camera& camera, glm::mat4& transform);
+		static void BeginScene(const OrthographicCamera& camera); // should be remove future
 		static void EndScene();
 		static void Flush();
 

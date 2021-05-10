@@ -2,6 +2,8 @@
 
 #include "glm/glm.hpp"
 
+#include "stuff/renderer/Camera.h"
+
 namespace SOMEENGINE
 {
 	struct TagComponent
@@ -32,5 +34,16 @@ namespace SOMEENGINE
 		SpriteRendererComponent() = default;
 		SpriteRendererComponent(const SpriteRendererComponent&) = default;
 		SpriteRendererComponent(const glm::vec4& color) :Color(color) {}
+	};
+
+	struct CameraComponent
+	{
+		Camera Camera;
+		// 可能有多个摄像机
+		bool Primary = true;
+
+		CameraComponent() = default;
+		CameraComponent(const CameraComponent&) = default;
+		CameraComponent(const glm::mat4& projection) :Camera(projection) {}
 	};
 }

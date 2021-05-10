@@ -18,6 +18,8 @@ namespace SOMEENGINE
 
 		Ref<Scene>_ActiveScene;
 		Entity _SquareEntity;
+		Entity _PrimaryCameraEntity;
+		Entity _SecondCameraEntity;
 
 		glm::vec4 _SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 

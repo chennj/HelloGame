@@ -31,10 +31,17 @@ namespace SOMEENGINE
 
 		// ENTITY
 		_ActiveScene = CreateRef<Scene>();
-		auto square = _ActiveScene->CreateEntity("Green Square");
-		square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
 
-		_SquareEntity = square;
+		_SquareEntity = _ActiveScene->CreateEntity("Green Square Entity");
+		_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+
+		_PrimaryCameraEntity = _ActiveScene->CreateEntity("Camera Entity");
+		_PrimaryCameraEntity.AddComponent<CameraComponent>(glm::ortho( -20.0f, 20.0f, -10.0f, 10.0f, -1.0f, 1.0f ));
+
+		_SecondCameraEntity = _ActiveScene->CreateEntity(" Second Camera Entity");
+		_SecondCameraEntity.AddComponent<CameraComponent>(glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f));
+		_SecondCameraEntity.GetComponent<CameraComponent>().Primary = false;
+		
 	}
 
 	void EditorLayer::OnDetach()
@@ -44,6 +51,15 @@ namespace SOMEENGINE
 	void EditorLayer::OnUpdate(Timestep ts)
 	{
 		SE_PROFILE_FUNCTION();
+
+		// Resize
+		//if (FrameBufferSpecification spec = _FrameBuffer->GetSpecification();
+		//	_ViewportSize.x > 0.0f && _ViewportSize.y > 0.0f &&
+		//	(spec.Width != _ViewportSize.x || spec.Height != _ViewportSize.y))
+		//{
+		//	_FrameBuffer->Resize((uint32_t)_ViewportSize.x, (uint32_t)_ViewportSize.y);
+		//	_CameraController.OnResize(_ViewportSize.x, _ViewportSize.y);
+		//}
 
 		// Update
 		if (_ViewportFocused)
@@ -57,18 +73,12 @@ namespace SOMEENGINE
 			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 			RenderCommand::Clear();
 		}
-
-
+#if 1
 		{
-			Renderer2D::BeginScene(_CameraController.GetCamera());
-
-			// Update Scene
 			_ActiveScene->OnUpdate(ts);
-
-			Renderer2D::EndScene();
-
 			_FrameBuffer->Unbind();
 		}
+#endif
 
 #if 0
 		// SpriteSheet
@@ -237,6 +247,18 @@ namespace SOMEENGINE
 			ImGui::ColorEdit4("Square Color ", &_SquareColor.x);
 			ImGui::Separator();
 		}
+
+		ImGui::Separator();
+		ImGui::DragFloat3("Camera Transform",
+			glm::value_ptr(_PrimaryCameraEntity.GetComponent<TransformComponent>().Transform[3]));
+		if (ImGui::Checkbox("Camera A", &_PrimaryCameraEntity.GetComponent<CameraComponent>().Primary))
+		{
+			_SecondCameraEntity.GetComponent<CameraComponent>().Primary =
+				!_PrimaryCameraEntity.GetComponent<CameraComponent>().Primary;
+			_PrimaryCameraEntity.GetComponent<CameraComponent>().Primary =
+				_PrimaryCameraEntity.GetComponent<CameraComponent>().Primary;
+		}
+		ImGui::Separator();
 
 		auto stats = Renderer2D::GetStats();
 		ImGui::Text("Renderer2D Statistics:");
