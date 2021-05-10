@@ -4,6 +4,7 @@
 #include "stuff/renderer/Renderer2D.h"
 #include "Components.h"
 #include "glm\glm.hpp"
+#include "Entity.h"
 
 namespace SOMEENGINE
 {
@@ -76,8 +77,13 @@ namespace SOMEENGINE
 		}
 	}
 
-	entt::entity Scene::CreateEntity()
+	Entity Scene::CreateEntity(const std::string& name)
 	{
-		return _Registry.create();
+		Entity entity = { _Registry.create(), this };
+		entity.AddComponent<TransformComponent>();
+		auto& tag = entity.AddComponent<TagComponent>();
+		tag.Tag = name.empty() ? "Entity" : name;
+
+		return entity;
 	}
 }

@@ -26,13 +26,13 @@ namespace SOMEENGINE
 		fbSpec.Height = 540;
 		_FrameBuffer = FrameBuffer::Create(fbSpec);
 
-		//Àı–°£®‘∂¿Î…„œÒª˙£©
+		// Àı–°£®‘∂¿Î…„œÒª˙£©
 		//_CameraController.SetZoomLevel(2.5f);
 
+		// ENTITY
 		_ActiveScene = CreateRef<Scene>();
-		auto square = _ActiveScene->CreateEntity();
-		_ActiveScene->Reg().emplace<TransformComponent>(square);
-		_ActiveScene->Reg().emplace<SpriteRendererComponent>(square, glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+		auto square = _ActiveScene->CreateEntity("Green Square");
+		square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
 
 		_SquareEntity = square;
 	}
@@ -229,8 +229,15 @@ namespace SOMEENGINE
 		}
 
 		ImGui::Begin("Settings");
-		auto& _SquareColor = _ActiveScene->Reg().get<SpriteRendererComponent>(_SquareEntity).Color;
-		ImGui::ColorEdit4("Square Color ", &_SquareColor.x);
+		if (_SquareEntity)
+		{
+			ImGui::Separator();
+			ImGui::Text("%s", _SquareEntity.GetComponent<TagComponent>().Tag.c_str());
+			auto& _SquareColor = _SquareEntity.GetComponent<SpriteRendererComponent>().Color;
+			ImGui::ColorEdit4("Square Color ", &_SquareColor.x);
+			ImGui::Separator();
+		}
+
 		auto stats = Renderer2D::GetStats();
 		ImGui::Text("Renderer2D Statistics:");
 		ImGui::Text("Draw Calls: %d", stats.DrawCalls);

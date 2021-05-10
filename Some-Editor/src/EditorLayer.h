@@ -17,7 +17,7 @@ namespace SOMEENGINE
 		Ref<FrameBuffer> _FrameBuffer;
 
 		Ref<Scene>_ActiveScene;
-		entt::entity _SquareEntity;
+		Entity _SquareEntity;
 
 		glm::vec4 _SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 

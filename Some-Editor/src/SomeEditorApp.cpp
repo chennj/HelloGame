@@ -9,7 +9,7 @@
 // https://github.com/freeman40/ChernoHazel
 // 游戏素材
 // http://kenney.nl
-// Entt / Entity Component System (ECS)
+// Entt / Entity Component System (ECS) FrameWork
 // https://github.com/skypjack/entt
 // -----------------------------------------------------
 // 知识点 ///////////////////////////////////////////////

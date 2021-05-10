@@ -7,8 +7,10 @@ namespace SOMEENGINE
 {
 	using registry_et = entt::basic_registry<entt::entity>;
 
+	class Entity;
 	class Scene
 	{
+		friend class Entity;
 	private:
 		//entt::registry _Registry;
 		registry_et _Registry;
@@ -19,9 +21,6 @@ namespace SOMEENGINE
 
 	public:
 		void OnUpdate(Timestep ts);
-		entt::entity CreateEntity();
-
-		// tmp
-		registry_et& Reg() { return _Registry; }
+		Entity CreateEntity(const std::string& name = std::string());
 	};
 }
