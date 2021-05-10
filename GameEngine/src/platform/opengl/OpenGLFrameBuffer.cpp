@@ -96,6 +96,11 @@ namespace SOMEENGINE
 
 	void OpenGLFrameBuffer::Resize(uint32_t width, uint32_t height)
 	{
+		if (width == 0 || height == 0)
+		{
+			SE_CORE_WARN("Attempted Resize framebuffer to (0,0)");
+			return;
+		}
 		_Specification.Width = width;
 		_Specification.Height = height;
 

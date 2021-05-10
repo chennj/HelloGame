@@ -1,6 +1,6 @@
 workspace "HelloGame"
 	architecture "x64"
-	startproject "Sandbox"
+	startproject "Some-Editor"
 
 	configurations
 	{
@@ -18,6 +18,7 @@ IncludeDir["GLAD"]		= "GameEngine/vendor/glad/include"
 IncludeDir["ImGui"]		= "GameEngine/vendor/imgui"
 IncludeDir["glm"]		= "GameEngine/vendor/glm"
 IncludeDir["stb_image"]	= "GameEngine/vendor/stb_image"
+IncludeDir["entt"]		= "GameEngine/vendor/entt/include"
 
 include "GameEngine/vendor/glfw"
 include "GameEngine/vendor/glad"
@@ -28,7 +29,7 @@ project "GameEngine"
 	location "GameEngine"
 	kind "StaticLib"
 	language "C++"
-	cppdialect "C++11"
+	cppdialect "C++17"
 	staticruntime "on"
 
 	targetdir("bin/" .. outputdir .. "/%{prj.name}")
@@ -57,6 +58,7 @@ project "GameEngine"
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}",
 	}
 
 	links
@@ -109,7 +111,7 @@ project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
-	cppdialect "C++11"
+	cppdialect "C++17"
 	staticruntime "on"
 
 	targetdir("bin/" .. outputdir .. "/%{prj.name}")
@@ -128,7 +130,8 @@ project "Sandbox"
 		"GameEngine/vendor/spdlog/include",
 		"GameEngine/src",
 		"GameEngine/vender",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}",
 	}
 
 	links
@@ -226,7 +229,7 @@ project "Some-Editor"
 	location "Some-Editor"
 	kind "ConsoleApp"
 	language "C++"
-	cppdialect "C++11"
+	cppdialect "C++17"
 	staticruntime "on"
 
 	targetdir("bin/" .. outputdir .. "/%{prj.name}")
@@ -245,7 +248,8 @@ project "Some-Editor"
 		"GameEngine/vendor/spdlog/include",
 		"GameEngine/src",
 		"GameEngine/vender",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}",
 	}
 
 	links
@@ -262,17 +266,17 @@ project "Some-Editor"
 		}
 
 	filter "configurations:Debug"
-		defines "SANDBOX_DEBUG"
+		defines "SomeEditor_DEBUG"
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
-		defines "SANDBOX_RELEASE"
+		defines "SomeEditor_RELEASE"
 		runtime "Release"
 		optimize "on"
 
 	filter "configurations:Dist"
-		defines "SANDBOX_DIST"
+		defines "SomeEditor_DIST"
 		runtime "Release"
 		optimize "on"
 

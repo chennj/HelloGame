@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="assets">
@@ -36,6 +36,9 @@
     </Filter>
     <Filter Include="src\stuff\renderer">
       <UniqueIdentifier>{EAE3591C-D6C7-1A72-3F28-15C52B2B05F4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\stuff\scene">
+      <UniqueIdentifier>{E1537D41-4DDF-EA05-56F0-6DFAC2FA4606}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
@@ -185,6 +188,12 @@
     </ClInclude>
     <ClInclude Include="src\stuff\renderer\VertexArray.h">
       <Filter>src\stuff\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\scene\Components.h">
+      <Filter>src\stuff\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stuff\scene\Scene.h">
+      <Filter>src\stuff\scene</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\common.hpp">
       <Filter>vendor\glm\glm</Filter>
@@ -1516,6 +1525,9 @@
     </ClCompile>
     <ClCompile Include="src\stuff\renderer\VertexArray.cpp">
       <Filter>src\stuff\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stuff\scene\Scene.cpp">
+      <Filter>src\stuff\scene</Filter>
     </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>

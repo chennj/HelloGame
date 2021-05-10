@@ -14,6 +14,9 @@
 
 #include "stuff\imgui\ImGuiLayer.h"
 
+#include "stuff\scene\Scene.h"
+#include "stuff\scene\Components.h"
+
 // -- Renderer -------------------------------
 #include "stuff\renderer\Renderer.h"
 #include "stuff\renderer\Renderer2D.h"

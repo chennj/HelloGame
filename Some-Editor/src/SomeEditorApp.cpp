@@ -9,6 +9,8 @@
 // https://github.com/freeman40/ChernoHazel
 // 游戏素材
 // http://kenney.nl
+// Entt / Entity Component System (ECS)
+// https://github.com/skypjack/entt
 // -----------------------------------------------------
 // 知识点 ///////////////////////////////////////////////
 // -------------
@@ -35,6 +37,9 @@
 // glEnable(GL_DEPTH_TEST) : 上面的不会遮挡下面的
 // -------------
 // texture(u_Texture, v_TexCoord * 10.0) : 表示纹理平铺10次
+// -------------
+// Entity Component System (ECS)
+// 
 // ----------------------------------------------------
 #include "sopch.h"
 

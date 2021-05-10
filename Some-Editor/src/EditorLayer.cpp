@@ -25,6 +25,16 @@ namespace SOMEENGINE
 		fbSpec.Width = 1080;
 		fbSpec.Height = 540;
 		_FrameBuffer = FrameBuffer::Create(fbSpec);
+
+		//Àı–°£®‘∂¿Î…„œÒª˙£©
+		//_CameraController.SetZoomLevel(2.5f);
+
+		_ActiveScene = CreateRef<Scene>();
+		auto square = _ActiveScene->CreateEntity();
+		_ActiveScene->Reg().emplace<TransformComponent>(square);
+		_ActiveScene->Reg().emplace<SpriteRendererComponent>(square, glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+
+		_SquareEntity = square;
 	}
 
 	void EditorLayer::OnDetach()
@@ -46,6 +56,18 @@ namespace SOMEENGINE
 			_FrameBuffer->Bind();
 			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 			RenderCommand::Clear();
+		}
+
+
+		{
+			Renderer2D::BeginScene(_CameraController.GetCamera());
+
+			// Update Scene
+			_ActiveScene->OnUpdate(ts);
+
+			Renderer2D::EndScene();
+
+			_FrameBuffer->Unbind();
 		}
 
 #if 0
@@ -78,7 +100,7 @@ namespace SOMEENGINE
 		}
 #endif
 
-#if 1
+#if 0
 		{
 			SE_PROFILE_SCOPE("Render Draw");
 			Renderer2D::BeginScene(_CameraController.GetCamera());
@@ -87,8 +109,8 @@ namespace SOMEENGINE
 			rotation += ts * 20.0f;
 
 			Renderer2D::DrawQuad({ 0.0,0.0 }, { 0.8,0.8 }, { 0.8,0.2,0.3,1.0 }, rotation);
-			Renderer2D::DrawQuad({ -1.0,0.0 }, { 0.8,0.8 }, _SquareColor, rotation);
-			Renderer2D::DrawQuad({ 1.5,0.0 }, { 1.0,1.25 }, { 0.2,0.3,0.8,1.0 }, -rotation);
+			Renderer2D::DrawQuad({ -1.0,0.0 }, { 0.8,0.8 }, _SquareColor, 45.0f);
+			Renderer2D::DrawQuad({ 1.5,0.0 }, { 1.0,1.25 }, _SquareColor, -45.0f);
 			Renderer2D::DrawQuad({ 0.0,0.0,-0.1 }, { 20.0,20.0 }, _FlowerTexture2D, 10.0, 0.0f, glm::vec4(0.8, 0.2, 0.2, 1.0));
 			Renderer2D::DrawQuad({ 0.0,0.0,-0.05 }, { 5.0,5.0 }, _FlowerTexture2D, 20.0, rotation, glm::vec4(0.5, 0.2, 0.2, 1.0));
 
@@ -207,6 +229,7 @@ namespace SOMEENGINE
 		}
 
 		ImGui::Begin("Settings");
+		auto& _SquareColor = _ActiveScene->Reg().get<SpriteRendererComponent>(_SquareEntity).Color;
 		ImGui::ColorEdit4("Square Color ", &_SquareColor.x);
 		auto stats = Renderer2D::GetStats();
 		ImGui::Text("Renderer2D Statistics:");
