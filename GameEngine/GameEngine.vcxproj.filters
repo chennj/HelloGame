@@ -1443,6 +1443,9 @@
     <ClInclude Include="src\stuff\renderer\Camera.h">
       <Filter>src\stuff\renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\stuff\scene\SceneCamera.h">
+      <Filter>src\stuff\scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\platform\opengl\OpenGLBuffer.cpp">
@@ -1539,6 +1542,9 @@
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="src\stuff\scene\Entity.cpp">
+      <Filter>src\stuff\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stuff\scene\SceneCamera.cpp">
       <Filter>src\stuff\scene</Filter>
     </ClCompile>
   </ItemGroup>

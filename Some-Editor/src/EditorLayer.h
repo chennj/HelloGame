@@ -21,12 +21,13 @@ namespace SOMEENGINE
 		Entity _PrimaryCameraEntity;
 		Entity _SecondCameraEntity;
 
+		bool _PrimaryCamera = true;
+
 		glm::vec4 _SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 
-		glm::vec2 _ViewportSize;
+		glm::vec2 _ViewportSize= { 0.0f, 0.0f };
 
-		bool _ViewportFocused = false;
-		bool _ViewportHovered = false;
+		bool _ViewportFocused = false,_ViewportHovered = false;
 
 	public:
 		EditorLayer();

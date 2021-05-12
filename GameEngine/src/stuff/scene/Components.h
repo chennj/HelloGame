@@ -2,7 +2,7 @@
 
 #include "glm/glm.hpp"
 
-#include "stuff/renderer/Camera.h"
+#include "SceneCamera.h"
 
 namespace SOMEENGINE
 {
@@ -36,14 +36,16 @@ namespace SOMEENGINE
 		SpriteRendererComponent(const glm::vec4& color) :Color(color) {}
 	};
 
+	// 相机组件并不一定需要与当前视口（viewport）大小绑定
 	struct CameraComponent
 	{
-		Camera Camera;
+		SceneCamera Camera;
 		// 可能有多个摄像机
 		bool Primary = true;
+		// 固定纵横比
+		bool FixedAspectRatio = false;
 
 		CameraComponent() = default;
 		CameraComponent(const CameraComponent&) = default;
-		CameraComponent(const glm::mat4& projection) :Camera(projection) {}
 	};
 }
