@@ -1446,6 +1446,9 @@
     <ClInclude Include="src\stuff\scene\SceneCamera.h">
       <Filter>src\stuff\scene</Filter>
     </ClInclude>
+    <ClInclude Include="src\stuff\scene\ScriptableEntity.h">
+      <Filter>src\stuff\scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\platform\opengl\OpenGLBuffer.cpp">

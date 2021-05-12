@@ -42,6 +42,37 @@ namespace SOMEENGINE
 		_SecondCameraEntity.AddComponent<CameraComponent>();
 		_SecondCameraEntity.GetComponent<CameraComponent>().Primary = false;
 		
+		class CameraController : public ScriptableEntity
+		{
+		private:
+		public:
+			void OnCreate()
+			{
+				//SE_TRACE("CameraController::OnCreate");
+			}
+
+			void OnDestroy()
+			{
+
+			}
+
+			void OnUpdate(Timestep ts)
+			{
+				//SE_TRACE("CameraController::OnUpdate Timestep: {0}", ts);
+				auto& transform = GetComponent<TransformComponent>().Transform;
+				float speed = 5.0f;
+				if (Input::IsKeyPressed(SE_KEY_A))
+					transform[3][0] -= speed * ts;
+				if (Input::IsKeyPressed(SE_KEY_D))
+					transform[3][0] += speed * ts;
+				if (Input::IsKeyPressed(SE_KEY_W))
+					transform[3][1] += speed * ts;
+				if (Input::IsKeyPressed(SE_KEY_S))
+					transform[3][1] -= speed * ts;
+			}
+		};
+
+		_PrimaryCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 	}
 
 	void EditorLayer::OnDetach()
@@ -62,9 +93,9 @@ namespace SOMEENGINE
 			_ActiveScene->OnViewportResize((uint32_t)_ViewportSize.x, (uint32_t)_ViewportSize.y);
 		}
 
-		// Update
-		if (_ViewportFocused)
-			_CameraController.OnUpdate(ts);
+		//// Update
+		//if (_ViewportFocused)
+		//	_CameraController.OnUpdate(ts);
 
 		// Render
 		Renderer2D::ResetStats();

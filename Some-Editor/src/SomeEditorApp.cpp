@@ -11,6 +11,8 @@
 // http://kenney.nl
 // Entt / Entity Component System (ECS) FrameWork
 // https://github.com/skypjack/entt
+// 作者网站
+// https://www.patreon.com/thecherno
 // -----------------------------------------------------
 // 知识点 ///////////////////////////////////////////////
 // -------------

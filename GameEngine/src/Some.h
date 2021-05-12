@@ -16,6 +16,7 @@
 
 #include "stuff\scene\Scene.h"
 #include "stuff\scene\Entity.h"
+#include "stuff/scene/ScriptableEntity.h"
 #include "stuff\scene\Components.h"
 
 // -- Renderer -------------------------------

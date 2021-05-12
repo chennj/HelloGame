@@ -45,4 +45,5 @@ namespace SOMEENGINE
 
 		operator bool()const { return _EntityHandle != entt::null; }
 	};
+
 }
