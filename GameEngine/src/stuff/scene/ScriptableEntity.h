@@ -11,10 +11,16 @@ namespace SOMEENGINE
 		Entity _Entity;
 
 	public:
+		virtual ~ScriptableEntity() {}
 		template<typename T>
 		T& GetComponent()
 		{
 			return _Entity.GetComponent<T>();
 		}
+
+	protected:
+		virtual void OnCreate() {};
+		virtual void OnDestroy() {};
+		virtual void OnUpdate(Timestep ts) {};
 	};
 }

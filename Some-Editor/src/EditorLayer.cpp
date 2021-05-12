@@ -49,6 +49,8 @@ namespace SOMEENGINE
 			void OnCreate()
 			{
 				//SE_TRACE("CameraController::OnCreate");
+				auto& transform = GetComponent<TransformComponent>().Transform;
+				transform[3][0] = rand() % 10 - 5.0f;
 			}
 
 			void OnDestroy()
@@ -73,6 +75,7 @@ namespace SOMEENGINE
 		};
 
 		_PrimaryCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+		_SecondCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 	}
 
 	void EditorLayer::OnDetach()
