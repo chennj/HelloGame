@@ -33,8 +33,13 @@ namespace SOMEENGINE
 		// ENTITY
 		_ActiveScene = CreateRef<Scene>();
 
-		_SquareEntity = _ActiveScene->CreateEntity("Green Square Entity");
-		_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+		auto greenSquare = _ActiveScene->CreateEntity("Green Square");
+		greenSquare.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+
+		auto redSquare = _ActiveScene->CreateEntity("Red Square");
+		redSquare.AddComponent<SpriteRendererComponent>(glm::vec4{ 1.0f, 0.0f, 0.0f, 1.0f });
+
+		_SquareEntity = greenSquare;
 
 		_PrimaryCameraEntity = _ActiveScene->CreateEntity("Primary Camera Entity");
 		_PrimaryCameraEntity.AddComponent<CameraComponent>();
