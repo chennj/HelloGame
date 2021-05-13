@@ -52,31 +52,29 @@ namespace SOMEENGINE
 		{
 		private:
 		public:
-			void OnCreate()
+			void OnCreate() override
 			{
-				//SE_TRACE("CameraController::OnCreate");
-				auto& transform = GetComponent<TransformComponent>().Transform;
-				transform[3][0] = rand() % 10 - 5.0f;
+				auto& translation = GetComponent<TransformComponent>().Translation;
+				translation.x = rand() % 10 - 5.0f;
 			}
 
-			void OnDestroy()
+			void OnDestroy() override
 			{
 
 			}
 
-			void OnUpdate(Timestep ts)
+			void OnUpdate(Timestep ts) override
 			{
-				//SE_TRACE("CameraController::OnUpdate Timestep: {0}", ts);
-				auto& transform = GetComponent<TransformComponent>().Transform;
+				auto& translation = GetComponent<TransformComponent>().Translation;
 				float speed = 5.0f;
 				if (Input::IsKeyPressed(SE_KEY_A))
-					transform[3][0] -= speed * ts;
+					translation.x -= speed * ts;
 				if (Input::IsKeyPressed(SE_KEY_D))
-					transform[3][0] += speed * ts;
+					translation.x += speed * ts;
 				if (Input::IsKeyPressed(SE_KEY_W))
-					transform[3][1] += speed * ts;
+					translation.y += speed * ts;
 				if (Input::IsKeyPressed(SE_KEY_S))
-					transform[3][1] -= speed * ts;
+					translation.y -= speed * ts;
 			}
 		};
 
