@@ -36,7 +36,7 @@ namespace SOMEENGINE
 		_SquareEntity = _ActiveScene->CreateEntity("Green Square Entity");
 		_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
 
-		_PrimaryCameraEntity = _ActiveScene->CreateEntity("Camera Entity");
+		_PrimaryCameraEntity = _ActiveScene->CreateEntity("Primary Camera Entity");
 		_PrimaryCameraEntity.AddComponent<CameraComponent>();
 
 		_SecondCameraEntity = _ActiveScene->CreateEntity("Second Camera Entity");

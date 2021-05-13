@@ -18,6 +18,7 @@ namespace SOMEENGINE
 
 	private:
 		void DrawEntityNode(Entity entity);
+		void DrawComponents(Entity entity);
 
 	public:
 		void SetContext(const Ref<Scene>& scene); 
