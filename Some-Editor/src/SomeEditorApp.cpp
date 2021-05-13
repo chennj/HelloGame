@@ -13,6 +13,9 @@
 // https://github.com/skypjack/entt
 // 作者网站
 // https://www.patreon.com/thecherno
+// OpenGL学习网站
+// https://learnopengl.com/
+// https://learnopengl-cn.github.io/
 // -----------------------------------------------------
 // 知识点 ///////////////////////////////////////////////
 // -------------

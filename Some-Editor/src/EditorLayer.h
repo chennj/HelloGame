@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Some.h>
+#include "panels/SceneHierarchyPanel.h"
 
 namespace SOMEENGINE
 {
@@ -29,6 +30,8 @@ namespace SOMEENGINE
 
 		bool _ViewportFocused = false,_ViewportHovered = false;
 
+		// Panels
+		SceneHierarchyPanel _SceneHierarchyPanel;
 	public:
 		EditorLayer();
 		virtual ~EditorLayer() = default;

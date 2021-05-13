@@ -4,6 +4,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{f946aa76-5b51-4c21-a572-304cb637f715}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\panels">
+      <UniqueIdentifier>{386a5be0-1422-41cf-92b0-16b921559a71}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EditorLayer.cpp">
@@ -12,10 +15,16 @@
     <ClCompile Include="src\SomeEditorApp.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\panels\SceneHierarchyPanel.cpp">
+      <Filter>src\panels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\EditorLayer.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\panels\SceneHierarchyPanel.h">
+      <Filter>src\panels</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@
 
 #include "glm\gtc\matrix_transform.hpp"
 #include "glm\gtc\type_ptr.hpp"
+#include "panels/SceneHierarchyPanel.h"
 
 namespace SOMEENGINE
 {
@@ -38,7 +39,7 @@ namespace SOMEENGINE
 		_PrimaryCameraEntity = _ActiveScene->CreateEntity("Camera Entity");
 		_PrimaryCameraEntity.AddComponent<CameraComponent>();
 
-		_SecondCameraEntity = _ActiveScene->CreateEntity(" Second Camera Entity");
+		_SecondCameraEntity = _ActiveScene->CreateEntity("Second Camera Entity");
 		_SecondCameraEntity.AddComponent<CameraComponent>();
 		_SecondCameraEntity.GetComponent<CameraComponent>().Primary = false;
 		
@@ -76,6 +77,8 @@ namespace SOMEENGINE
 
 		_PrimaryCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 		_SecondCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+
+		_SceneHierarchyPanel.SetContext(_ActiveScene);
 	}
 
 	void EditorLayer::OnDetach()
@@ -270,6 +273,8 @@ namespace SOMEENGINE
 
 			ImGui::EndMenuBar();
 		}
+
+		_SceneHierarchyPanel.OnImGuiRender();
 
 		ImGui::Begin("Settings");
 		if (_SquareEntity)

@@ -44,6 +44,17 @@ namespace SOMEENGINE
 		}
 
 		operator bool()const { return _EntityHandle != entt::null; }
+		operator uint32_t() const { return (uint32_t)_EntityHandle; }
+
+		bool operator ==(const Entity& other) const 
+		{ 
+			return _EntityHandle == other._EntityHandle && _Scene == other._Scene; 
+		}
+		bool operator !=(const Entity& other) const
+		{
+			//return !operator==(other);
+			return !(*this==other);
+		}
 	};
 
 }

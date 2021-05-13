@@ -11,6 +11,7 @@ namespace SOMEENGINE
 	class Scene
 	{
 		friend class Entity;
+		friend class SceneHierarchyPanel;
 	private:
 		//entt::registry _Registry;
 		registry_et _Registry;
