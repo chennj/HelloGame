@@ -39,7 +39,7 @@ namespace SOMEENGINE
 		auto redSquare = _ActiveScene->CreateEntity("Red Square");
 		redSquare.AddComponent<SpriteRendererComponent>(glm::vec4{ 1.0f, 0.0f, 0.0f, 1.0f });
 
-		_SquareEntity = greenSquare;
+		//_SquareEntity = greenSquare;
 
 		_PrimaryCameraEntity = _ActiveScene->CreateEntity("Primary Camera Entity");
 		_PrimaryCameraEntity.AddComponent<CameraComponent>();
@@ -281,31 +281,7 @@ namespace SOMEENGINE
 
 		_SceneHierarchyPanel.OnImGuiRender();
 
-		ImGui::Begin("Settings");
-		if (_SquareEntity)
-		{
-			ImGui::Separator();
-			ImGui::Text("%s", _SquareEntity.GetComponent<TagComponent>().Tag.c_str());
-			auto& _SquareColor = _SquareEntity.GetComponent<SpriteRendererComponent>().Color;
-			ImGui::ColorEdit4("Square Color ", &_SquareColor.x);
-			ImGui::Separator();
-		}
-
-		ImGui::Separator();
-		ImGui::DragFloat3("Camera Transform",
-			glm::value_ptr(_PrimaryCameraEntity.GetComponent<TransformComponent>().Transform[3]));
-		if (ImGui::Checkbox("Camera A", &_PrimaryCamera))
-		{
-			_PrimaryCameraEntity.GetComponent<CameraComponent>().Primary	= _PrimaryCamera;
-			_SecondCameraEntity.GetComponent<CameraComponent>().Primary		= !_PrimaryCamera;
-		}
-		{
-			auto& camera = _SecondCameraEntity.GetComponent<CameraComponent>().Camera;
-			float orthoSize = camera.GetOrthographicSize();
-			if (ImGui::DragFloat("Second Camera Ortho Size", &orthoSize))
-				camera.SetOrthographicSize(orthoSize);
-		}
-		ImGui::Separator();
+		ImGui::Begin("Stats");
 
 		auto stats = Renderer2D::GetStats();
 		ImGui::Text("Renderer2D Statistics:");

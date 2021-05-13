@@ -119,6 +119,17 @@ namespace SOMEENGINE
 				ImGui::TreePop();
 			}
 		}
+
+		if (entity.HasComponent<SpriteRendererComponent>())
+		{
+			if (ImGui::TreeNodeEx((void*)typeid(SpriteRendererComponent).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "Sprite Renderer"))
+			{
+				auto& color = entity.GetComponent<SpriteRendererComponent>().Color;
+				ImGui::ColorEdit4("Color ", glm::value_ptr(color));
+
+				ImGui::TreePop();
+			}
+		}
 	}
 
 	void SceneHierarchyPanel::SetContext(const Ref<Scene>& scene)
